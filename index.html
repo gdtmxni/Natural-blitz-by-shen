@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Natural Blitz by Shen — Wig Laundry Mat</title>
+<title>Natural Blitz by Shen | Wig Laundry Mat</title>
 <meta name="description" content="Wig Laundry Mat by Natural Blitz by Shen. Wash, condition, detangle, dry & style. Kingston & surrounding areas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -326,7 +326,10 @@ footer{background:var(--black);padding:80px 0 34px}
 .foot a:hover{color:var(--pink-hot)}
 .foot .ln i,.foot a i{width:36px;height:36px;border-radius:50%;background:var(--pink);display:grid;place-items:center;flex:none}
 .foot i svg{width:17px;height:17px;fill:#fff}
-.foot-bottom{display:flex;justify-content:space-between;gap:20px;padding-top:26px;font-size:12px;color:rgba(255,255,255,.45);flex-wrap:wrap}
+.foot-bottom{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding-top:26px;font-size:12px;color:rgba(255,255,255,.45)}
+.foot-bottom .copy{font-size:14px;letter-spacing:.06em;color:rgba(255,255,255,.6);text-align:center}
+.foot-bottom button{justify-self:end}
+@media (max-width:620px){.foot-bottom{grid-template-columns:1fr;justify-items:center;text-align:center;gap:12px}.foot-bottom button{justify-self:center}}
 .foot-bottom .script{font-size:28px;color:var(--pink-hot)}
 .foot-bottom button{letter-spacing:.14em;text-transform:uppercase;font-size:11px;text-decoration:underline;text-underline-offset:4px;color:rgba(255,255,255,.6)}
 
@@ -389,6 +392,7 @@ body.view-book #home{display:none}
 .drop .di svg{width:24px;height:24px;stroke:var(--sky);fill:none;stroke-width:1.6}
 .drop b{display:block}.drop span{font-size:13px;color:rgba(255,255,255,.55)}
 .drop input{display:none}
+.drop.has{display:none}
 .preview{display:none;margin-top:14px;align-items:center;gap:16px;padding:12px;border-radius:18px;border:1px solid rgba(143,214,255,.35);background:rgba(143,214,255,.05)}
 .preview.show{display:flex}
 .preview img{width:76px;height:76px;object-fit:cover;border-radius:12px}
@@ -660,21 +664,21 @@ a.cp-item:hover b{color:var(--electric-text)}
 .date-field[aria-expanded="true"]{border-color:var(--pink-hot);background:rgba(236,61,143,.06)}
 .date-field[aria-expanded="true"] .chev{transform:rotate(180deg)}
 .date-field.bad{border-color:var(--pink-hot)}
-.cal-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease),opacity .4s,margin .4s;opacity:0}
+.cal-wrap{max-width:500px;display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease),opacity .4s,margin .4s;opacity:0}
 .cal-wrap>.cal{overflow:hidden;min-height:0}
 .cal-wrap.open{grid-template-rows:1fr;opacity:1;margin-top:12px}
 .cal{border-radius:22px;border:1px solid var(--line);background:linear-gradient(170deg,#1c151b,#110d11)}
 .cal-wrap .cal{padding:0 18px}
 .cal-wrap.open .cal{padding:18px}
 .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.cal-head b{font-family:var(--serif);font-size:22px}
+.cal-head b{font-family:var(--serif);font-size:20px}
 .cal-head .icon-btn{width:38px;height:38px}
 .cal-head .icon-btn:disabled{opacity:.25;pointer-events:none}
-.cal-dow,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dow,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .cal-dow span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;padding:4px 0}
-.cd{position:relative;aspect-ratio:1/.9;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:all .25s var(--ease);font-variant-numeric:tabular-nums}
+.cd{position:relative;aspect-ratio:1/.82;border-radius:11px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:all .25s var(--ease);font-variant-numeric:tabular-nums}
 .cd.empty{border:0;background:none}
-.cd b{font-size:15px;font-weight:600}
+.cd b{font-size:14px;font-weight:600}
 .cd small{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .cd.today b{color:var(--pink-hot)}
 .cd.s-few::after{content:"";position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
@@ -708,6 +712,14 @@ a.cp-item:hover b{color:var(--electric-text)}
 .slot.taken b{text-decoration:line-through;text-decoration-color:var(--pink)}
 .slot-note{font-size:12px;color:rgba(255,255,255,.5);margin-top:10px}
 .seg.occ button.on{background:var(--pink);border-color:var(--pink);color:#fff}
+.occ-send{display:flex;gap:10px;align-items:stretch}
+.occ-send .inp{flex:1;min-width:0}
+.occ-send .btn{height:54px;padding:0 26px;flex:none}
+.occ-send .btn:disabled{opacity:.4;pointer-events:none}
+.occ-sent{font-size:12px;color:var(--sky);margin-top:8px;min-height:0}
+.occ-sent:empty{display:none}
+.receipt div.rc-notes{flex-direction:column;gap:4px}
+.receipt div.rc-notes b{font-weight:500;white-space:pre-line;text-align:left}
 /* admin */
 .admin{border-radius:24px;border:1px dashed rgba(216,180,106,.5);background:rgba(216,180,106,.04);padding:20px 24px;margin-bottom:24px}
 .admin-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
@@ -865,7 +877,7 @@ a.cp-item:hover b{color:var(--electric-text)}
     <div class="wrap">
       <div data-reveal>
         <p class="eyebrow" style="color:var(--pink)">Clean wig, confidence unmatched</p>
-        <h2 style="margin-top:18px">Your <span class="pill-img"><img src="assets/looks/r3c6.webp" alt=""></span> wig, <span class="sky-u">refreshed</span> &amp; restyled — <span class="script">any look</span> you love.</h2>
+        <h2 style="margin-top:18px">Your <span class="pill-img"><img src="assets/looks/r3c6.webp" alt=""></span> wig, <span class="sky-u">refreshed</span> &amp; restyled, <span class="script">any look</span> you love.</h2>
         <p>Every unit gets the full Blitz: gentle deep cleanse, moisture-rich conditioning, patient detangling and a dry &amp; style finish so it's silky and ready to wear the moment it's back in your hands.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <a class="btn btn-pink" href="#book">Book your Blitz</a>
@@ -893,7 +905,7 @@ a.cp-item:hover b{color:var(--electric-text)}
       <div class="ex-grid">
         <a class="ex-card" href="#gallery" data-reveal><img src="assets/looks/r3c6.webp" alt="" loading="lazy"><span class="ex-num">01</span><div><h3>Gallery</h3><p>Real finishes, video previews and the 3D lookbook.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
         <a class="ex-card" href="#services" data-reveal style="transition-delay:.1s"><img src="assets/wig-hero.webp" alt="" loading="lazy"><span class="ex-num">02</span><div><h3>Services</h3><p>Wash, condition, detangle, dry &amp; style.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
-        <a class="ex-card" href="#process" data-reveal style="transition-delay:.2s"><img src="assets/looks/r2c1.webp" alt="" loading="lazy"><span class="ex-num">03</span><div><h3>How it works</h3><p>Book, Blitz, slay — three simple steps.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
+        <a class="ex-card" href="#process" data-reveal style="transition-delay:.2s"><img src="assets/looks/r2c1.webp" alt="" loading="lazy"><span class="ex-num">03</span><div><h3>How it works</h3><p>Book, Blitz, slay: three simple steps.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
       </div>
     </div>
   </section>
@@ -1071,10 +1083,10 @@ a.cp-item:hover b{color:var(--electric-text)}
             <span><b>Upload inspo photo</b><span>Tap to choose or drag an image here (optional)</span></span>
             <input type="file" accept="image/*" id="photo">
           </label>
-          <div class="preview" id="preview"><img alt="Your inspiration photo" id="previewImg"><div><b id="previewName">photo.jpg</b><span>Added — we'll match this look</span></div><button type="button" id="removePhoto">Remove</button></div>
+          <div class="preview" id="preview"><img alt="Your inspiration photo" id="previewImg"><div><b id="previewName">photo.jpg</b><span>Added! We'll match this look.</span></div><button type="button" id="removePhoto">Remove</button></div>
           <span class="field-label">Is this for a special occasion?</span>
           <div class="seg occ" id="occasion"><button type="button">No, just fresh</button><button type="button">Wedding</button><button type="button">Birthday party</button><button type="button">Graduation</button><button type="button">Prom</button><button type="button">Photoshoot</button><button type="button">Vacation</button><button type="button">Other</button></div>
-          <div id="occOtherWrap" style="display:none;margin-top:12px"><input class="inp" id="occOther" placeholder="Tell us the occasion (e.g. baby shower, church event)"></div>
+          <div id="occOtherWrap" style="display:none;margin-top:12px"><div class="occ-send"><input class="inp" id="occOther" placeholder="Tell us the occasion (e.g. baby shower, church event)" maxlength="120" enterkeyhint="send"><button type="button" class="btn btn-pink" id="occSend">Send</button></div><p class="occ-sent" id="occSent"></p></div>
         </div>
         <!-- step 3 -->
         <div class="bk-step" data-step="3">
@@ -1091,7 +1103,7 @@ a.cp-item:hover b{color:var(--electric-text)}
               <div class="cal-head"><button type="button" class="icon-btn" id="calPrev" aria-label="Previous month"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button><b id="calMonth"></b><button type="button" class="icon-btn" id="calNext" aria-label="Next month"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button></div>
               <div class="cal-dow"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
               <div class="cal-grid" id="calGrid"></div>
-              <div class="cal-legend"><span><i class="lg-open"></i>Open</span><span><i class="lg-few"></i>Few times left</span><span><i class="lg-full"></i>Fully booked</span></div>
+              <div class="cal-legend"><span><i class="lg-open"></i>Open</span><span><i class="lg-few"></i>Few times left</span></div>
               <p class="cal-note" id="calNote"></p>
             </div>
           </div>
@@ -1115,11 +1127,11 @@ a.cp-item:hover b{color:var(--electric-text)}
           <p class="hint">So Shen knows whose wig is coming in.</p>
           <div class="row2">
             <div><span class="field-label" style="margin-top:0">Full name</span><input class="inp" id="name" autocomplete="name" placeholder="Your name"><div class="err" id="nameErr"></div></div>
-            <div><span class="field-label" style="margin-top:0">Phone / WhatsApp</span><input class="inp" id="phone" type="tel" autocomplete="tel" placeholder="876-000-0000"><div class="err" id="phoneErr"></div></div>
+            <div><span class="field-label" style="margin-top:0">Phone / WhatsApp</span><input class="inp" id="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="876-000-0000"><div class="err" id="phoneErr"></div></div>
           </div>
           <span class="field-label">Instagram (optional)</span>
           <input class="inp" id="ig" placeholder="@yourhandle">
-          <span class="field-label">Anything we should know? (optional)</span>
+          <span class="field-label">Notes: anything we should know? (optional)</span>
           <textarea class="inp" id="notes" placeholder="Lace type, special requests, product sensitivities…"></textarea>
         </div>
         <!-- pay -->
@@ -1191,7 +1203,7 @@ a.cp-item:hover b{color:var(--electric-text)}
     </div>
     <div class="foot-bottom">
       <span class="script">We wash, you slay!</span>
-      <span>© <span id="yr"></span> Natural Blitz by Shen</span>
+      <span class="copy">© <span id="yr"></span> Natural Blitz by Shen</span>
       <button id="replay">Replay intro</button>
     </div>
   </div>
@@ -1312,7 +1324,7 @@ $('#replay').addEventListener('click',()=>{if(location.hash)location.hash='';win
 const nav=$('#nav');
 addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
 const PAGES=['home','gallery','services','process','contact','book'];
-const TITLES={home:'Natural Blitz by Shen — Wig Laundry Mat',gallery:'Gallery — Natural Blitz by Shen',services:'Services — Natural Blitz by Shen',process:'How it works — Natural Blitz by Shen',contact:'Contact — Natural Blitz by Shen',book:'Book — Natural Blitz by Shen'};
+const TITLES={home:'Natural Blitz by Shen | Wig Laundry Mat',gallery:'Gallery | Natural Blitz by Shen',services:'Services | Natural Blitz by Shen',process:'How it works | Natural Blitz by Shen',contact:'Contact | Natural Blitz by Shen',book:'Book | Natural Blitz by Shen'};
 function curPage(){const h=location.hash.replace('#','');return PAGES.includes(h)?h:'home'}
 function go(id){ // scroll within the current page
   $('#mmenu').classList.remove('open');
@@ -1450,14 +1462,22 @@ $$('[data-reveal]').forEach(el=>io.observe(el));
 spawnBubbles($('#heroBubbles'),16,1);
 
 /* ===================== BOOKING ===================== */
-const bkDefault={step:1,services:['wash','cond','detangle','style'],qty:1,hairType:'Human hair',pay:'deposit',length:'Long',style:'',occasion:'No, just fresh',occOther:'',date:'',time:'',handoff:'Drop-off',addr:'',name:'',phone:'',ig:'',notes:''};
+const bkDefault={step:1,services:['wash','cond','detangle','style'],qty:1,hairType:'Human hair',pay:'deposit',length:'Long',style:'',occasion:'No, just fresh',occOther:'',occSent:'',date:'',time:'',handoff:'Drop-off',addr:'',name:'',phone:'',ig:'',notes:''};
 let bk=Object.assign({},bkDefault,store.get('bk',{})); if(bk.step>5)bk.step=1; if(bk.style&&!['keep','photo'].includes(bk.style)&&!findStyle(bk.style))bk.style=''; if(bk.style==='photo')bk.style='';
 if(!/^\d\d:\d\d$/.test(bk.time||''))bk.time='';
 let photo=null;
 function saveBk(){store.set('bk',bk)}
+// phone: digits only, max 10, auto-formatted as 876-000-0000
+function fmtPhone(v){let d=String(v||'').replace(/\D/g,'');if(d.length===11&&d[0]==='1')d=d.slice(1);d=d.slice(0,10);
+  return d.length>6?`${d.slice(0,3)}-${d.slice(3,6)}-${d.slice(6)}`:d.length>3?`${d.slice(0,3)}-${d.slice(3)}`:d}
+function maskPhone(el){const pos=el.selectionStart??el.value.length;const before=el.value.slice(0,pos).replace(/\D/g,'').length;
+  el.value=fmtPhone(el.value);let i=0,c=0;while(i<el.value.length&&c<before){if(/\d/.test(el.value[i]))c++;i++;}
+  try{el.setSelectionRange(i,i)}catch(_){}}
+const phoneOk=v=>/^\d{3}-\d{3}-\d{4}$/.test(v);
+bk.phone=fmtPhone(bk.phone);
 const svcName=id=>SERVICES.find(s=>s.id===id)?.name;
 $('#svcPick').innerHTML=SERVICES.map(s=>`<button type="button" class="opt" data-svc="${s.id}"><span class="oi"><svg viewBox="0 0 24 24">${s.icon}</svg></span><span><b>${s.name}</b><span>${s.desc}</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>`).join('')+
- `<button type="button" class="opt full" data-svc="all"><span class="oi"><svg viewBox="0 0 24 24"><path d="M4 30 L2 8 L15 18 L26 3 L37 18 L50 8 L48 30 Z" transform="scale(.42) translate(4 10)"/></svg></span><span><b>The Full Blitz</b><span>All four — wash, condition, detangle, dry &amp; style</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>`;
+ `<button type="button" class="opt full" data-svc="all"><span class="oi"><svg viewBox="0 0 24 24"><path d="M4 30 L2 8 L15 18 L26 3 L37 18 L50 8 L48 30 Z" transform="scale(.42) translate(4 10)"/></svg></span><span><b>The Full Blitz</b><span>All four: wash, condition, detangle, dry &amp; style</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>`;
 $('#stylePick').innerHTML=FINISHES.map(f=>`<button type="button" class="sp" data-style="${f.id}"><div class="th"><img src="${fimg(f.id)}" alt="${f.name} wig on a mannequin" loading="lazy"></div><b>${f.name}</b></button>`).join('')+
  `<button type="button" class="sp" data-style="keep"><div class="th keep">as is</div><b>Keep current style</b></button><button type="button" class="sp" data-style="photo"><div class="th keep"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#8fd6ff" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg></div><b>Match my photo</b></button>`;
 
@@ -1468,10 +1488,12 @@ function renderBooking(){
   $('#qty').textContent=bk.qty;
   $$('.seg[data-key]').forEach(seg=>$$('button',seg).forEach(b=>b.classList.toggle('on',b.textContent===bk[seg.dataset.key])));
   $$('#stylePick .sp').forEach(b=>b.classList.toggle('on',b.dataset.style===bk.style));
+  $('#drop').classList.toggle('has',!!photo); $('#preview').classList.toggle('show',!!photo);
   $$('#handoff .opt').forEach(o=>o.classList.toggle('on',o.dataset.v===bk.handoff));
   $('#addrWrap').style.display=bk.handoff==='Pickup'?'block':'none';
   ['addr','name','phone','ig','notes','occOther'].forEach(k=>{const el=$('#'+k);if(el&&el.value!==bk[k])el.value=bk[k]});
   $$('#occasion button').forEach(b=>b.classList.toggle('on',b.textContent===bk.occasion));$('#occOtherWrap').style.display=bk.occasion==='Other'?'block':'none';
+  renderOccSend();
   if(bk.step===3)window.nbAvail?.render();
   $('#prevBtn').style.visibility=bk.step>1&&bk.step<6?'visible':'hidden';
   $('#bkNav').style.display=bk.step===6?'none':'flex';
@@ -1483,12 +1505,11 @@ function renderBooking(){
 }
 function styleLabel(){return bk.style==='keep'?'Keep current style':bk.style==='photo'?'Match my photo':(findStyle(bk.style)?.name||'')}
 function renderSummary(){
-  const art=$('#sumArt'); const lk=findStyle(bk.style);
-  const k=lk?bk.style:(photo?'photo':'none');
+  const art=$('#sumArt'); const lk=photo?{src:photo.url,name:'Your inspo photo'}:findStyle(bk.style);
+  const k=photo?'photo:'+photo.url:(lk?bk.style:'none');
   if(art.dataset.k!==k){art.dataset.k=k;art.innerHTML=lk?`<img class="sum-main" src="${lk.src}" alt="${lk.name}">`:`<div class="sum-empty"><span class="script">your look</span><small>Pick a finish in step 2</small></div>`;}
-  const old=art.querySelector('img.sum-photo'); if(old)old.remove(); if(photo){const im=new Image();im.className='sum-photo';im.src=photo.url;im.alt='Your inspiration photo';art.appendChild(im)}
   const fmtDate=bk.date?new Date(bk.date+'T12:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}):'';
-  const rows=[['Care',bk.services.length===4?'The Full Blitz':bk.services.map(svcName).join(', ')||''],['Wigs',`${bk.qty} · ${bk.length}`],['Finish',styleLabel()+(photo?' + photo':'')],['When',fmtDate?`${fmtDate}${bk.time?', '+timeLabel(bk.time):''}`:''],['Occasion',occLabel()],['Method',bk.handoff],['Name',bk.name]];
+  const rows=[['Care',bk.services.length===4?'The Full Blitz':bk.services.map(svcName).join(', ')||''],['Wigs',`${bk.qty} · ${bk.length}`],['Hair type',bk.hairType],['Finish',styleLabel()],['When',fmtDate?`${fmtDate}${bk.time?', '+timeLabel(bk.time):''}`:''],['Occasion',occLabel()],['Method',bk.handoff],['Name',bk.name]];
   const pr=price(); $('#sumTotal').innerHTML=pr.total?`<div><span>Estimated total</span><b>${jmd(pr.total)}</b></div><div><span>${bk.pay==='cash'?'Cash on delivery':'50% deposit today'}</span><b>${jmd(bk.pay==='cash'?pr.total:pr.deposit)}</b></div>`:'';
   $('#sumList').innerHTML=rows.map(([k,v])=>`<dt>${k}</dt><dd>${v?esc(v):'<span class="muted">—</span>'}</dd>`).join('');
 }
@@ -1502,8 +1523,8 @@ function valid(step,show){
     const tOk=dOk&&!!bk.time&&(window.nbAvail?window.nbAvail.status(bk.date,bk.time)==='open':true); if(dOk)setErr('time',tOk?'':'Pick an open time');
     const aOk=bk.handoff!=='Pickup'||bk.addr.trim().length>2; if(bk.handoff==='Pickup')setErr('addr',aOk?'':'Tell us where to pick up');
     ok=dOk&&tOk&&aOk;}
-  if(step===4){const nOk=bk.name.trim().length>1, pOk=bk.phone.replace(/\D/g,'').length>=7;
-    setErr('name',nOk?'':'Please add your name');setErr('phone',pOk?'':'Add a phone number we can reach');ok=nOk&&pOk;}
+  if(step===4){const nOk=bk.name.trim().length>1, pOk=phoneOk(bk.phone);
+    setErr('name',nOk?'':'Please add your name');setErr('phone',pOk?'':'Enter a 10-digit number, like 876-555-0123');ok=nOk&&pOk;}
   return ok;
 }
 $('#svcPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;const v=o.dataset.svc;
@@ -1513,18 +1534,34 @@ $('#svcPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!
 $$('.seg[data-key]').forEach(seg=>seg.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;bk[seg.dataset.key]=b.textContent;saveBk();renderBooking();}));
 $('#qMinus').onclick=()=>{bk.qty=Math.max(1,bk.qty-1);saveBk();renderBooking()};
 $('#qPlus').onclick=()=>{bk.qty=Math.min(10,bk.qty+1);saveBk();renderBooking()};
-$('#stylePick').addEventListener('click',e=>{const b=e.target.closest('.sp');if(!b)return;bk.style=b.dataset.style;saveBk();renderBooking();if(bk.style==='photo'&&!photo)$('#photo').click();});
+function clearPhoto(){if(photo)URL.revokeObjectURL(photo.url);photo=null;$('#photo').value='';}
+$('#stylePick').addEventListener('click',e=>{const b=e.target.closest('.sp');if(!b)return;bk.style=b.dataset.style;if(bk.style!=='photo'&&photo){clearPhoto();toast('Inspo photo removed. Using '+styleLabel()+' instead.');}saveBk();renderBooking();if(bk.style==='photo'&&!photo)$('#photo').click();});
 $('#handoff').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;bk.handoff=o.dataset.v;saveBk();renderBooking();});
-['addr','name','phone','ig','notes','occOther'].forEach(k=>$('#'+k).addEventListener('input',e=>{bk[k]=e.target.value;saveBk();$('#nextBtn').toggleAttribute('disabled',!valid(bk.step,false));renderSummary();if($('#'+k).classList.contains('bad'))valid(bk.step,true)}));
-$('#occasion').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;bk.occasion=b.textContent;saveBk();renderBooking();if(bk.occasion==='Other')setTimeout(()=>$('#occOther').focus(),50);});
-function occLabel(){return bk.occasion==='Other'?(bk.occOther.trim()||'Other'):bk.occasion==='No, just fresh'?'None':bk.occasion}
+['addr','name','phone','ig','notes','occOther'].forEach(k=>$('#'+k).addEventListener('input',e=>{if(k==='phone')maskPhone(e.target);bk[k]=e.target.value;if(k==='occOther')renderOccSend();if(k==='notes'&&bk.occSent&&!bk.notes.includes(OCC_PREFIX+bk.occSent))bk.occSent='';saveBk();$('#nextBtn').toggleAttribute('disabled',!valid(bk.step,false));renderSummary();if($('#'+k).classList.contains('bad'))valid(bk.step,true)}));
+$('#occasion').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;bk.occasion=b.textContent;if(bk.occasion!=='Other')setOccNote('');saveBk();renderBooking();if(bk.occasion==='Other')setTimeout(()=>$('#occOther').focus(),50);});
+function occLabel(){return bk.occasion==='No, just fresh'?'None':bk.occasion}
+// "Other" occasion details are sent into the Notes field (step 4) instead of the summary card
+const OCC_PREFIX='Occasion: ';
+function setOccNote(text){
+  const rest=bk.notes.split('\n').filter(l=>!l.startsWith(OCC_PREFIX)).join('\n').replace(/^\n+/,'');
+  bk.notes=text?OCC_PREFIX+text+(rest?'\n'+rest:''):rest; bk.occSent=text;
+}
+function renderOccSend(){
+  const t=bk.occOther.trim(), sent=!!bk.occSent&&bk.occSent===t;
+  $('#occSend').textContent=bk.occSent&&!sent?'Update':sent?'Sent':'Send';
+  $('#occSend').disabled=!t||sent;
+  $('#occSent').textContent=sent?'Got it! This is added to your notes for Shen (step 4).':'';
+}
+function sendOcc(){const t=bk.occOther.trim();if(!t)return;setOccNote(t);saveBk();renderBooking();}
+$('#occSend').onclick=sendOcc;
+$('#occOther').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendOcc();}});
 // photo
 function setPhoto(file){
   if(!file||!file.type.startsWith('image/')){toast('Please choose an image file');return}
   if(photo)URL.revokeObjectURL(photo.url);
   photo={name:file.name,url:URL.createObjectURL(file)};
   $('#previewImg').src=photo.url;$('#previewName').textContent=file.name;$('#preview').classList.add('show');
-  if(bk.style==='keep'||!bk.style)bk.style='photo';
+  bk.style='photo'; saveBk();
   renderBooking();
 }
 $('#photo').addEventListener('change',e=>setPhoto(e.target.files[0]));
@@ -1532,18 +1569,20 @@ const drop=$('#drop');
 ['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('drag')}));
 ['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('drag')}));
 drop.addEventListener('drop',e=>setPhoto(e.dataTransfer.files[0]));
-$('#removePhoto').onclick=()=>{if(photo)URL.revokeObjectURL(photo.url);photo=null;$('#photo').value='';$('#preview').classList.remove('show');if(bk.style==='photo')bk.style='';renderBooking();};
+$('#removePhoto').onclick=()=>{clearPhoto();if(bk.style==='photo')bk.style='';saveBk();renderBooking();};
 // nav
 $('#nextBtn').onclick=()=>{if(!valid(bk.step,true)){return}
+  if(bk.step===2&&bk.occasion==='Other'&&bk.occOther.trim()&&bk.occOther.trim()!==bk.occSent)setOccNote(bk.occOther.trim());
   bk.step++; saveBk(); if(bk.step===3&&!bk.date)setTimeout(()=>window.nbAvail?.toggleCal(true),250); renderBooking(); $('#bkForm').scrollIntoView({behavior:'smooth',block:'start'});};
 $('#prevBtn').onclick=()=>{bk.step=Math.max(1,bk.step-1);saveBk();renderBooking();};
 $('#bkForm').addEventListener('submit',e=>e.preventDefault());
+$('#phone').addEventListener('blur',()=>{const bad=bk.phone&&!phoneOk(bk.phone);$('#phoneErr').textContent=bad?'Enter a 10-digit number, like 876-555-0123':'';$('#phone').classList.toggle('bad',!!bad);});
 function bookingText(){
   const fmtDate=bk.date?new Date(bk.date+'T12:00').toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}):'';
   return [`Hi Shen! I'd like to book a Wig Laundry Mat appointment 💗`,``,
   `• Care: ${bk.services.length===4?'The Full Blitz (wash, condition, detangle, dry & style)':bk.services.map(svcName).join(', ')}`,
   `• Wigs: ${bk.qty} (${bk.hairType}, ${bk.length})`,
-  `• Finish: ${styleLabel()}${photo?' (inspo photo attached)':''}`,
+  `• Finish: ${styleLabel()}`,
   `• Preferred: ${fmtDate}, ${timeLabel(bk.time)}`,
   occLabel()!=='None'?`• Special occasion: ${occLabel()}`:null,
   `• ${bk.handoff}${bk.handoff==='Pickup'?': '+bk.addr:''}`,
@@ -1571,6 +1610,7 @@ function renderPay(){
 }
 $('#payPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;bk.pay=o.dataset.v;saveBk();renderBooking();});
 $('#payBtn').onclick=()=>{
+  if(!valid(4,false)){bk.step=4;saveBk();renderBooking();valid(4,true);return;}
   if(bk.time&&window.nbAvail&&window.nbAvail.status(bk.date,bk.time)!=='open'){toast('That time was just taken. Please pick another.');bk.step=3;saveBk();renderBooking();return;}
   if(bk.pay==='cash')confirmBooking(); else openCheckout();
 };
@@ -1587,20 +1627,20 @@ let lastRef='';
 async function confirmBooking(){
   const pr=price(); lastRef='NB-'+Math.random().toString(36).slice(2,6).toUpperCase();
   const record={ref:lastRef,date:bk.date,time:bk.time,name:bk.name,phone:bk.phone,ig:bk.ig,care:bk.services.length===4?'The Full Blitz':bk.services.map(svcName).join(', '),
-    wigs:bk.qty,length:bk.length,hairType:bk.hairType,finish:styleLabel()+(photo?' (+ inspo photo)':''),occasion:occLabel(),method:bk.handoff,addr:bk.handoff==='Pickup'?bk.addr:'',notes:bk.notes,
+    wigs:bk.qty,length:bk.length,hairType:bk.hairType,finish:styleLabel(),occasion:occLabel(),method:bk.handoff,addr:bk.handoff==='Pickup'?bk.addr:'',notes:bk.notes,
     total:pr.total,paid:bk.pay==='cash'?0:pr.deposit,payment:bk.pay==='cash'?'Cash on delivery':'Deposit paid',at:Date.now()};
   await window.nbAvail?.book(record);
   const fmtDate=new Date(bk.date+'T12:00').toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
   $('#doneRef').textContent='Booking '+lastRef;
   $('#receipt').innerHTML=[['When',`${fmtDate}, ${timeLabel(bk.time)}`],['Finish',styleLabel()],['Occasion',occLabel()],['Method',bk.handoff],
-    bk.pay==='cash'?['Payment',`${jmd(pr.total)} cash on delivery`]:['Deposit paid',jmd(pr.deposit)],bk.pay==='cash'?null:['Due on delivery',jmd(pr.total-pr.deposit)]].filter(Boolean)
-    .map(([k,v])=>`<div><span>${k}</span><b>${esc(v)}</b></div>`).join('');
+    bk.pay==='cash'?['Payment',`${jmd(pr.total)} cash on delivery`]:['Deposit paid',jmd(pr.deposit)],bk.pay==='cash'?null:['Due on delivery',jmd(pr.total-pr.deposit)],bk.notes.trim()?['Notes',bk.notes.trim()]:null].filter(Boolean)
+    .map(([k,v])=>`<div${k==='Notes'?' class="rc-notes"':''}><span>${k}</span><b>${esc(v)}</b></div>`).join('');
   $('#waLink').href='https://wa.me/18764201683?text='+encodeURIComponent(bookingText()+`\n• Booking ref: ${lastRef}\n• Payment: ${bk.pay==='cash'?'Cash on delivery':'50% deposit paid'}`);
   $('#photoNote').textContent=photo?'Have an inspo photo? Send it to Shen on WhatsApp so she can match the look.':'Questions? Call or WhatsApp Shen on 876-420-1683.';
   bk.step=6; saveBk(); renderBooking(); $('#bkForm').scrollIntoView({behavior:'smooth',block:'start'});
   store.set('bk',Object.assign({},bkDefault));
 }
-$('#againBtn').onclick=()=>{const keep={name:bk.name,phone:bk.phone,ig:bk.ig};bk=Object.assign({},bkDefault,keep,{step:1});if(photo){URL.revokeObjectURL(photo.url);photo=null;$('#preview').classList.remove('show');}saveBk();renderBooking();};
+$('#againBtn').onclick=()=>{const keep={name:bk.name,phone:bk.phone,ig:bk.ig};bk=Object.assign({},bkDefault,keep,{step:1});clearPhoto();saveBk();renderBooking();};
 $$('a[href="#book"]').forEach(a=>a.addEventListener('click',()=>{if(bk.step===6){bk.step=1;saveBk();}}));
 
 
@@ -1643,7 +1683,7 @@ window.nbAvail=(()=>{
     const tw=$('#timeWrap'); tw.classList.toggle('show',!!bk.date);
     if(bk.date){ $('#slots').innerHTML=SLOTS.map(x=>{const st=status(bk.date,x.t);const lab={open:'Available',booked:'Booked',held:'Requested',off:'Unavailable',past:'Passed'}[st];
       return `<button type="button" class="slot${st!=='open'?' taken':''}${bk.time===x.t?' on':''}" data-t="${x.t}" ${st!=='open'?'disabled':''}><b>${x.l}</b><span>${lab}</span></button>`}).join(''); }
-    $('#calNote').textContent=live?'':(db===null&&tried?'Showing all open days.':'Checking availability…');
+    $('#calNote').textContent=live||tried?'':'Checking availability…';
   }
   function toggleCal(open){const w=$('#calWrap');open=open??!w.classList.contains('open');w.classList.toggle('open',open);$('#dateField').setAttribute('aria-expanded',open);if(open)render();}
   $('#dateField').onclick=()=>toggleCal();
