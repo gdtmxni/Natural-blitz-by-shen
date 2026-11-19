@@ -1,0 +1,11 @@
+# secrets and local test data
+.env
+.env.local
+.env*.local
+.data/
+.vercel/
+node_modules/
+
+# private files kept next to the project
+quotes/
+*reference*.jpeg
