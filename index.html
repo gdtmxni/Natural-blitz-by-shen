@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Natural Blitz by Shen | Wig Laundry Mat</title>
-<meta name="description" content="Wig Laundry Mat by Natural Blitz by Shen. Wash, condition, detangle, dry & style. Kingston & surrounding areas.">
+<title>Natural Blitz by Shen | Hairstylist &amp; Wig Care</title>
+<meta name="description" content="Natural Blitz by Shen: hairstylist, kiddies hair and wig care in Kingston & surrounding areas. Installs, silk presses, ponytails, braids and wig care.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;0,6..96,800;1,6..96,500&family=Allura&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -868,16 +870,150 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
 .bk-row{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .bk-when{min-width:110px}.bk-when b{display:block}.bk-when span{font-size:12px;color:var(--pink-hot)}
 .bk-who{flex:1;min-width:180px;display:grid;gap:2px}.bk-who span{font-size:12px;color:rgba(255,255,255,.55)}
+
+/* hero: logo + roles */
+.arch-logo{background:#000}
+.hero-visual .float-chip{bottom:-5%}
+.arch-logo img{object-fit:contain;object-position:50% 62%;padding:12% 6% 4%;transform:scale(1.06)}
+.ready .arch-logo img{transform:scale(1)}
+.arch-logo::after{background:linear-gradient(180deg,transparent 70%,rgba(10,9,11,.35))}
+.hero-roles{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;color:var(--gold);margin:2px 0 4px}
+.hero-roles i{width:5px;height:5px;border-radius:50%;background:var(--pink-hot)}
+@media (max-width:900px){.hero-roles{justify-content:center}}
+/* services groups */
+.svc-jump{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px}
+.svc-jump button{height:42px;padding:0 20px;border-radius:99px;border:1px solid rgba(255,255,255,.18);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;transition:all .3s var(--ease)}
+@media (hover:hover){.svc-jump button:hover{border-color:var(--electric);color:var(--electric-text)}}
+.svc-group{margin-top:90px;scroll-margin-top:100px}
+.svc-group:first-of-type{margin-top:40px}
+.sg-head{display:flex;gap:22px;align-items:flex-end;margin-bottom:34px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.sg-num{font-family:var(--serif);font-size:15px;color:var(--pink-hot);padding-bottom:8px}
+.sg-head h2{font-family:var(--serif);font-weight:800;font-size:clamp(34px,4.6vw,58px);line-height:1;text-transform:uppercase}
+.sg-head p{color:rgba(255,255,255,.62);margin-top:8px;max-width:560px}
+.sg-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.st-card{border-radius:24px;overflow:hidden;background:linear-gradient(170deg,#21131b,#130d11);border:1px solid rgba(255,90,168,.16);transition:transform .6s var(--ease),border-color .4s,box-shadow .6s}
+.st-card:hover{transform:translateY(-8px);border-color:rgba(91,132,255,.5);box-shadow:0 30px 60px -24px rgba(236,61,143,.45)}
+.st-img{aspect-ratio:4/3;overflow:hidden}
+.st-img img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;transition:transform 1.1s var(--ease)}
+.st-card:hover .st-img img{transform:scale(1.06)}
+.st-body{padding:22px 22px 24px}
+.st-body h3{font-family:var(--serif);font-size:26px;line-height:1.05;margin-bottom:8px;transition:color .3s}
+.st-card:hover h3{color:var(--electric-text)}
+.st-body p{font-size:14px;color:rgba(255,255,255,.64)}
+.st-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.st-tags span{font-size:11px;letter-spacing:.08em;padding:6px 10px;border-radius:99px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:rgba(255,255,255,.75)}
+.kids-card{display:grid;grid-template-columns:1.4fr 1fr;gap:0;border-radius:28px;overflow:hidden;border:1px solid rgba(255,90,168,.22);background:linear-gradient(135deg,#2a1121 0%,#1a0e16 55%,#120c10 100%)}
+.kids-list{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:14px}
+.kid-item{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:18px;transition:background .3s}
+@media (hover:hover){.kid-item:hover{background:rgba(255,255,255,.04)}}
+.kid-item i{font-style:normal;font-family:var(--serif);font-size:14px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(236,61,143,.18);color:var(--pink-hot);flex:none}
+.kid-item b{display:block;font-size:17px;transition:color .3s}
+@media (hover:hover){.kid-item:hover b{color:var(--electric-text)}}
+.kid-item span{font-size:13px;color:rgba(255,255,255,.58)}
+.kids-side{padding:34px;display:flex;flex-direction:column;gap:14px;justify-content:center;align-items:flex-start;background:radial-gradient(circle at 80% 20%,rgba(236,61,143,.28),transparent 60%),rgba(0,0,0,.2);border-left:1px solid var(--line)}
+.kids-side .script{font-size:52px;line-height:.9;color:var(--pink-hot)}
+.kids-side p{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:6px}
+.kids-side .btn{width:100%}
+@media (max-width:1000px){.style-grid{grid-template-columns:1fr 1fr}.kids-card{grid-template-columns:1fr}.kids-side{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:620px){.style-grid{grid-template-columns:1fr}.kids-list{grid-template-columns:1fr;padding:8px}.sg-head{gap:14px}.svc-group{margin-top:70px}}
+.cp-visual{max-width:440px;justify-self:center;width:100%}
+
+/* ---------- centered hero (no image) ---------- */
+.hero-center{background:var(--black);padding:130px 0 60px}
+.hero-center .wrap{grid-template-columns:1fr;justify-items:center;text-align:center;gap:0}
+.hero-center .hero-copy{align-items:center;text-align:center}
+.hero-center .lockup{--fs:clamp(10px,1.3vw,15px);align-self:center}
+.hero-center .hero-slay{margin-top:22px}
+.hero-center .hero-slay::after{left:10%;right:10%;background:linear-gradient(90deg,transparent,var(--pink-hot),transparent)}
+.hero-center .hero-roles{justify-content:center}
+.hero-center .hero-sub{max-width:620px;margin:14px auto 30px;font-size:17px}
+.hero-center .hero-ctas{justify-content:center}
+.hero-orbs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-orbs i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:orb 18s ease-in-out infinite alternate}
+.hero-orbs .o1{width:560px;height:560px;left:-140px;top:-120px;background:radial-gradient(circle,rgba(236,61,143,.55),transparent 65%)}
+.hero-orbs .o2{width:620px;height:620px;right:-180px;bottom:-200px;background:radial-gradient(circle,rgba(255,90,168,.45),transparent 65%);animation-delay:-6s}
+.hero-orbs .o3{width:360px;height:360px;right:18%;top:8%;background:radial-gradient(circle,rgba(143,214,255,.22),transparent 65%);animation-duration:24s}
+@keyframes orb{to{transform:translate3d(60px,40px,0) scale(1.12)}}
+.hero-lines{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(circle at 50% 46%,transparent 0 260px,rgba(216,180,106,.16) 261px,transparent 262px),
+  radial-gradient(circle at 50% 46%,transparent 0 380px,rgba(216,180,106,.09) 381px,transparent 382px),
+  radial-gradient(circle at 50% 46%,transparent 0 520px,rgba(236,61,143,.08) 521px,transparent 522px);
+  animation:breatheLines 9s ease-in-out infinite}
+@keyframes breatheLines{50%{transform:scale(1.03);opacity:.75}}
+.hero-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px;width:min(1000px,100%)}
+.hq{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.035);border:1px solid var(--line);backdrop-filter:blur(10px);text-align:left;transition:transform .4s var(--ease),border-color .3s,background .3s}
+.hq i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(236,61,143,.16);flex:none;transition:background .3s}
+.hq i svg{width:20px;height:20px;fill:none;stroke:var(--pink-hot);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.hq b{display:block;font-size:14px;transition:color .3s}
+.hq small{display:block;font-size:11.5px;line-height:1.35;color:rgba(255,255,255,.5)}
+@media (hover:hover){.hq:hover{transform:translateY(-4px);border-color:rgba(91,132,255,.55);background:rgba(47,91,255,.06)}.hq:hover b{color:var(--electric-text)}.hq:hover i{background:var(--pink)}.hq:hover i svg{stroke:#fff}}
+@media (max-width:900px){.hero-quick{grid-template-columns:1fr 1fr;margin-top:44px}.hero-center .lockup{--fs:clamp(9px,2.9vw,15px)}.hero-lines{background-size:auto}}
+@media (max-width:520px){.hero-center .hero-roles{letter-spacing:.14em;font-size:10.5px;gap:8px}.hero-quick{gap:10px}.hq{padding:14px 12px;gap:8px;border-radius:16px;flex-direction:column;text-align:center}.hq i{width:34px;height:34px}.hq b{font-size:13px}.hq small{font-size:10.5px}.hero-center{padding-top:110px}}
+
+.kids-photo{width:100%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;border:1px solid rgba(255,90,168,.25);margin-bottom:6px}
+.kids-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.foot-logo{width:170px;height:auto;display:block;border-radius:14px}
+
+/* ---------- wig care booking (real prices) ---------- */
+.opt .opt-price{position:absolute;right:42px;top:14px;font-style:normal;font-size:12px;font-weight:600;color:var(--gold);white-space:nowrap}
+#svcPick .opt{padding-right:20px;padding-top:30px}
+#svcPick .opt .opt-price{left:76px;right:auto;top:12px;font-size:11px;letter-spacing:.06em}
+.extras{display:flex;flex-wrap:wrap;gap:10px}
+.ex{display:flex;align-items:center;gap:10px;height:46px;padding:0 16px 0 10px;border-radius:99px;border:1px solid rgba(255,255,255,.14);font-size:14px;transition:all .3s var(--ease)}
+.ex .tick{position:static;width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;transition:all .3s}
+.ex .tick svg{width:12px;height:12px;stroke:#06202f;stroke-width:3;fill:none;opacity:0}
+.ex b{font-weight:600;color:var(--gold);font-size:13px}
+.ex.on{border-color:var(--pink-hot);background:rgba(236,61,143,.1)}
+.ex.on .tick{background:var(--sky);border-color:var(--sky)}.ex.on .tick svg{opacity:1}
+@media (hover:hover){.ex:not(.on):hover{border-color:var(--electric)}.ex:not(.on):hover span{color:var(--electric-text)}}
+.sameday{display:flex;align-items:center;gap:14px;width:100%;margin-top:22px;padding:16px;border-radius:18px;border:1px dashed rgba(216,180,106,.5);text-align:left;transition:all .3s var(--ease)}
+.sameday .tick{position:static;width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:none}
+.sameday .tick svg{width:13px;height:13px;stroke:#06202f;stroke-width:3;fill:none;opacity:0}
+.sameday b{display:block;font-size:15px}.sameday span span{font-size:12.5px;color:rgba(255,255,255,.55)}
+.sameday.on{border-style:solid;border-color:var(--gold);background:rgba(216,180,106,.08)}
+.sameday.on .tick{background:var(--gold);border-color:var(--gold)}.sameday.on .tick svg{opacity:1}
+@media (hover:hover){.sameday:not(.on):hover{border-color:var(--electric)}}
+.bk-fine{font-size:12px;color:rgba(255,255,255,.5);margin-top:12px}
+.bank-card{max-width:420px;margin:0 auto 24px;border-radius:18px;padding:18px 20px;text-align:left;background:linear-gradient(135deg,rgba(236,30,40,.14),rgba(236,61,143,.08));border:1px solid rgba(236,60,70,.4)}
+.bc-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.bc-top b{font-size:18px;color:#ff5a5f}.bc-top span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.bc-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.bc-row span{color:rgba(255,255,255,.55)}
+.bank-card p{font-size:12.5px;color:rgba(255,255,255,.65);margin-top:10px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+/* ---- Logo portrait accent (home + intro) ---- */
+.hero-muse{position:absolute;pointer-events:none;z-index:0;right:-8%;top:52%;width:min(58vw,900px);aspect-ratio:900/498;transform:translateY(-52%);
+  background:url(assets/shen-portrait.webp) center/cover no-repeat;opacity:.5;mix-blend-mode:lighten;
+  -webkit-mask-image:radial-gradient(ellipse 58% 62% at 58% 42%,#000 35%,transparent 78%);mask-image:radial-gradient(ellipse 58% 62% at 58% 42%,#000 35%,transparent 78%);
+  animation:museIn 1.6s .3s var(--ease) both, museDrift 16s 2s ease-in-out infinite alternate}
+.hero-muse::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,11,.9),transparent 45%),radial-gradient(ellipse at 60% 55%,rgba(236,61,143,.18),transparent 60%);mix-blend-mode:normal}
+.hero-center .wrap{position:relative;z-index:2}
+.lk-laundry{background:linear-gradient(180deg,#fff6d8 0%,#f3cf77 38%,#c8962f 62%,#ffe7a3 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .04em .12em rgba(0,0,0,.6))}
+@keyframes museIn{from{opacity:0;filter:blur(10px)}}
+@keyframes museDrift{to{translate:0 -14px;scale:1.03}}
+#intro .intro-muse{position:absolute;left:50%;top:50%;width:min(110vw,1200px);aspect-ratio:900/498;transform:translate(-50%,-58%);
+  background:url(assets/shen-portrait.webp) center/cover no-repeat;mix-blend-mode:lighten;opacity:0;
+  -webkit-mask-image:radial-gradient(ellipse 50% 58% at 50% 45%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 50% 58% at 50% 45%,#000 30%,transparent 75%);
+  animation:introMuse 3.4s .1s var(--ease) forwards}
+@keyframes introMuse{0%{opacity:0;scale:1.12;filter:blur(12px)}45%{opacity:.42;scale:1.02;filter:blur(0)}100%{opacity:.3;scale:1}}
+@media (max-width:900px){
+  .hero-muse{right:50%;left:auto;top:70px;width:150vw;transform:translateX(50%);opacity:.2;
+    -webkit-mask-image:radial-gradient(ellipse 45% 60% at 50% 40%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 45% 60% at 50% 40%,#000 30%,transparent 75%)}
+  .hero-muse::after{background:radial-gradient(ellipse at 50% 55%,rgba(236,61,143,.15),transparent 60%)}
+  #intro .intro-muse{width:190vw;transform:translate(-50%,-62%)}
+}
+@media (prefers-reduced-motion:reduce){.hero-muse,#intro .intro-muse{animation:none}#intro .intro-muse{opacity:.3}}
 </style>
 </head>
 <body>
 
 <!-- ============ INTRO ============ -->
 <div id="intro" aria-label="Intro animation">
-  <div class="bg"><div class="bubbles" id="introBubbles"></div></div>
+  <div class="bg"><div class="intro-muse" aria-hidden="true"></div><div class="bubbles" id="introBubbles"></div></div>
   <div id="introLockupSlot"></div>
   <div class="loadbar"><i></i></div>
   <button class="skip" id="skipIntro">Skip intro →</button>
@@ -888,7 +1024,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
   <div class="wrap">
     <a class="logo" href="#" aria-label="Natural Blitz home">
       <svg viewBox="0 0 52 34"><path d="M4 30 L2 8 L15 18 L26 3 L37 18 L50 8 L48 30 Z" fill="none" stroke="#ff5aa8" stroke-width="2.4" stroke-linejoin="round"/></svg>
-      <span>NATURAL BLITZ<small>WIG LAUNDRY MAT</small></span>
+      <span>NATURAL BLITZ<small>HAIR &amp; WIG CARE</small></span>
     </a>
     <ul>
       <li><a class="navlink" href="#gallery" data-nav="gallery">Gallery</a></li>
@@ -909,7 +1045,9 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
 
 <main id="home">
   <!-- ============ HERO ============ -->
-  <section class="hero" id="top" data-page="home">
+  <section class="hero hero-center" id="top" data-page="home">
+    <div class="hero-orbs" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>
+    <div class="hero-muse" aria-hidden="true"></div>
     <div class="bubbles" id="heroBubbles"></div>
     <div class="wrap">
       <div class="hero-copy">
@@ -917,28 +1055,24 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
           <svg class="lk-crown" viewBox="0 0 52 34"><path d="M4 30 L2 8 L15 18 L26 3 L37 18 L50 8 L48 30 Z"/><circle cx="26" cy="3" r="2.4"/><circle cx="2" cy="8" r="2"/><circle cx="50" cy="8" r="2"/></svg>
           <div class="lk-brand">NATURAL BLITZ</div>
           <div class="lk-by">BY SHEN</div>
-          <div class="lk-wig glitter">WIG</div>
-          <div class="lk-laundry">Laundry</div>
-          <div class="lk-mat"><span class="glitter">MAT</span>
-            <svg class="lk-washer" viewBox="0 0 40 46"><rect x="2" y="2" width="36" height="42" rx="5"/><circle class="dot" cx="9" cy="8" r="1.8"/><circle class="dot" cx="15" cy="8" r="1.8"/><line x1="24" y1="8" x2="33" y2="8" stroke="#ff5aa8" stroke-width="2.4" stroke-linecap="round"/><circle class="ring" cx="20" cy="27" r="11.5"/><g class="drum"><path class="water" d="M10 29 q5 -4 10 0 t10 0 v1 a10 10 0 0 1 -20 0z"/><circle cx="16" cy="23" r="1.4" fill="#fff" opacity=".7"/></g></svg>
-          </div>
-          <div class="lk-tag">CLEAN WIGS. FRESH START.</div>
+          <div class="lk-wig glitter">HAIR</div>
+          <div class="lk-laundry">&amp; Wig</div>
+          <div class="lk-mat"><span class="glitter">CARE</span></div>
+          <div class="lk-tag">LOOK GOOD. FEEL GOOD. BE YOU.</div>
         </div>
-        <p class="hero-slay reveal-up d1">We wash, you slay!</p>
-        <p class="hero-sub reveal-up d2">Professional wig laundry in Kingston &amp; surrounding areas. Deep cleansing, hydrating conditioning, tangle-free care and a silky, ready-to-wear finish.</p>
+        <p class="hero-slay reveal-up d1">We style, you slay!</p>
+        <p class="hero-roles reveal-up d1"><span>Hairstylist</span><i></i><span>Wig specialist</span><i></i><span>Kiddies hair</span></p>
+        <p class="hero-sub reveal-up d2">Shen is a Kingston hairstylist for installs, silk presses, ponytails, braids and kids' styles, plus professional wig care to keep your units fresh. Services are portable across Kingston &amp; surrounding areas.</p>
         <div class="hero-ctas reveal-up d3">
-          <a class="btn btn-pink" href="#book">Book a wash <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="#gallery">View the gallery</a>
+          <a class="btn btn-pink" href="#services">See all services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#book">Book wig care</a>
         </div>
       </div>
-      <div class="hero-visual reveal-up d2">
-        <div class="arch-ring"></div>
-        <div class="arch"><img src="assets/wig-hero.webp" alt="Long curly black lace wig on a mannequin head surrounded by bubbles"></div>
-        <div class="porthole">
-          <svg class="spin-text" viewBox="0 0 150 150"><defs><path id="circ" d="M75,75 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></defs><text><textPath href="#circ">WE CARE FOR YOUR WIGS • LIKE OUR OWN • </textPath></text></svg>
-          <div><b>WIGS</b><small>♥ cared for</small></div>
-        </div>
-        <div class="float-chip"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.7s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg></i><div><b>Deep cleansing</b><span>Hydrating &amp; healthy</span></div></div>
+      <div class="hero-quick reveal-up d4">
+        <a href="#services" class="hq"><i><svg viewBox="0 0 24 24"><path d="M12 3c-4 0-7 3-7 7v9h3v-5h8v5h3v-9c0-4-3-7-7-7z"/></svg></i><span><b>Installs &amp; styling</b><small>Frontals · closures · glam</small></span></a>
+        <a href="#services" class="hq"><i><svg viewBox="0 0 24 24"><path d="M12 2.7s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></svg></i><span><b>Natural hair</b><small>Silk press · curls</small></span></a>
+        <a href="#services" class="hq"><i><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></i><span><b>Kiddies hair</b><small>Cornrows · twists · braids</small></span></a>
+        <a href="#book" class="hq"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="6"/><path d="M4 5h16M8 5V3M16 5V3"/></svg></i><span><b>Wig care</b><small>Book online</small></span></a>
       </div>
     </div>
     <div class="scroll-cue reveal-up d4"><i></i>Scroll</div>
@@ -950,11 +1084,11 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
   <section class="statement sec" data-page="home">
     <div class="wrap">
       <div data-reveal>
-        <p class="eyebrow" style="color:var(--pink)">Clean wig, confidence unmatched</p>
-        <h2 style="margin-top:18px">Your <span class="pill-img"><img src="assets/looks/r3c6.webp" alt=""></span> wig, <span class="sky-u">refreshed</span> &amp; restyled, <span class="script">any look</span> you love.</h2>
-        <p>Every unit gets the full Blitz: gentle deep cleanse, moisture-rich conditioning, patient detangling and a dry &amp; style finish so it's silky and ready to wear the moment it's back in your hands.</p>
+        <p class="eyebrow" style="color:var(--pink)">Look good. Feel good. Be you.</p>
+        <h2 style="margin-top:18px">Your <span class="pill-img"><img src="assets/looks/n_halfup.webp" alt=""></span> hair, <span class="sky-u">styled</span> &amp; slayed, <span class="script">any look</span> you love.</h2>
+        <p>From melted frontal installs and silk presses to sleek ponytails and neat kiddies braids, Shen styles every look with care. Wear a wig? Her wig care service washes, conditions, detangles and restyles it so it's fresh and ready to wear.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="btn btn-pink" href="#book">Book your Blitz</a>
+          <a class="btn btn-pink" href="#services">Explore services</a>
           <a class="btn btn-ghost" href="#gallery">Browse styles</a>
         </div>
       </div>
@@ -974,12 +1108,12 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <p class="eyebrow">Explore</p>
-        <h2 class="sec-title">Everything your <span class="script">wig</span> needs</h2>
+        <h2 class="sec-title">Everything your <span class="script">hair</span> needs</h2>
       </div>
       <div class="ex-grid">
-        <a class="ex-card" href="#gallery" data-reveal><img src="assets/looks/r3c6.webp" alt="" loading="lazy"><span class="ex-num">01</span><div><h3>Gallery</h3><p>Real finishes, video previews and the 3D lookbook.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
-        <a class="ex-card" href="#services" data-reveal style="transition-delay:.1s"><img src="assets/wig-hero.webp" alt="" loading="lazy"><span class="ex-num">02</span><div><h3>Services</h3><p>Wash, condition, detangle, dry &amp; style.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
-        <a class="ex-card" href="#process" data-reveal style="transition-delay:.2s"><img src="assets/looks/r2c1.webp" alt="" loading="lazy"><span class="ex-num">03</span><div><h3>About us</h3><p>How booking works, pricing and our policies.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
+        <a class="ex-card" href="#gallery" data-reveal><img src="assets/looks/n_bridal.webp" alt="" loading="lazy"><span class="ex-num">01</span><div><h3>Gallery</h3><p>Real finishes, video previews and the 3D lookbook.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
+        <a class="ex-card" href="#services" data-reveal style="transition-delay:.1s"><img src="assets/looks/n_halfup.webp" alt="" loading="lazy"><span class="ex-num">02</span><div><h3>Services</h3><p>Hairstyling, kiddies hair and wig care.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
+        <a class="ex-card" href="#process" data-reveal style="transition-delay:.2s"><img src="assets/looks/n_pony.webp" alt="" loading="lazy"><span class="ex-num">03</span><div><h3>About us</h3><p>How booking works, pricing and our policies.</p></div><i class="ex-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></i></a>
       </div>
     </div>
   </section>
@@ -1036,6 +1170,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         <button class="chip" data-f="straight">Sleek &amp; Bobs</button>
         <button class="chip" data-f="updo">Ponytails &amp; Updos</button>
         <button class="chip" data-f="colour">Colour</button>
+        <button class="chip" data-f="locs">Locs</button>
       </div>
       <div class="masonry" id="lookGrid"></div>
       <div class="look-more"><button class="btn btn-ghost" id="lookMore">Show more looks</button><a class="btn btn-ghost" href="https://www.instagram.com/naturalblitzbyshen" target="_blank" rel="noopener">More on Instagram ↗</a></div>
@@ -1048,11 +1183,36 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
       <div class="sec-head" data-reveal>
         <p class="eyebrow">Natural Blitz by Shen</p>
         <h1 class="page-title">Services</h1>
-        <p class="sec-lead">The care your wig <span class="script" style="color:var(--pink-hot);font-size:1.6em">deserves</span></p>
+        <p class="sec-lead">Hairstyling, kiddies hair and wig care, all with the care your hair <span class="script" style="color:var(--pink-hot);font-size:1.6em">deserves</span></p>
+        <nav class="svc-jump" aria-label="Service groups"><button data-go="svc-style">Hairstyling</button><button data-go="svc-kids">Kiddies hair</button><button data-go="svc-wig">Wig care</button></nav>
       </div>
-      <div class="svc-row" id="svcRow"></div>
-      <div class="svc-note" data-reveal>
-        <a class="btn btn-pink" href="#book">Book a service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+
+      <div class="svc-group" id="svc-style">
+        <div class="sg-head" data-reveal><span class="sg-num">01</span><div><h2>Hairstyling</h2><p>Installs, natural hair and quick slays, styled by Shen.</p></div></div>
+        <div class="style-grid" id="styleGrid"></div>
+        <div class="sg-cta" data-reveal><a class="btn btn-pink" href="https://wa.me/18764201683?text=Hi%20Shen!%20I'd%20like%20to%20book%20a%20styling%20appointment." target="_blank" rel="noopener">Book styling on WhatsApp</a><a class="btn btn-ghost" href="#pricing">See prices</a></div>
+      </div>
+
+      <div class="svc-group kids" id="svc-kids">
+        <div class="sg-head" data-reveal><span class="sg-num">02</span><div><h2>Kiddies hair</h2><p>Gentle, patient styling for little ones, neat enough for school and cute enough for every occasion.</p></div></div>
+        <div class="kids-card" data-reveal>
+          <div class="kids-list" id="kidsList"></div>
+          <div class="kids-side">
+            <div class="kids-photo"><img src="assets/looks/n_kids.webp" alt="Kiddies cornrows into a curly ponytail with swirled edges, styled by Shen" loading="lazy"></div>
+            <span class="script">Little queens</span>
+            <p>Every kiddies style starts with a hair treatment so their natural hair stays healthy, soft and strong.</p>
+            <a class="btn btn-pink" href="https://wa.me/18764201683?text=Hi%20Shen!%20I'd%20like%20to%20book%20a%20kiddies%20hair%20appointment." target="_blank" rel="noopener">Book kids' hair on WhatsApp</a>
+            <a class="btn btn-ghost" href="#pricing">Kiddies prices</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-group" id="svc-wig">
+        <div class="sg-head" data-reveal><span class="sg-num">03</span><div><h2>Wig care</h2><p>Wash, condition, detangle and restyle. Book your wig's refresh online in minutes.</p></div></div>
+        <div class="svc-row" id="svcRow"></div>
+        <div class="svc-note" data-reveal>
+          <a class="btn btn-pink" href="#book">Book wig care <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
       </div>
     </div>
   </section>
@@ -1100,6 +1260,8 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         <div class="pol" data-reveal><span class="pi"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6.5 15h4"/></svg></span><div><h3>Deposits</h3><ul><li>A <b>non-refundable deposit</b> is required to secure all bookings.</li><li>Deposits must be paid by bank transfer within <b>24 hours</b> of booking.</li><li>No deposit, no appointment secured.</li><li>Your deposit goes toward your final balance.</li></ul></div></div>
         <div class="pol" data-reveal><span class="pi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span><div><h3>Cancellations &amp; rescheduling</h3><ul><li>Appointments must be cancelled or rescheduled at least <b>24 to 48 hours</b> before.</li><li>Deposits can be transferred <b>once only</b> to a new date.</li><li>Same-day cancellations forfeit the deposit.</li><li>No-shows lose their deposit and may be blocked from future bookings.</li></ul></div></div>
         <div class="pol" data-reveal><span class="pi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3>Late policy</h3><ul><li>A <b>15-minute</b> grace period is allowed.</li><li>After 15 minutes, a late fee of <b>J$1,000</b> applies.</li><li>After 20 to 30 minutes, your appointment may be cancelled.</li></ul></div></div>
+        <div class="pol" data-reveal><span class="pi"><svg viewBox="0 0 24 24"><circle cx="8" cy="9" r="3"/><circle cx="15.5" cy="7.5" r="2"/><circle cx="14" cy="15" r="4"/></svg></span><div><h3>Wig care</h3><ul><li>A <b>50% deposit</b> is required for wig restoration services.</li><li>Same-day service is available for an extra <b>J$1,500</b>.</li><li>Severely matted wigs may attract an extra detangling fee.</li><li>You'll be told before any extra charges are applied.</li></ul></div></div>
+        <div class="pol" data-reveal><span class="pi"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></svg></span><div><h3>Payments &amp; locs</h3><ul><li>We accept <b>Scotiabank bank transfer</b> and <b>cash</b>.</li><li>After paying, send your <b>proof of payment</b> on WhatsApp to 876-420-1683.</li><li>Loc prices vary based on loc <b>length, density</b> and style complexity.</li></ul></div></div>
       </div>
       <div class="pol-thanks" data-reveal>
         <div><span class="script">Thank you</span><small>for respecting our time and our policies</small></div>
@@ -1124,9 +1286,9 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
       <div class="price-grid" id="priceGrid"></div>
       <div class="price-foot" data-reveal>
         <div class="late-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Late bookings attract a fee of <b>J$1,000</b></span></div>
-        <p>Wig laundry is booked right here online. For installs, styling and kids' services, book directly with Shen.</p>
+        <p>Wig care is booked right here online. For installs, styling and kids' services, book directly with Shen.</p>
         <div class="price-ctas">
-          <a class="btn btn-pink" href="#book">Book wig laundry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-pink" href="#book">Book wig care <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="https://wa.me/18764201683?text=Hi%20Shen!%20I'd%20like%20to%20book%20a%20styling%20service." target="_blank" rel="noopener">Book styling on WhatsApp</a>
         </div>
       </div>
@@ -1139,7 +1301,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
       <div data-reveal>
         <p class="eyebrow">Contact</p>
         <h2 class="sec-title" style="margin-top:12px">Get in <span class="script">touch</span></h2>
-        <p class="sec-lead" style="margin:14px 0 30px">Bookings, questions or a wig emergency: reach Shen directly. Serving Kingston &amp; surrounding areas.</p>
+        <p class="sec-lead" style="margin:14px 0 30px">Bookings, questions or a hair emergency: reach Shen directly. Serving Kingston &amp; surrounding areas.</p>
         <div class="cp-list">
           <a class="cp-item" href="tel:+18764201683"><i><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></i><span><small>Call or WhatsApp</small><b>876-420-1683</b></span></a>
           <a class="cp-item" href="https://www.instagram.com/naturalblitzbyshen" target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm6-7.9a1.1 1.1 0 1 1-1.1-1.1A1.1 1.1 0 0 1 18 7.1zM21.9 7a5.4 5.4 0 0 0-1.5-3.9A5.4 5.4 0 0 0 16.6 1.6C15 1.5 9 1.5 7.4 1.6a5.4 5.4 0 0 0-3.9 1.5A5.4 5.4 0 0 0 2 7c-.1 1.6-.1 6.4 0 8a5.4 5.4 0 0 0 1.5 3.9 5.4 5.4 0 0 0 3.9 1.5c1.6.1 7.6.1 9.2 0a5.4 5.4 0 0 0 3.9-1.5A5.4 5.4 0 0 0 22 15c.1-1.6.1-6.4-.1-8z"/></svg></i><span><small>Instagram</small><b>@naturalblitzbyshen</b></span></a>
@@ -1148,13 +1310,13 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px"><a class="btn btn-pink" href="#book">Book now</a><a class="btn btn-ghost" href="https://wa.me/18764201683" target="_blank" rel="noopener">Message on WhatsApp</a></div>
       </div>
-      <div class="cp-visual" data-reveal><img src="assets/flyer.webp" alt="Natural Blitz by Shen Wig Laundry Mat flyer: wash, condition, detangle, dry and style"></div>
+      <div class="cp-visual" data-reveal><img src="assets/pay-options.webp" alt="Natural Blitz by Shen payment options: Scotiabank bank transfer or cash. Send proof of payment on WhatsApp to 876-420-1683."></div>
     </div>
   </section>
 
   <a class="band" href="#book" data-page="home gallery services process pricing">
     <div class="big glitter">BOOK NOW <svg viewBox="0 0 24 24" fill="none" stroke="#ff5aa8" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-    <div class="sub">Clean wig, confidence unmatched ♡</div>
+    <div class="sub">Look good. Feel good. Be you. ♡</div>
   </a>
 </main>
 
@@ -1194,16 +1356,20 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         <!-- step 1 -->
         <div class="bk-step on" data-step="1">
           <h2>What does your wig need?</h2>
-          <p class="hint">Choose one or more. Not sure? Go for the Full Blitz.</p>
+          <p class="hint">Pick a service, then add any extras. Prices are per wig.</p>
           <div class="opt-grid" id="svcPick"></div>
+          <div id="tierWrap"><span class="field-label">Wig length</span>
+            <div class="seg" data-key="tier"><button type="button">10–18"</button><button type="button">20–24"</button><button type="button">24"+</button></div></div>
           <div class="row2">
-            <div><span class="field-label">Number of wigs</span>
+            <div><span class="field-label" id="qtyLabel">Number of wigs</span>
               <div class="stepper"><button type="button" id="qMinus" aria-label="Fewer">−</button><output id="qty">1</output><button type="button" id="qPlus" aria-label="More">+</button></div></div>
-            <div><span class="field-label">Hair type</span>
-              <div class="seg" data-key="hairType"><button type="button" class="on">Human hair</button><button type="button">Synthetic</button><button type="button">Not sure</button></div></div>
+            <div id="typeWrap"><span class="field-label">Wig type</span>
+              <div class="seg" data-key="wigType"><button type="button">Lace front / closure</button><button type="button">Full lace</button><button type="button">360 lace</button><button type="button">Headband</button><button type="button">Glueless</button></div></div>
           </div>
-          <span class="field-label">Length</span>
-          <div class="seg" data-key="length"><button type="button">Short</button><button type="button">Medium</button><button type="button" class="on">Long</button><button type="button">Extra long</button></div>
+          <div id="extrasWrap"><span class="field-label">Extras (optional)</span>
+            <div class="extras" id="extraPick"></div></div>
+          <button type="button" class="sameday" id="sameDay"><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i><span><b>Same-day service</b><span>Need it back today? +J$1,500</span></span></button>
+          <p class="bk-fine">Severely matted wigs may need an extra detangling fee. You'll always be told before any extra charge.</p>
         </div>
         <!-- step 2 -->
         <div class="bk-step" data-step="2">
@@ -1250,9 +1416,12 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
           <span class="field-label">How will we get your wig?</span>
           <div class="opt-grid" id="handoff">
             <button type="button" class="opt on" data-v="Drop-off"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg></span><span><b>Drop-off</b><span>Bring your wig to us</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
-            <button type="button" class="opt" data-v="Pickup"><span class="oi"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><b>Pickup</b><span>Kingston &amp; surrounding areas</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
+            <button type="button" class="opt" data-v="Pickup"><span class="oi"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><b>Pick-up &amp; delivery</b><span>We come to you</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
           </div>
-          <div id="addrWrap" style="display:none"><span class="field-label">Pickup area / address</span><input class="inp" id="addr" placeholder="e.g. Half Way Tree, Kingston" autocomplete="street-address"><div class="err" id="addrErr"></div></div>
+          <div id="addrWrap" style="display:none"><span class="field-label">Your area</span>
+            <div class="seg" data-key="area"><button type="button">Kingston</button><button type="button">Portmore</button><button type="button">Spanish Town</button><button type="button">Other area</button></div>
+            <p class="bk-fine" id="areaFee"></p>
+            <span class="field-label">Pick-up address</span><input class="inp" id="addr" placeholder="e.g. Half Way Tree, Kingston" autocomplete="street-address"><div class="err" id="addrErr"></div></div>
         </div>
         <!-- step 4 -->
         <div class="bk-step" data-step="4">
@@ -1270,15 +1439,15 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         <!-- pay -->
         <div class="bk-step" data-step="5">
           <h2>Confirm &amp; pay</h2>
-          <p class="hint">Secure your slot with a 50% deposit, or pay cash when your wig is delivered. Either way, you're booked instantly.</p>
+          <p class="hint">Secure your slot with a 50% deposit by bank transfer, or pay cash. Either way, you're booked instantly.</p>
           <div class="price-card" id="priceCard"></div>
           <span class="field-label">How would you like to pay?</span>
           <div class="opt-grid" id="payPick">
-            <button type="button" class="opt" data-v="deposit"><span class="oi"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19M6.5 15h4"/></svg></span><span><b>Pay 50% deposit now</b><span id="payDepLine">Balance due on delivery</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i><em class="badge">Most popular</em></button>
-            <button type="button" class="opt" data-v="cash"><span class="oi"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg></span><span><b>Cash on delivery</b><span id="payCashLine">Pay in full when your wig is returned</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
+            <button type="button" class="opt" data-v="transfer"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></svg></span><span><b>Bank transfer · Scotiabank</b><span id="payDepLine">50% deposit within 24 hours</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i><em class="badge">Secures your slot</em></button>
+            <button type="button" class="opt" data-v="cash"><span class="oi"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg></span><span><b>Cash</b><span id="payCashLine">Pay in full when your wig is returned</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
           </div>
           <button type="button" class="btn btn-pink pay-btn" id="payBtn">Pay deposit &amp; confirm</button>
-          <p class="demo-note"><i></i>Demo preview: prices are examples and no real payment is taken.</p>
+          <p class="demo-note"><i></i>After paying, send your proof of payment on WhatsApp to 876-420-1683. Deposits are non-refundable and can be moved to a new date once, with 24 to 48 hours' notice.</p>
         </div>
         <!-- done -->
         <div class="bk-step" data-step="6">
@@ -1288,6 +1457,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
             <h2>You're booked!</h2>
             <p id="doneMsg">Your slot is locked in. No need to wait for a reply: Shen already has everything she needs.</p>
             <div class="receipt" id="receipt"></div>
+            <div class="bank-card" id="bankCard" hidden><div class="bc-top"><b>Scotiabank</b><span>Bank transfer</span></div><div class="bc-row"><span>Amount</span><b id="bcAmt"></b></div><div class="bc-row"><span>Reference</span><b id="bcRef"></b></div><div class="bc-row"><span>Account details</span><b class="muted">To be added by Shen</b></div><p>Transfer within 24 hours, then send a screenshot of your proof of payment on WhatsApp.</p></div>
             <div class="acts">
               <a class="btn btn-ghost" id="waLink" href="#" target="_blank" rel="noopener">Message Shen (optional)</a>
               <button type="button" class="btn btn-pink" id="againBtn">Book another wig</button>
@@ -1305,7 +1475,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         <h4>Your booking</h4>
         <dl id="sumList"></dl>
         <div class="sum-total" id="sumTotal"></div>
-        <p class="note">Example prices for this demo. Shen sets the real prices.</p>
+        <p class="note">Prices from Shen's wig care price list. You'll always be told before any extra charge.</p>
       </aside>
     </div>
   </div>
@@ -1316,8 +1486,8 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
   <div class="wrap">
     <div class="foot">
       <div>
-        <div class="lockup" id="footLockup"></div>
-        <p style="color:rgba(255,255,255,.55);max-width:300px;margin-top:22px;font-size:14px">We care for your wigs like our own. Serving Kingston &amp; surrounding areas.</p>
+        <img class="foot-logo" src="assets/shen-logo.webp" alt="Natural Blitz by Shen logo" loading="lazy">
+        <p style="color:rgba(255,255,255,.55);max-width:300px;margin-top:22px;font-size:14px">Hairstyling, kiddies hair and wig care, done like our own. Serving Kingston &amp; surrounding areas.</p>
       </div>
       <div>
         <h5>Pages</h5>
@@ -1359,6 +1529,13 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
 <script>
 /* ===================== DATA ===================== */
 const LOOKS = [
+  {id:'n_bridal', name:'Bridal Half-Up Curls', cat:'updo', desc:'Soft bridal curls, a sleek swoop and a sparkling tiara for the big day.'},
+  {id:'n_halfup', name:'Braided Half-Up Curls', cat:'curls', desc:'Feed-in braids into a high half-up with long, juicy curls and laid edges.'},
+  {id:'n_pony', name:'Ginger Curly Ponytail', cat:'updo', desc:'Snatched sleek ponytail with a ginger curly extension and a baby-hair swirl.'},
+  {id:'n_waves', name:'Finger Waves & Curls', cat:'waves', desc:'Glossy sculpted waves and swirled edges into soft, defined curls.'},
+  {id:'n_updo', name:'Curly Updo & Swoop', cat:'updo', desc:'Pinned curly updo with sweeping side bangs and soft face-framing curls.'},
+  {id:'n_locs2', name:'Barrel Twist Locs', cat:'locs', desc:'Fresh retwist with neat parts and full, glossy barrel twists.'},
+  {id:'n_locs1', name:'Loc Retwist & Style', cat:'locs', desc:'Clean diamond parts and a defined, polished loc style.'},
   {id:'r3c6', name:'Deep Wave Half-Up', cat:'curls', desc:'Juicy deep-wave curls with a sleek half-up top and laid edges.'},
   {id:'r1c1', name:'Curly Crown Ponytail', cat:'updo', desc:'Defined curls pulled up with sculpted, swirled edges.'},
   {id:'r2c1', name:'Side-Part Body Wave', cat:'waves', desc:'Glossy, voluminous waves swept over one shoulder.'},
@@ -1388,7 +1565,7 @@ const FINISHES=[
 ];
 const fimg=id=>`assets/finish/${id}.webp`;
 function findStyle(id){const f=FINISHES.find(x=>x.id===id);if(f)return{name:f.name,src:fimg(f.id)};const l=LOOKS.find(x=>x.id===id);return l?{name:l.name,src:img(l.id)}:null}
-const CAT_NAME={curls:'Curls',waves:'Waves',straight:'Sleek & Bobs',updo:'Ponytails & Updos',colour:'Colour'};
+const CAT_NAME={curls:'Curls',waves:'Waves',straight:'Sleek & Bobs',updo:'Ponytails & Updos',colour:'Colour',locs:'Locs'};
 const img=id=>`assets/looks/${id}.webp`;
 const lookById=id=>LOOKS.find(l=>l.id===id);
 const SERVICES = [
@@ -1418,7 +1595,6 @@ function buildIntroLockup(){
   $('#introLockupSlot').replaceWith(clone); return clone;
 }
 // footer lockup copy
-(()=>{const f=heroLockup.cloneNode(true);f.classList.remove('hidden');f.removeAttribute('id');$('#footLockup').replaceWith(Object.assign(f,{id:'footLockup'}))})();
 
 let introDone=false;
 function finishIntro(fast){
@@ -1457,7 +1633,7 @@ $('#replay').addEventListener('click',()=>{if(location.hash)location.hash='';win
 const nav=$('#nav');
 addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
 const PAGES=['home','gallery','services','process','pricing','contact','book'], ABOUT=['process','pricing','contact'];
-const TITLES={home:'Natural Blitz by Shen | Wig Laundry Mat',gallery:'Gallery | Natural Blitz by Shen',services:'Services | Natural Blitz by Shen',process:'How it works | Natural Blitz by Shen',pricing:'Pricing | Natural Blitz by Shen',contact:'Contact | Natural Blitz by Shen',book:'Book | Natural Blitz by Shen'};
+const TITLES={home:'Natural Blitz by Shen | Hairstylist & Wig Care',gallery:'Gallery | Natural Blitz by Shen',services:'Services | Natural Blitz by Shen',process:'How it works | Natural Blitz by Shen',pricing:'Pricing | Natural Blitz by Shen',contact:'Contact | Natural Blitz by Shen',book:'Book | Natural Blitz by Shen'};
 function curPage(){const h=location.hash.replace('#','');if(h==='about'||h==='policies')return 'process';return PAGES.includes(h)?h:'home'}
 // mobile menu (burger)
 function setMenu(open){const m=$('#mmenu'),b=$('#burger');m.classList.toggle('open',open);b.classList.toggle('open',open);
@@ -1494,13 +1670,13 @@ function route(){
 addEventListener('hashchange',route);
 
 /* ===================== MARQUEE ===================== */
-(()=>{const items=['WASH','<em>deep cleansing</em>','CONDITION','<em>hydrating</em>','DETANGLE','<em>tangle-free</em>','DRY &amp; STYLE','<em>silky finish</em>'];
+(()=>{const items=['INSTALLS','<em>melted finish</em>','SILK PRESS','<em>glossy &amp; healthy</em>','KIDDIES BRAIDS','<em>little queens</em>','WIG CARE','<em>fresh &amp; silky</em>'];
   const h=items.map(i=>`<span>${i}</span>`).join('');$('#marq').innerHTML=h+h;})();
 
 /* ===================== PHOTO STAGE ===================== */
 (()=>{
   const stage=$('#psMain'), dots=$('#morphDots'), nm=$('#morphName');
-  const order=['r3c6','r2c1','r3c3','r1c3','r4c6','r3c5'];
+  const order=['n_bridal','n_halfup','n_pony','n_waves','n_updo','n_locs2'];
   let i=0, timer;
   order.forEach((id,k)=>{const l=lookById(id);const d=document.createElement('figure');d.className=k?'out':'';d.innerHTML=`<img src="${img(id)}" alt="${l.name}" loading="${k?'lazy':'eager'}">`;stage.appendChild(d);
     const b=document.createElement('button');b.setAttribute('aria-label',l.name);if(!k)b.className='on';b.onclick=()=>{show(k);restart()};dots.appendChild(b);});
@@ -1594,6 +1770,19 @@ addEventListener('hashchange',route);
 })();
 
 /* ===================== SERVICES ===================== */
+(()=>{
+  const ST=[
+    {n:'Installs & wig styling',d:'Frontal and closure installs, reinstalls and wig customisation for a melted, natural finish.',img:'n_bridal',tags:['Frontal install','Closure install','Customisation']},
+    {n:'Natural hair luxury',d:'Silk presses, blowouts, finger waves and defined curl styling that keep your own hair healthy and glossy.',img:'n_waves',tags:['Silk press','Finger waves','Curl styling']},
+    {n:'Ponytails & quick slay',d:'Sleek ponytails, half-up half-down glam, quick weaves and soft glam curls.',img:'n_pony',tags:['Sleek ponytail','Half-up glam','Quick weave']},
+    {n:'Braids & half-ups',d:'Feed-in braids, braided half-ups and curly finishes with sculpted baby hairs.',img:'n_halfup',tags:['Feed-in braids','Braided half-up','Laid edges']},
+    {n:'Locs',d:'Retwists, barrel twists and loc styles with clean, neat parts. Prices vary with loc length, density and style.',img:'n_locs2',tags:['Retwist','Barrel twists','Loc styles']},
+    {n:'Bridal & special occasions',d:'Weddings, birthdays, graduations and prom: elegant updos and curls that last all day.',img:'n_updo',tags:['Bridal','Updos','Event hair']},
+  ];
+  $('#styleGrid').innerHTML=ST.map((x,i)=>`<article class="st-card" data-reveal style="transition-delay:${i*.1}s"><div class="st-img"><img src="${img(x.img)}" alt="${x.n} by Natural Blitz by Shen" loading="lazy"></div><div class="st-body"><h3>${x.n}</h3><p>${x.d}</p><div class="st-tags">${x.tags.map(t=>`<span>${t}</span>`).join('')}</div></div></article>`).join('');
+  const KIDS=[['Hair treatment','Moisture and care for healthy, growing hair'],['Cornrows','Neat, comfortable rows in fun designs'],['Twists','Soft twists that are easy to wear'],['Braids','Classic braids, styled with care'],['Mini braids & twists','Small, detailed styles that last'],['Twist outs','Defined, fluffy natural curls']];
+  $('#kidsList').innerHTML=KIDS.map(([n,d],i)=>`<div class="kid-item"><i>${String(i+1).padStart(2,'0')}</i><div><b>${n}</b><span>${d}</span></div></div>`).join('');
+})();
 $('#svcRow').innerHTML=SERVICES.map((s,i)=>`<div class="svc" data-reveal style="transition-delay:${i*.1}s"><span class="num">0${i+1}</span><div class="ico"><svg viewBox="0 0 24 24">${s.icon}</svg></div><div><h3>${s.name}</h3><p>${s.desc}${['. Gentle shampoo lifts product build-up, oils and odour.','. Moisture-rich treatment for softness and shine.','. Patient, root-to-tip detangling that protects your lace and strands.','. Blow-out and styling to the finish you pick.'][i]}</p></div><svg class="wave" viewBox="0 0 400 90" preserveAspectRatio="none"><path d="M0 40 Q50 10 100 40 T200 40 T300 40 T400 40 V90 H0Z"/></svg></div>`).join('');
 
 /* ===================== REVEAL ON SCROLL ===================== */
@@ -1603,8 +1792,19 @@ $$('[data-reveal]').forEach(el=>io.observe(el));
 spawnBubbles($('#heroBubbles'),16,1);
 
 /* ===================== BOOKING ===================== */
-const bkDefault={step:1,services:['wash','cond','detangle','style'],qty:1,hairType:'Human hair',pay:'deposit',length:'Long',style:'',occasion:'No, just fresh',occOther:'',occSent:'',date:'',time:'',handoff:'Drop-off',addr:'',name:'',phone:'',ig:'',notes:''};
-let bk=Object.assign({},bkDefault,store.get('bk',{})); if(bk.step>5)bk.step=1; if(bk.style&&!['keep','photo'].includes(bk.style)&&!findStyle(bk.style))bk.style=''; if(bk.style==='photo')bk.style='';
+/* real wig care prices (Wig Laundry Mat price list) */
+const WIG_MAIN=[
+  {id:'sig',name:'Blitz Signature Wash',desc:'Detangle, glue removal, shampoo, deep condition, air dry',tiers:{'10–18"':800,'20–24"':1000,'24"+':1500},icon:'<circle cx="8" cy="9" r="3"/><circle cx="15.5" cy="7.5" r="2"/><circle cx="14" cy="15" r="4"/><circle cx="7" cy="17" r="1.6"/>'},
+  {id:'blow',name:'Wash & Blow Dry',desc:'Same-day service with a blow-dry finish',tiers:{'10–18"':1800,'20–24"':2500,'24"+':2500},sameDayIncl:true,icon:'<path d="M3 7h11a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H8l-2 7H4l1-7H3z"/><path d="M19 8h2M19 12h2M18.5 4.5l1.5-1"/>'},
+  {id:'style',name:'Wash & Style',desc:'Wash, condition, blow dry, then curl or straighten',flat:2000,icon:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>'},
+  {id:'bundle',name:'Bundle & weave laundry',desc:'J$600 per bundle, or 3 bundles for J$1,500',bundle:true,icon:'<rect x="4" y="5" width="16" height="4" rx="1.5"/><rect x="4" y="10" width="16" height="4" rx="1.5"/><rect x="4" y="15" width="16" height="4" rx="1.5"/>'},
+];
+const WIG_EXTRA=[{id:'stitch',name:'Lace stitching',p:1000},{id:'clip',name:'Clip up (trashy ends)',p:500},{id:'curl',name:'Curl refresh',p:800},{id:'flat',name:'Flat iron finish',p:800},{id:'custom',name:'Custom styling',p:2000,from:true}];
+const SAME_DAY=1500, AREAS={'Kingston':500,'Portmore':1000,'Spanish Town':1500,'Other area':null};
+const mainSvc=()=>WIG_MAIN.find(m=>m.id===bk.main)||WIG_MAIN[0];
+const extraName=id=>WIG_EXTRA.find(e=>e.id===id)?.name;
+const bkDefault={step:1,main:'sig',tier:'10–18"',extras:[],sameDay:false,qty:1,wigType:'Lace front / closure',area:'Kingston',pay:'transfer',style:'',occasion:'No, just fresh',occOther:'',occSent:'',date:'',time:'',handoff:'Drop-off',addr:'',name:'',phone:'',ig:'',notes:''};
+let bk=Object.assign({},bkDefault,store.get('bk',{})); if(bk.step>5)bk.step=1; if(!WIG_MAIN.some(m=>m.id===bk.main)){bk.main='sig';} if(!Array.isArray(bk.extras))bk.extras=[]; if(!['transfer','cash'].includes(bk.pay))bk.pay='transfer'; if(!(bk.tier in WIG_MAIN[0].tiers))bk.tier='10–18"'; delete bk.services; if(bk.style&&!['keep','photo'].includes(bk.style)&&!findStyle(bk.style))bk.style=''; if(bk.style==='photo')bk.style='';
 if(!/^\d\d:\d\d$/.test(bk.time||''))bk.time='';
 let photo=null;
 function saveBk(){store.set('bk',bk)}
@@ -1616,16 +1816,24 @@ function maskPhone(el){const pos=el.selectionStart??el.value.length;const before
   try{el.setSelectionRange(i,i)}catch(_){}}
 const phoneOk=v=>/^\d{3}-\d{3}-\d{4}$/.test(v);
 bk.phone=fmtPhone(bk.phone);
-const svcName=id=>SERVICES.find(s=>s.id===id)?.name;
-$('#svcPick').innerHTML=SERVICES.map(s=>`<button type="button" class="opt" data-svc="${s.id}"><span class="oi"><svg viewBox="0 0 24 24">${s.icon}</svg></span><span><b>${s.name}</b><span>${s.desc}</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>`).join('')+
- `<button type="button" class="opt full" data-svc="all"><span class="oi"><svg viewBox="0 0 24 24"><path d="M4 30 L2 8 L15 18 L26 3 L37 18 L50 8 L48 30 Z" transform="scale(.42) translate(4 10)"/></svg></span><span><b>The Full Blitz</b><span>All four: wash, condition, detangle, dry &amp; style</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>`;
+const tick='<i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>';
+$('#svcPick').innerHTML=WIG_MAIN.map(m=>`<button type="button" class="opt" data-svc="${m.id}"><span class="oi"><svg viewBox="0 0 24 24">${m.icon}</svg></span><span><b>${m.name}</b><span>${m.desc}</span></span>${tick}<em class="opt-price"></em></button>`).join('');
+$('#extraPick').innerHTML=WIG_EXTRA.map(e=>`<button type="button" class="ex" data-ex="${e.id}">${tick}<span>${e.name}</span><b>${e.from?'from ':''}J$${e.p.toLocaleString('en-US')}</b></button>`).join('');
+function svcLabel(){const m=mainSvc();return m.tiers?`${m.name} (${bk.tier})`:m.name}
 $('#stylePick').innerHTML=FINISHES.map(f=>`<button type="button" class="sp" data-style="${f.id}"><div class="th"><img src="${fimg(f.id)}" alt="${f.name} wig on a mannequin" loading="lazy"></div><b>${f.name}</b></button>`).join('')+
  `<button type="button" class="sp" data-style="keep"><div class="th keep">as is</div><b>Keep current style</b></button><button type="button" class="sp" data-style="photo"><div class="th keep"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#8fd6ff" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg></div><b>Match my photo</b></button>`;
 
 function renderBooking(){
   $$('.bk-step').forEach(s=>s.classList.toggle('on',+s.dataset.step===bk.step));
   $$('#progress .pstep').forEach((p,i)=>{p.classList.toggle('on',i+1===bk.step);p.classList.toggle('done',i+1<bk.step)});
-  $$('#svcPick .opt').forEach(o=>o.classList.toggle('on',o.dataset.svc==='all'?bk.services.length===4:bk.services.includes(o.dataset.svc)));
+  const M=mainSvc();
+  $$('#svcPick .opt').forEach(o=>{const m=WIG_MAIN.find(x=>x.id===o.dataset.svc);o.classList.toggle('on',o.dataset.svc===bk.main);
+    o.querySelector('.opt-price').textContent=m.tiers?`from ${jmd(Math.min(...Object.values(m.tiers)))}`:m.bundle?'from J$600':jmd(m.flat);});
+  $('#tierWrap').style.display=M.tiers?'':'none'; $('#typeWrap').style.display=M.bundle?'none':''; $('#extrasWrap').style.display=M.bundle?'none':'';
+  $('#qtyLabel').textContent=M.bundle?'Number of bundles':'Number of wigs';
+  $$('#extraPick .ex').forEach(x=>x.classList.toggle('on',bk.extras.includes(x.dataset.ex)));
+  $('#sameDay').style.display=M.sameDayIncl?'none':''; $('#sameDay').classList.toggle('on',!!bk.sameDay&&!M.sameDayIncl);
+  $('#areaFee').textContent=bk.area==='Other area'?'Other locations are quoted on request.':`Pick-up & delivery to ${bk.area}: ${jmd(AREAS[bk.area])}`;
   $('#qty').textContent=bk.qty;
   $$('.seg[data-key]').forEach(seg=>$$('button',seg).forEach(b=>b.classList.toggle('on',b.textContent===bk[seg.dataset.key])));
   $$('#stylePick .sp').forEach(b=>b.classList.toggle('on',b.dataset.style===bk.style));
@@ -1650,14 +1858,14 @@ function renderSummary(){
   const k=photo?'photo:'+photo.url:(lk?bk.style:'none');
   if(art.dataset.k!==k){art.dataset.k=k;art.innerHTML=lk?`<img class="sum-main" src="${lk.src}" alt="${lk.name}">`:`<div class="sum-empty"><span class="script">your look</span><small>Pick a finish in step 2</small></div>`;}
   const fmtDate=bk.date?new Date(bk.date+'T12:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}):'';
-  const rows=[['Care',bk.services.length===4?'The Full Blitz':bk.services.map(svcName).join(', ')||''],['Wigs',`${bk.qty} · ${bk.length}`],['Hair type',bk.hairType],['Finish',styleLabel()],['When',fmtDate?`${fmtDate}${bk.time?', '+timeLabel(bk.time):''}`:''],['Occasion',occLabel()],['Method',bk.handoff],['Name',bk.name]];
-  const pr=price(); $('#sumTotal').innerHTML=pr.total?`<div><span>Estimated total</span><b>${jmd(pr.total)}</b></div><div><span>${bk.pay==='cash'?'Cash on delivery':'50% deposit today'}</span><b>${jmd(bk.pay==='cash'?pr.total:pr.deposit)}</b></div>`:'';
+  const M=mainSvc(); const rows=[['Service',svcLabel()],[M.bundle?'Bundles':'Wigs',M.bundle?String(bk.qty):`${bk.qty} · ${bk.wigType}`],...(M.bundle||!bk.extras.length?[]:[['Extras',bk.extras.map(extraName).join(', ')]]),...(bk.sameDay&&!M.sameDayIncl?[['Same-day','Yes']]:[]),['Finish',styleLabel()],['When',fmtDate?`${fmtDate}${bk.time?', '+timeLabel(bk.time):''}`:''],['Occasion',occLabel()],['Method',bk.handoff==='Pickup'?`Pick-up & delivery · ${bk.area}`:'Drop-off'],['Name',bk.name]];
+  const pr=price(); $('#sumTotal').innerHTML=pr.total?`<div><span>Estimated total</span><b>${jmd(pr.total)}</b></div><div><span>${bk.pay==='cash'?'Cash on delivery':'50% deposit (bank transfer)'}</span><b>${jmd(bk.pay==='cash'?pr.total:pr.deposit)}</b></div>`:'';
   $('#sumList').innerHTML=rows.map(([k,v])=>`<dt>${k}</dt><dd>${v?esc(v):'<span class="muted">—</span>'}</dd>`).join('');
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function valid(step,show){
   let ok=true; const setErr=(id,msg)=>{if(!show)return;$('#'+id+'Err').textContent=msg||'';$('#'+id)?.classList.toggle('bad',!!msg)};
-  if(step===1) ok=bk.services.length>0;
+  if(step===1) ok=!!mainSvc();
   if(step===2) ok=!!bk.style && (bk.style!=='photo'||!!photo);
   if(step===3){const today=new Date();today.setHours(0,0,0,0);const d=bk.date?new Date(bk.date+'T12:00'):null;
     const dOk=!!d&&d>=today; setErr('date',dOk?'':(bk.date?'Please pick today or a future date':'Pick a preferred date'));
@@ -1668,13 +1876,12 @@ function valid(step,show){
     setErr('name',nOk?'':'Please add your name');setErr('phone',pOk?'':'Enter a 10-digit number, like 876-555-0123');ok=nOk&&pOk;}
   return ok;
 }
-$('#svcPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;const v=o.dataset.svc;
-  if(v==='all')bk.services=bk.services.length===4?[]:SERVICES.map(s=>s.id);
-  else bk.services=bk.services.includes(v)?bk.services.filter(x=>x!==v):[...bk.services,v];
-  saveBk();renderBooking();});
+$('#svcPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;bk.main=o.dataset.svc;saveBk();renderBooking();});
+$('#extraPick').addEventListener('click',e=>{const x=e.target.closest('.ex');if(!x)return;const id=x.dataset.ex;bk.extras=bk.extras.includes(id)?bk.extras.filter(v=>v!==id):[...bk.extras,id];saveBk();renderBooking();});
+$('#sameDay').onclick=()=>{bk.sameDay=!bk.sameDay;saveBk();renderBooking();};
 $$('.seg[data-key]').forEach(seg=>seg.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;bk[seg.dataset.key]=b.textContent;saveBk();renderBooking();}));
 $('#qMinus').onclick=()=>{bk.qty=Math.max(1,bk.qty-1);saveBk();renderBooking()};
-$('#qPlus').onclick=()=>{bk.qty=Math.min(10,bk.qty+1);saveBk();renderBooking()};
+$('#qPlus').onclick=()=>{bk.qty=Math.min(mainSvc().bundle?12:10,bk.qty+1);saveBk();renderBooking()};
 function clearPhoto(){if(photo)URL.revokeObjectURL(photo.url);photo=null;$('#photo').value='';}
 $('#stylePick').addEventListener('click',e=>{const b=e.target.closest('.sp');if(!b)return;bk.style=b.dataset.style;if(bk.style!=='photo'&&photo){clearPhoto();toast('Inspo photo removed. Using '+styleLabel()+' instead.');}saveBk();renderBooking();if(bk.style==='photo'&&!photo)$('#photo').click();});
 $('#handoff').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;bk.handoff=o.dataset.v;saveBk();renderBooking();});
@@ -1720,17 +1927,18 @@ $('#bkForm').addEventListener('submit',e=>e.preventDefault());
 $('#phone').addEventListener('blur',()=>{const bad=bk.phone&&!phoneOk(bk.phone);$('#phoneErr').textContent=bad?'Enter a 10-digit number, like 876-555-0123':'';$('#phone').classList.toggle('bad',!!bad);});
 function bookingText(){
   const fmtDate=bk.date?new Date(bk.date+'T12:00').toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}):'';
-  return [`Hi Shen! I'd like to book a Wig Laundry Mat appointment 💗`,``,
-  `• Care: ${bk.services.length===4?'The Full Blitz (wash, condition, detangle, dry & style)':bk.services.map(svcName).join(', ')}`,
-  `• Wigs: ${bk.qty} (${bk.hairType}, ${bk.length})`,
+  return [`Hi Shen! I'd like to book a wig care appointment 💗`,``,
+  `• Service: ${svcLabel()}`,
+  mainSvc().bundle?`• Bundles: ${bk.qty}`:`• Wigs: ${bk.qty} (${bk.wigType})`,
+  !mainSvc().bundle&&bk.extras.length?`• Extras: ${bk.extras.map(extraName).join(', ')}`:null,
+  bk.sameDay&&!mainSvc().sameDayIncl?'• Same-day service':null,
   `• Finish: ${styleLabel()}`,
   `• Preferred: ${fmtDate}, ${timeLabel(bk.time)}`,
   occLabel()!=='None'?`• Special occasion: ${occLabel()}`:null,
-  `• ${bk.handoff}${bk.handoff==='Pickup'?': '+bk.addr:''}`,
+  `• ${bk.handoff==='Pickup'?`Pick-up & delivery (${bk.area}): ${bk.addr}`:'Drop-off'}`,
   `• Name: ${bk.name}`,`• Phone: ${bk.phone}`, bk.ig?`• IG: ${bk.ig}`:null, bk.notes?`• Notes: ${bk.notes}`:null].filter(x=>x!==null).join('\n');
 }
 /* ---------- pricing (demo) & payment ---------- */
-const PRICES={wash:2000,cond:1500,detangle:1500,style:3000}, BLITZ=7000, LEN_ADD={'Short':0,'Medium':0,'Long':500,'Extra long':1000}, PICKUP=1500;
 const jmd=n=>'J$'+Math.round(n).toLocaleString('en-US');
 /* ---------- price list (About us · Pricing) ---------- */
 (()=>{
@@ -1739,17 +1947,21 @@ const jmd=n=>'J$'+Math.round(n).toLocaleString('en-US');
     pony:'<circle cx="11" cy="9" r="5"/><path d="M15.5 7c3 0 4.5 3 3.5 7s-1 6 1 7"/><path d="M6 21c0-3 2.2-5 5-5s5 2 5 5"/>',
     kid:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
     leaf:'<path d="M5 19C5 10 11 5 20 5c0 9-6 15-15 14z"/><path d="M5 19l8-8"/>',
-    plus:'<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'};
+    plus:'<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>',
+    pin:'<path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>',
+    loc:'<path d="M8 3c0 6 2 6 2 12s-2 6-2 6M12 3c0 6 2 6 2 12s-2 6-2 6M16 3c0 6 2 6 2 12s-2 6-2 6"/>'};
   const P=v=>Array.isArray(v)?`${jmd(v[0])} to ${jmd(v[1])}`:typeof v==='object'?'From '+jmd(v.from):typeof v==='string'?v:jmd(v);
   const LIST=[
-    {t:'Wig Laundry Mat',ic:'wash',badge:'Book online',items:[
-      {n:'Wash',p:PRICES.wash,time:'per wig',d:'Gentle deep cleanse'},
-      {n:'Condition',p:PRICES.cond,time:'per wig',d:'Moisture-rich conditioning'},
-      {n:'Detangle',p:PRICES.detangle,time:'per wig',d:'Patient, tangle-free care'},
-      {n:'Dry & Style',p:PRICES.style,time:'per wig',d:'Silky, ready-to-wear finish'},
-      {n:'The Full Blitz',p:BLITZ,time:'per wig',d:`All four services, saves ${jmd(PRICES.wash+PRICES.cond+PRICES.detangle+PRICES.style-BLITZ)}`},
-      {n:'Longer wigs',sub:[['Long','',`+${jmd(LEN_ADD['Long'])}`],['Extra long','',`+${jmd(LEN_ADD['Extra long'])}`]]},
-      {n:'Pickup & return',p:PICKUP,d:'Kingston & surrounding areas'}]},
+    {t:'Wig care',ic:'wash',badge:'Book online',items:[
+      {n:'Blitz Signature Wash',sub:[['10–18"','',800],['20–24"','',1000],['24" & above','',1500]],d:'Detangling, glue removal, shampoo wash, deep conditioning, air dry'},
+      {n:'Wash & Blow Dry (same day)',sub:[['10–18"','',1800],['24" & above','',2500]]},
+      {n:'Wash & Style',p:2000,d:'Wash, condition, blow dry, curling or straightening'},
+      {n:'Same-day service',p:'+J$1,500'}]},
+    {t:'Wig repairs & finishing',ic:'plus',items:[
+      {n:'Lace stitching',p:1000},{n:'Clip up (trashy ends)',p:500},
+      {n:'Curl refresh',p:800},{n:'Flat iron finish',p:800},{n:'Custom styling',p:{from:2000}}]},
+    {t:'Bundle & weave laundry',ic:'wash',items:[{n:'Bundle wash (per bundle)',p:600},{n:'3 Bundle Wash Package',p:1500}]},
+    {t:'Pick-up & delivery',ic:'pin',items:[{n:'Kingston',p:500},{n:'Portmore',p:1000},{n:'Spanish Town',p:1500},{n:'Other locations',p:'Quoted on request'}]},
     {t:'Signature wig services',ic:'gem',items:[
       {n:'The Signature Melt (Frontal Install)',p:4000,time:'3h',d:'Includes braid-down, install & styling'},
       {n:'The Soft Glam Install (Closure Wig)',p:2800,time:'45 min',d:'Natural finish, beginner-friendly install'},
@@ -1767,6 +1979,7 @@ const jmd=n=>'J$'+Math.round(n).toLocaleString('en-US');
       {n:'Half-Up Half-Down Glam',p:4000,time:'2h'},
       {n:'Quick Weave Slay',p:2500,time:'2h'},
       {n:'Soft Glam Curls (Styling only)',p:2500,time:'1h'}]},
+    {t:'Locs',ic:'loc',items:[{n:'Retwist, barrel twists & loc styles',p:'Quoted per client',d:'Prices vary based on loc length, density and style complexity'}]},
     {t:'Kiddies beauty',ic:'kid',items:[
       {n:'Luxury Cornrows',sub:[['Small','',2500],['Medium','',1800],['Large','',1500]]},
       {n:'Signature Plaits',sub:[['Small','',2500],['Medium','',1800]]}]}
@@ -1781,27 +1994,31 @@ const jmd=n=>'J$'+Math.round(n).toLocaleString('en-US');
 })();
 
 function price(){
-  const full=bk.services.length===4; const svc=full?BLITZ:bk.services.reduce((t,id)=>t+(PRICES[id]||0),0);
-  const lines=[]; if(full)lines.push(['The Full Blitz',BLITZ*bk.qty,`${bk.qty} × ${jmd(BLITZ)} · saves ${jmd(PRICES.wash+PRICES.cond+PRICES.detangle+PRICES.style-BLITZ)} per wig`]); else bk.services.forEach(id=>lines.push([svcName(id),PRICES[id]*bk.qty,`${bk.qty} × ${jmd(PRICES[id])}`]));
-  const la=(LEN_ADD[bk.length]||0)*bk.qty; if(la)lines.push([`${bk.length} length`,la,`${bk.qty} × ${jmd(LEN_ADD[bk.length])}`]);
-  if(bk.handoff==='Pickup')lines.push(['Pickup & return',PICKUP,'']);
-  const total=svc?lines.reduce((t,l)=>t+l[1],0):0; return {lines,total,deposit:Math.ceil(total/2)};
+  const M=mainSvc(), q=bk.qty, lines=[];
+  if(M.bundle){const packs=Math.floor(q/3), singles=q%3;
+    if(packs)lines.push(['3 Bundle Wash Package',packs*1500,packs>1?`${packs} × J$1,500`:'']);
+    if(singles)lines.push(['Bundle wash',singles*600,`${singles} × J$600`]);}
+  else{const unit=M.tiers?M.tiers[bk.tier]:M.flat; lines.push([svcLabel(),unit*q,q>1?`${q} × ${jmd(unit)}`:'']);
+    bk.extras.forEach(id=>{const x=WIG_EXTRA.find(e=>e.id===id);if(x)lines.push([x.name+(x.from?' (from)':''),x.p*q,q>1?`${q} × ${jmd(x.p)}`:''])});}
+  if(bk.sameDay&&!M.sameDayIncl)lines.push(['Same-day service',SAME_DAY,'']);
+  if(bk.handoff==='Pickup'){const fee=AREAS[bk.area]; lines.push([`Pick-up & delivery · ${bk.area}`,fee||0,fee==null?'Quoted on request':'']);}
+  const total=lines.reduce((t,l)=>t+l[1],0); return {lines,total,deposit:Math.ceil(total/2)};
 }
 function renderPay(){
   const pr=price();
   $('#priceCard').innerHTML=pr.lines.map(([n,v,sub])=>`<div class="pl"><span>${n}${sub?`<small>${sub}</small>`:''}</span><b>${jmd(v)}</b></div>`).join('')+
     `<div class="pl total"><span>Total</span><b>${jmd(pr.total)}</b></div>`+
     `<div class="pl dep"><span>50% deposit</span><b>${jmd(pr.deposit)}</b></div>`;
-  $('#payDepLine').textContent=`${jmd(pr.deposit)} today · ${jmd(pr.total-pr.deposit)} on delivery`;
-  $('#payCashLine').textContent=`Pay ${jmd(pr.total)} in cash when your wig is delivered`;
+  $('#payDepLine').textContent=`${jmd(pr.deposit)} deposit within 24 hours · ${jmd(pr.total-pr.deposit)} on delivery`;
+  $('#payCashLine').textContent=`Pay ${jmd(pr.total)} in cash when your wig is returned`;
   $$('#payPick .opt').forEach(o=>o.classList.toggle('on',o.dataset.v===bk.pay));
-  $('#payBtn').innerHTML=bk.pay==='cash'?`Confirm booking · cash on delivery`:`Pay ${jmd(pr.deposit)} deposit &amp; confirm`;
+  $('#payBtn').innerHTML=bk.pay==='cash'?`Confirm booking · pay cash`:`Confirm &amp; pay ${jmd(pr.deposit)} by transfer`;
 }
 $('#payPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;bk.pay=o.dataset.v;saveBk();renderBooking();});
 $('#payBtn').onclick=()=>{
   if(!valid(4,false)){bk.step=4;saveBk();renderBooking();valid(4,true);return;}
   if(bk.time&&window.nbAvail&&window.nbAvail.status(bk.date,bk.time)!=='open'){toast('That time was just taken. Please pick another.');bk.step=3;saveBk();renderBooking();return;}
-  if(bk.pay==='cash')confirmBooking(); else openCheckout();
+  confirmBooking();
 };
 // demo checkout sheet (no card details are collected)
 function openCheckout(){
@@ -1815,16 +2032,18 @@ $('#coPay').onclick=()=>{const m=$('#checkout');m.classList.add('busy');setTimeo
 let lastRef='';
 async function confirmBooking(){
   const pr=price(); lastRef='NB-'+Math.random().toString(36).slice(2,6).toUpperCase();
-  const record={ref:lastRef,date:bk.date,time:bk.time,name:bk.name,phone:bk.phone,ig:bk.ig,care:bk.services.length===4?'The Full Blitz':bk.services.map(svcName).join(', '),
-    wigs:bk.qty,length:bk.length,hairType:bk.hairType,finish:styleLabel(),occasion:occLabel(),method:bk.handoff,addr:bk.handoff==='Pickup'?bk.addr:'',notes:bk.notes,
-    total:pr.total,paid:bk.pay==='cash'?0:pr.deposit,payment:bk.pay==='cash'?'Cash on delivery':'Deposit paid',at:Date.now()};
+  const record={ref:lastRef,date:bk.date,time:bk.time,name:bk.name,phone:bk.phone,ig:bk.ig,care:svcLabel()+(bk.extras.length&&!mainSvc().bundle?' + '+bk.extras.map(extraName).join(', '):''),
+    wigs:bk.qty,wigType:mainSvc().bundle?'Bundles':bk.wigType,area:bk.handoff==='Pickup'?bk.area:'',finish:styleLabel(),occasion:occLabel(),method:bk.handoff,addr:bk.handoff==='Pickup'?bk.addr:'',notes:bk.notes,
+    total:pr.total,paid:0,deposit:bk.pay==='cash'?0:pr.deposit,payment:bk.pay==='cash'?'Cash':'Deposit due (bank transfer)',at:Date.now()};
   await window.nbAvail?.book(record);
   const fmtDate=new Date(bk.date+'T12:00').toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
   $('#doneRef').textContent='Booking '+lastRef;
-  $('#receipt').innerHTML=[['When',`${fmtDate}, ${timeLabel(bk.time)}`],['Finish',styleLabel()],['Occasion',occLabel()],['Method',bk.handoff],
-    bk.pay==='cash'?['Payment',`${jmd(pr.total)} cash on delivery`]:['Deposit paid',jmd(pr.deposit)],bk.pay==='cash'?null:['Due on delivery',jmd(pr.total-pr.deposit)],bk.notes.trim()?['Notes',bk.notes.trim()]:null].filter(Boolean)
+  $('#receipt').innerHTML=[['When',`${fmtDate}, ${timeLabel(bk.time)}`],['Finish',styleLabel()],['Occasion',occLabel()],['Method',bk.handoff==='Pickup'?`Pick-up & delivery · ${bk.area}`:'Drop-off'],
+    ['Service',svcLabel()],bk.pay==='cash'?['Payment',`${jmd(pr.total)} cash`]:['Deposit due (24 hrs)',jmd(pr.deposit)],bk.pay==='cash'?null:['Balance on delivery',jmd(pr.total-pr.deposit)],bk.notes.trim()?['Notes',bk.notes.trim()]:null].filter(Boolean)
     .map(([k,v])=>`<div${k==='Notes'?' class="rc-notes"':''}><span>${k}</span><b>${esc(v)}</b></div>`).join('');
-  $('#waLink').href='https://wa.me/18764201683?text='+encodeURIComponent(bookingText()+`\n• Booking ref: ${lastRef}\n• Payment: ${bk.pay==='cash'?'Cash on delivery':'50% deposit paid'}`);
+  $('#waLink').href='https://wa.me/18764201683?text='+encodeURIComponent(bookingText()+`\n• Booking ref: ${lastRef}\n• Payment: ${bk.pay==='cash'?'Cash':`50% deposit ${jmd(pr.deposit)} by Scotiabank transfer. Proof of payment attached.`}`);
+  $('#waLink').textContent=bk.pay==='cash'?'Message Shen (optional)':'Send proof of payment';
+  $('#bankCard').hidden=bk.pay==='cash'; $('#bcAmt').textContent=jmd(pr.deposit); $('#bcRef').textContent=lastRef;
   $('#photoNote').textContent=photo?'Have an inspo photo? Send it to Shen on WhatsApp so she can match the look.':'Questions? Call or WhatsApp Shen on 876-420-1683.';
   bk.step=6; saveBk(); renderBooking(); $('#bkForm').scrollIntoView({behavior:'smooth',block:'start'});
   store.set('bk',Object.assign({},bkDefault));
@@ -1920,7 +2139,7 @@ window.nbAvail=(()=>{
         `<button type="button" class="btn ${off?'btn-pink':'btn-ghost'} btn-sm day-off" data-a="${off?'dayon':'dayoff'}">${off?'Day off: tap to reopen day':'Take this day off'}</button>`;
     }
     const bs=[...bookings.values()].filter(b=>b.date>=todayStr()).sort((a,b)=>(a.date+a.time)<(b.date+b.time)?-1:1);
-    $('#aBookings').innerHTML=bs.length?bs.map(b=>`<div class="bk-row"><div class="bk-when"><b>${new Date(b.date+'T12:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</b><span>${timeLabel(b.time)}</span></div><div class="bk-who"><b>${esc(b.name||'')}</b><span>${esc(b.finish||'')}${b.occasion&&b.occasion!=='None'?' · '+esc(b.occasion):''} · ${esc(b.method||'')}</span><span>${esc(b.phone||'')}</span></div><span class="pill ${b.payment==='Deposit paid'?'p-booked':'p-held'}">${b.payment==='Deposit paid'?'Deposit '+jmd(b.paid):'Cash '+jmd(b.total)}</span></div>`).join(''):'<p class="muted">No bookings yet.</p>';
+    $('#aBookings').innerHTML=bs.length?bs.map(b=>`<div class="bk-row"><div class="bk-when"><b>${new Date(b.date+'T12:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}</b><span>${timeLabel(b.time)}</span></div><div class="bk-who"><b>${esc(b.name||'')}</b><span>${esc(b.finish||'')}${b.occasion&&b.occasion!=='None'?' · '+esc(b.occasion):''} · ${esc(b.method||'')}</span><span>${esc(b.phone||'')}</span></div><span class="pill ${b.payment==='Cash'?'p-held':'p-booked'}">${b.payment==='Cash'?'Cash '+jmd(b.total):'Deposit '+jmd(b.deposit||Math.ceil(b.total/2))+' due'}</span></div>`).join(''):'<p class="muted">No bookings yet.</p>';
     const hs=[...holds.entries()].sort((a,b)=>a[0]<b[0]?-1:1);
     $('#aHolds').innerHTML=hs.length?hs.map(([k,v])=>`<div class="a-row"><b>${new Date(v.date+'T12:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}, ${timeLabel(v.time)}</b><button type="button" class="btn btn-pink btn-sm" data-a="confirm" data-d="${v.date}" data-t="${v.time}">Confirm</button><button type="button" class="btn btn-ghost btn-sm" data-a="release" data-d="${v.date}" data-t="${v.time}">Release</button></div>`).join(''):'<p class="muted">No pending requests.</p>';
   }
