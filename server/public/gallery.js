@@ -1,7 +1,7 @@
 /* GET /api/gallery  the photos and videos on the Gallery page (Shen's choices, or the launch set) */
-import '../gallery.js';
-import { getGallery } from '../lib/store.js';
-import { json } from '../lib/http.js';
+import '../../gallery.js';
+import { getGallery } from '../../lib/store.js';
+import { json } from '../../lib/http.js';
 
 const G = globalThis.NB_GALLERY;
 

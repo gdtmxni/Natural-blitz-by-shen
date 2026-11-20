@@ -1,6 +1,6 @@
 /* GET /api/prices  a tiny script the site and dashboard load right after catalog.js,
    so Shen's price changes show everywhere. Cached at Vercel's edge for 30 seconds. */
-import { getSetting } from '../lib/store.js';
+import { getSetting } from '../../lib/store.js';
 
 export default async function handler(req, res) {
   let p = {};

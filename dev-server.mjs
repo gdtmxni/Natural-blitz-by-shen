@@ -26,11 +26,17 @@ const PUBLIC = p => p === 'index.html' || p === 'admin.html' || p === 'catalog.j
 
 async function api(req, res, url) {
   const name = url.pathname.replace(/^\/api\//, '').replace(/[^a-z0-9/_-]/gi, '');
-  const file = path.join(ROOT, 'api', name + '.js');
-  if (!fs.existsSync(file)) { res.statusCode = 404; return res.end('Not found'); }
   req.query = Object.fromEntries(url.searchParams);
+  // same rules as Vercel: api/x/y.js, or a router file api/x/[route].js that gets ?route=y
+  let file = path.join(ROOT, 'api', name + '.js');
+  if (!fs.existsSync(file)) {
+    const dir = path.dirname(name), route = path.basename(name);
+    file = path.join(ROOT, 'api', dir === '.' ? '' : dir, '[route].js');
+    req.query.route = route;
+  }
+  if (!name || !fs.existsSync(file)) { res.statusCode = 404; return res.end('Not found'); }
   const mod = await import(pathToFileURL(file).href);
-  if (mod.raw) return mod.default(req, res); // reads the body itself (file uploads)
+  if (mod.raw || (mod.rawRoutes || []).includes(req.query.route)) return mod.default(req, res); // reads the body itself (file uploads)
   let raw = '';
   for await (const c of req) { raw += c; if (raw.length > 2e6) { res.statusCode = 413; return res.end(); } }
   try { req.body = raw ? JSON.parse(raw) : {}; } catch { req.body = {}; }

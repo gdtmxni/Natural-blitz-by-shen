@@ -1,7 +1,7 @@
 /* POST /api/visit {page, first}  counts a page view for Shen's visitor numbers (no cookies, no personal data). */
-import '../catalog.js';
-import { countVisit } from '../lib/store.js';
-import { json, body } from '../lib/http.js';
+import '../../catalog.js';
+import { countVisit } from '../../lib/store.js';
+import { json, body } from '../../lib/http.js';
 
 const NB = globalThis.NB;
 const PAGES = ['home', 'gallery', 'services', 'process', 'pricing', 'contact', 'book', 'booked'];

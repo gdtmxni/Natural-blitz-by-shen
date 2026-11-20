@@ -1,10 +1,10 @@
 /* POST /api/bookings  creates a booking (prices are re-calculated here, never trusted from the browser) */
 import crypto from 'node:crypto';
-import '../catalog.js';
-import { listBookings, getSchedule, saveBooking, withLock } from '../lib/store.js';
-import { json, body, clip } from '../lib/http.js';
-import { newBooking } from '../lib/notify.js';
-import { loadPrices } from '../lib/prices.js';
+import '../../catalog.js';
+import { listBookings, getSchedule, saveBooking, withLock } from '../../lib/store.js';
+import { json, body, clip } from '../../lib/http.js';
+import { newBooking } from '../../lib/notify.js';
+import { loadPrices } from '../../lib/prices.js';
 
 const NB = globalThis.NB;
 const MAX_UPCOMING_PER_PHONE = 3;   // a customer can hold up to 3 upcoming bookings online

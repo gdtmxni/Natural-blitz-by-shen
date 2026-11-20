@@ -1,7 +1,7 @@
 /* GET /api/availability?from=YYYY-MM-DD&to=YYYY-MM-DD  (public, no customer details) */
-import '../catalog.js';
-import { listBookings, getSchedule } from '../lib/store.js';
-import { json } from '../lib/http.js';
+import '../../catalog.js';
+import { listBookings, getSchedule } from '../../lib/store.js';
+import { json } from '../../lib/http.js';
 
 const NB = globalThis.NB;
 const isDay = s => /^\d{4}-\d{2}-\d{2}$/.test(s || '');

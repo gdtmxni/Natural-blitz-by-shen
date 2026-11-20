@@ -35,7 +35,8 @@ Locally, bookings are saved in `.data/db.json`, gallery uploads in `.data/media/
 | `catalog.js` | Every service, launch price and booking rule. Shen's price changes (admin > Prices) are stored separately and applied on top (`/api/prices`). |
 | `index.html` | The website and booking flow |
 | `admin.html` | Shen's dashboard |
-| `api/` | Server functions (run on Vercel): availability, bookings, admin, reminders |
+| `api/` | The 3 Vercel server functions (the free plan allows 12): `[route].js` sends `/api/<name>` to `server/public/`, `admin/[route].js` sends `/api/admin/<name>` to `server/admin/`, plus `cron/reminders.js` |
+| `server/` | The endpoint code: `public/` (availability, bookings, gallery, prices, visit, config) and `admin/` (dashboard) |
 | `lib/` | Storage, login, notifications and reminder helpers |
 | `dev-server.mjs` | Runs the site + `api/` locally |
 
