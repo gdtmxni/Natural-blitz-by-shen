@@ -85,9 +85,9 @@ a{color:inherit;text-decoration:none}
 /* intro choreography */
 #intro .lk-crown path{stroke-dasharray:160;stroke-dashoffset:160;animation:draw 1s .2s var(--ease) forwards}
 #intro .lk-crown circle{opacity:0;animation:fadeIn .4s 1s forwards}
-#intro .lk-brand span{display:inline-block;opacity:0;transform:translateY(.4em);filter:blur(4px);animation:letterIn .7s var(--ease) forwards}
+#intro .lk-brand span{display:inline-block;opacity:0;transform:translateY(.4em);animation:letterIn .7s var(--ease) forwards}
 #intro .lk-by{opacity:0;animation:fadeUp .7s 1.15s var(--ease) forwards}
-#intro .lk-wig{opacity:0;transform:scale(1.18);filter:blur(8px);animation:wigIn 1s 1.35s var(--ease) forwards}
+#intro .lk-wig{opacity:0;transform:scale(1.18);animation:wigIn 1s 1.35s var(--ease) forwards}
 #intro .lk-laundry{clip-path:inset(0 100% 0 0);animation:wipe 1.1s 2s cubic-bezier(.6,.1,.3,1) forwards}
 #intro .lk-mat{opacity:0;transform:translateY(.25em);animation:fadeUp .8s 2.55s var(--ease) forwards}
 #intro .lk-washer .drum{animation:spin 1.1s linear infinite}
@@ -145,7 +145,6 @@ body.menu-open{overflow:hidden}
 .hero .lockup{--fs:clamp(9px,1.3vw,15.5px);align-self:flex-start}
 .hero .lockup.hidden{visibility:hidden}
 .hero-slay{font-family:var(--script);font-size:clamp(36px,4vw,54px);color:var(--pink-hot);margin:18px 0 6px;line-height:1.1;position:relative}
-.hero-slay::after{content:"";position:absolute;left:4%;right:0;bottom:2px;height:2px;background:linear-gradient(90deg,var(--pink-hot),transparent);border-radius:2px}
 .hero-sub{max-width:440px;color:rgba(255,255,255,.72);margin:10px 0 28px}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
 .reveal-up{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -708,6 +707,27 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
 .st-book svg{width:14px;height:14px;transition:transform .3s var(--ease)}
 .st-book:hover{color:var(--electric-text)}.st-book:hover svg{transform:translateX(4px)}
 @media (max-width:760px){.cat-pick{grid-template-columns:1fr 1fr}.slots{grid-template-columns:repeat(3,1fr)}}
+/* ---------- send / update boxes, back to top ---------- */
+.occ-send.stack{flex-direction:column;align-items:flex-end}
+.occ-send.stack .inp{width:100%}
+.occ-send.stack .btn{height:44px}
+.summary dd{white-space:pre-line;word-break:break-word}
+.wa-help{font-size:12.5px;color:rgba(255,255,255,.6);margin-top:12px}
+.wa-help:empty{display:none}
+.to-top{position:fixed;right:22px;bottom:22px;z-index:40;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--pink),var(--pink-hot));box-shadow:0 12px 30px -10px rgba(236,61,143,.8);
+  opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top svg{width:22px;height:22px}
+@media (hover:hover){.to-top:hover{transform:translateY(-3px)}}
+body.menu-open .to-top{opacity:0;pointer-events:none}
+@media (max-width:620px){.to-top{right:16px;bottom:16px;width:46px;height:46px}}
+/* ---------- gallery managed from the dashboard ---------- */
+.studio-grid2.one{grid-template-columns:1fr}
+.spin-card[hidden],.ring-card[hidden]{display:none}
+/* ---------- hero tidy-up + smoother intro ---------- */
+.hero-center .hero-ctas{margin-top:28px}
+body:not(.ready) .hero-orbs i,body:not(.ready) .hero-lines,body:not(.ready) .hero-muse,body:not(.ready) #heroLockup .glitter{animation-play-state:paused}
 /* ---------- electric blue: hover only ---------- */
 .btn-ghost:hover{border-color:var(--electric);color:#fff;background:rgba(47,91,255,.12);box-shadow:0 0 28px -8px rgba(47,91,255,.7)}
 .statement .btn-ghost:hover{border-color:var(--electric);color:var(--electric);background:transparent;box-shadow:none}
@@ -943,15 +963,14 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
 .hero-center .hero-copy{align-items:center;text-align:center}
 .hero-center .lockup{--fs:clamp(10px,1.3vw,15px);align-self:center}
 .hero-center .hero-slay{margin-top:22px}
-.hero-center .hero-slay::after{left:10%;right:10%;background:linear-gradient(90deg,transparent,var(--pink-hot),transparent)}
 .hero-center .hero-roles{justify-content:center}
 .hero-center .hero-sub{max-width:620px;margin:14px auto 30px;font-size:17px}
 .hero-center .hero-ctas{justify-content:center}
 .hero-orbs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.hero-orbs i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:orb 18s ease-in-out infinite alternate}
-.hero-orbs .o1{width:560px;height:560px;left:-140px;top:-120px;background:radial-gradient(circle,rgba(236,61,143,.55),transparent 65%)}
-.hero-orbs .o2{width:620px;height:620px;right:-180px;bottom:-200px;background:radial-gradient(circle,rgba(255,90,168,.45),transparent 65%);animation-delay:-6s}
-.hero-orbs .o3{width:360px;height:360px;right:18%;top:8%;background:radial-gradient(circle,rgba(143,214,255,.22),transparent 65%);animation-duration:24s}
+.hero-orbs i{position:absolute;border-radius:50%;opacity:.55;will-change:transform;animation:orb 18s ease-in-out infinite alternate}
+.hero-orbs .o1{width:760px;height:760px;left:-240px;top:-220px;background:radial-gradient(circle closest-side,rgba(236,61,143,.42),rgba(236,61,143,.16) 45%,transparent)}
+.hero-orbs .o2{width:820px;height:820px;right:-280px;bottom:-300px;background:radial-gradient(circle closest-side,rgba(255,90,168,.34),rgba(255,90,168,.12) 45%,transparent);animation-delay:-6s}
+.hero-orbs .o3{width:520px;height:520px;right:14%;top:0;background:radial-gradient(circle closest-side,rgba(143,214,255,.16),transparent);animation-duration:24s}
 @keyframes orb{to{transform:translate3d(60px,40px,0) scale(1.12)}}
 .hero-lines{position:absolute;inset:0;pointer-events:none;background:
   radial-gradient(circle at 50% 46%,transparent 0 260px,rgba(216,180,106,.16) 261px,transparent 262px),
@@ -1005,19 +1024,19 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
 
 /* ---- Logo portrait accent (home + intro) ---- */
 .hero-muse{position:absolute;pointer-events:none;z-index:0;right:-8%;top:52%;width:min(58vw,900px);aspect-ratio:900/498;transform:translateY(-52%);
-  background:url(assets/shen-portrait.webp) center/cover no-repeat;opacity:.5;mix-blend-mode:lighten;
+  background:url(assets/shen-portrait.webp) center/cover no-repeat;opacity:.5;will-change:transform,opacity;
   -webkit-mask-image:radial-gradient(ellipse 58% 62% at 58% 42%,#000 35%,transparent 78%);mask-image:radial-gradient(ellipse 58% 62% at 58% 42%,#000 35%,transparent 78%);
   animation:museIn 1.6s .3s var(--ease) both, museDrift 16s 2s ease-in-out infinite alternate}
 .hero-muse::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,11,.9),transparent 45%),radial-gradient(ellipse at 60% 55%,rgba(236,61,143,.18),transparent 60%);mix-blend-mode:normal}
 .hero-center .wrap{position:relative;z-index:2}
 .lk-laundry{background:linear-gradient(180deg,#fff6d8 0%,#f3cf77 38%,#c8962f 62%,#ffe7a3 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .04em .12em rgba(0,0,0,.6))}
-@keyframes museIn{from{opacity:0;filter:blur(10px)}}
+@keyframes museIn{from{opacity:0}}
 @keyframes museDrift{to{translate:0 -14px;scale:1.03}}
 #intro .intro-muse{position:absolute;left:50%;top:50%;width:min(110vw,1200px);aspect-ratio:900/498;transform:translate(-50%,-58%);
-  background:url(assets/shen-portrait.webp) center/cover no-repeat;mix-blend-mode:lighten;opacity:0;
+  background:url(assets/shen-portrait.webp) center/cover no-repeat;opacity:0;will-change:transform,opacity;
   -webkit-mask-image:radial-gradient(ellipse 50% 58% at 50% 45%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 50% 58% at 50% 45%,#000 30%,transparent 75%);
   animation:introMuse 3.4s .1s var(--ease) forwards}
-@keyframes introMuse{0%{opacity:0;scale:1.12;filter:blur(12px)}45%{opacity:.42;scale:1.02;filter:blur(0)}100%{opacity:.3;scale:1}}
+@keyframes introMuse{0%{opacity:0;scale:1.08}45%{opacity:.42;scale:1.02}100%{opacity:.3;scale:1}}
 @media (max-width:900px){
   .hero-muse{right:50%;left:auto;top:70px;width:150vw;transform:translateX(50%);opacity:.2;
     -webkit-mask-image:radial-gradient(ellipse 45% 60% at 50% 40%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 45% 60% at 50% 40%,#000 30%,transparent 75%)}
@@ -1066,7 +1085,6 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
   <section class="hero hero-center" id="top" data-page="home">
     <div class="hero-orbs" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i></div>
     <div class="hero-muse" aria-hidden="true"></div>
-    <div class="bubbles" id="heroBubbles"></div>
     <div class="wrap">
       <div class="hero-copy">
         <div class="lockup hidden" id="heroLockup">
@@ -1080,7 +1098,6 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         </div>
         <p class="hero-slay reveal-up d1">We style, you slay!</p>
         <p class="hero-roles reveal-up d1"><span>Hairstylist</span><i></i><span>Wig specialist</span><i></i><span>Kiddies hair</span></p>
-        <p class="hero-sub reveal-up d2">Shen is a Kingston hairstylist for installs, silk presses, ponytails, braids and kids' styles, plus professional wig care to keep your units fresh. Services are portable across Kingston &amp; surrounding areas.</p>
         <div class="hero-ctas reveal-up d3">
           <a class="btn btn-pink" href="#services">See all services <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="#book">Book wig care</a>
@@ -1093,7 +1110,6 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         <a href="#book" class="hq"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="6"/><path d="M4 5h16M8 5V3M16 5V3"/></svg></i><span><b>Wig care</b><small>Book online</small></span></a>
       </div>
     </div>
-    <div class="scroll-cue reveal-up d4"><i></i>Scroll</div>
   </section>
 
   <div class="marquee" data-page="home" aria-hidden="true"><div class="track" id="marq"></div></div>
@@ -1181,15 +1197,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
         <h2 class="sub-title">All styles</h2>
         <p class="sec-lead">Tap any look to bring it forward in the 3D lookbook, or book it straight away.</p>
       </div>
-      <div class="look-filters" id="lookFilters" data-reveal>
-        <button class="chip on" data-f="all">All</button>
-        <button class="chip" data-f="curls">Curls</button>
-        <button class="chip" data-f="waves">Waves</button>
-        <button class="chip" data-f="straight">Sleek &amp; Bobs</button>
-        <button class="chip" data-f="updo">Ponytails &amp; Updos</button>
-        <button class="chip" data-f="colour">Colour</button>
-        <button class="chip" data-f="locs">Locs</button>
-      </div>
+      <div class="look-filters" id="lookFilters" data-reveal><button class="chip on" data-f="all">All</button></div>
       <div class="masonry" id="lookGrid"></div>
       <div class="look-more"><button class="btn btn-ghost" id="lookMore">Show more looks</button><a class="btn btn-ghost" href="https://www.instagram.com/naturalblitzbyshen" target="_blank" rel="noopener">More on Instagram ↗</a></div>
     </div>
@@ -1373,7 +1381,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
             <div id="wigCond">
               <span class="field-label">Any damage to point out? (optional)</span>
               <div class="extras" id="damagePick"></div>
-              <textarea class="inp bk-area" id="damageNote" rows="2" maxlength="500" placeholder="Describe it, e.g. small tear near the left ear, shedding at the crown"></textarea>
+              <div class="occ-send stack"><textarea class="inp bk-area" id="damageNote" rows="2" maxlength="500" placeholder="Describe it, e.g. small tear near the left ear, shedding at the crown"></textarea><button type="button" class="btn btn-pink" data-send="damageNote" id="damageNoteSend">Send</button></div><p class="occ-sent" id="damageNoteSentMsg"></p>
               <span class="field-label">Repairs (optional)</span>
               <div class="extras" id="repairPick"></div>
             </div>
@@ -1456,10 +1464,10 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
             <span class="field-label">Where?</span>
             <div class="opt-grid" id="locPick">
               <button type="button" class="opt" data-v="studio"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg></span><span><b>At Shen's</b><span>Come to Shen</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
-              <button type="button" class="opt" data-v="mobile"><span class="oi"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><b>Shen comes to you</b><span>Travel fee quoted by Shen</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
+              <button type="button" class="opt" data-v="mobile"><span class="oi"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><b>Shen comes to you</b><span>Travel fee to be confirmed</span></span><i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i></button>
             </div>
           </div>
-          <div id="addrWrap"><span class="field-label" id="addrLabel">Address</span><input class="inp" id="addr" maxlength="200" placeholder="e.g. Half Way Tree, Kingston" autocomplete="street-address"><div class="err" id="addrErr"></div></div>
+          <div id="addrWrap"><span class="field-label" id="addrLabel">Address</span><div class="occ-send"><input class="inp" id="addr" maxlength="200" placeholder="e.g. 12 Hope Road, Half Way Tree, Kingston" autocomplete="street-address" enterkeyhint="send"><button type="button" class="btn btn-pink" data-send="addr" id="addrSend">Send</button></div><p class="occ-sent" id="addrSentMsg"></p><div class="err" id="addrErr"></div></div>
         </div>
         <!-- step 4: details -->
         <div class="bk-step" data-step="4">
@@ -1474,7 +1482,7 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
           <span class="field-label">Instagram (optional)</span>
           <input class="inp" id="ig" maxlength="60" placeholder="@yourhandle">
           <span class="field-label">Notes: anything we should know? (optional)</span>
-          <textarea class="inp" id="notes" maxlength="1000" placeholder="Special requests, product sensitivities…"></textarea>
+          <div class="occ-send stack"><textarea class="inp bk-area" id="notes" rows="3" maxlength="1000" placeholder="Special requests, product sensitivities…"></textarea><button type="button" class="btn btn-pink" data-send="notes" id="notesSend">Send</button></div><p class="occ-sent" id="notesSentMsg"></p>
         </div>
         <!-- step 5: pay -->
         <div class="bk-step" data-step="5">
@@ -1498,11 +1506,12 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
             <h2 id="doneTitle">You're booked!</h2>
             <p id="doneMsg"></p>
             <div class="receipt" id="receipt"></div>
-            <div class="bank-card" id="bankCard" hidden><div class="bc-top"><b>Scotiabank</b><span>Bank transfer</span></div><div class="bc-row"><span>Amount</span><b id="bcAmt"></b></div><div class="bc-row"><span>Reference</span><b id="bcRef"></b></div><div class="bc-row"><span>Account details</span><b class="muted">To be added by Shen</b></div><p>Transfer within 24 hours, then send a screenshot of your proof of payment on WhatsApp.</p></div>
+            <div class="bank-card" id="bankCard" hidden><div class="bc-top"><b id="bcBank">Scotiabank</b><span>Bank transfer</span></div><div class="bc-row"><span>Amount</span><b id="bcAmt"></b></div><div class="bc-row"><span>Reference</span><b id="bcRef"></b></div><div id="bcRows"><div class="bc-row"><span>Account details</span><b class="muted">Sent to you on WhatsApp</b></div></div><p>Transfer within 24 hours using your booking number as the reference, then tap <b>Confirm payment</b> and send a screenshot of your receipt.</p></div>
             <div class="acts">
               <a class="btn btn-pink" id="waLink" href="#" target="_blank" rel="noopener">Message Shen</a>
               <button type="button" class="btn btn-ghost" id="againBtn">Make another booking</button>
             </div>
+            <p class="wa-help" id="waHelp"></p>
             <small id="photoNote"></small>
           </div>
         </div>
@@ -1565,40 +1574,17 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
     <button type="button" class="btn btn-pink co-pay" id="coPay"><span class="co-l">Pay deposit</span><i class="co-spin"></i><svg class="co-ok" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
   </div>
 </div>
+<button type="button" class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg></button>
 <div class="toast" id="toast"></div>
 
 <script src="catalog.js"></script>
+<script src="gallery.js"></script>
 <script>
 /* ===================== DATA ===================== */
-const LOOKS = [
-  {id:'n_bridal', name:'Bridal Half-Up Curls', cat:'updo', desc:'Soft bridal curls, a sleek swoop and a sparkling tiara for the big day.'},
-  {id:'n_halfup', name:'Braided Half-Up Curls', cat:'curls', desc:'Feed-in braids into a high half-up with long, juicy curls and laid edges.'},
-  {id:'n_pony', name:'Ginger Curly Ponytail', cat:'updo', desc:'Snatched sleek ponytail with a ginger curly extension and a baby-hair swirl.'},
-  {id:'n_waves', name:'Finger Waves & Curls', cat:'waves', desc:'Glossy sculpted waves and swirled edges into soft, defined curls.'},
-  {id:'n_updo', name:'Curly Updo & Swoop', cat:'updo', desc:'Pinned curly updo with sweeping side bangs and soft face-framing curls.'},
-  {id:'n_locs2', name:'Barrel Twist Locs', cat:'locs', desc:'Fresh retwist with neat parts and full, glossy barrel twists.'},
-  {id:'n_locs1', name:'Loc Retwist & Style', cat:'locs', desc:'Clean diamond parts and a defined, polished loc style.'},
-  {id:'r3c6', name:'Deep Wave Half-Up', cat:'curls', desc:'Juicy deep-wave curls with a sleek half-up top and laid edges.'},
-  {id:'r1c1', name:'Curly Crown Ponytail', cat:'updo', desc:'Defined curls pulled up with sculpted, swirled edges.'},
-  {id:'r2c1', name:'Side-Part Body Wave', cat:'waves', desc:'Glossy, voluminous waves swept over one shoulder.'},
-  {id:'r3c3', name:'Copper Curls', cat:'colour', desc:'Bold copper-orange curls with a soft, glowing finish.'},
-  {id:'r4c2', name:'Bone Straight', cat:'straight', desc:'Silky, swingy and straight from root to tip.'},
-  {id:'r3c5', name:'Genie Ponytail', cat:'updo', desc:'High, sleek ponytail with a sharp sweep and baby hairs.'},
-  {id:'r1c3', name:'Honey Blonde Waves', cat:'colour', desc:'Soft honey-blonde waves with a dark, natural root.'},
-  {id:'r2c4', name:'Natural Curly Frontal', cat:'curls', desc:'Bouncy natural curls with a melted, middle-part frontal.'},
-  {id:'r4c6', name:'Silver Bob', cat:'colour', desc:'Sleek, blunt silver bob with a crisp swoop.'},
-  {id:'r2c6', name:'Swoop Bob', cat:'straight', desc:'Shoulder bob with a centre part and finger-wave edges.'},
-  {id:'r1c4', name:'Sleek Ponytail', cat:'updo', desc:'Snatched, glossy pony with a clean, flat finish.'},
-  {id:'r4c3', name:'Sleek Sweep Waves', cat:'waves', desc:'Slicked-back sweep falling into long, loose waves.'},
-  {id:'r2c3', name:'Burgundy Frontal', cat:'colour', desc:'Rich burgundy unit styled up with a smooth finish.'},
-  {id:'r3c6b',name:'', cat:'skip'},
-  {id:'r4c4', name:'Glam Loose Waves', cat:'waves', desc:'Bouncy, red-carpet waves with sculpted edges.'},
-  {id:'r2c5', name:'Honey Straight', cat:'colour', desc:'Straight honey-blonde unit with a soft side part.'},
-  {id:'r2c2', name:'Space Buns', cat:'updo', desc:'Two playful buns with swirled, detailed edges.'},
-  {id:'r3c4', name:'Laid Frontal Install', cat:'straight', desc:'Smooth frontal install with a natural, melted hairline.'},
-  {id:'r4c1', name:'Curly Middle Part', cat:'curls', desc:'Full curls with a clean middle part and soft edges.'},
-  {id:'r3c2', name:'Braids & Curls', cat:'curls', desc:'Side braids flowing into wet-look curls.'},
-].filter(l=>l.cat!=='skip');
+const G=NB_GALLERY;
+const LOOKS=G.PHOTOS; // the launch set: the home page photo stage and services use these
+let GAL={photos:G.PHOTOS,videos:G.VIDEOS}; // what the Gallery page shows (Shen's choices once loaded)
+const galLook=id=>GAL.photos.find(l=>l.id===id)||LOOKS.find(l=>l.id===id);
 const FINISHES=[
   {id:'curlyfrontal',name:'Deep Curly Frontal'},{id:'halfupwave',name:'Half-Up Body Wave'},{id:'deepwavepig',name:'Deep Wave Pigtails'},
   {id:'straight',name:'Bone Straight'},{id:'copperwave',name:'Copper Body Wave'},{id:'burgstraight',name:'Burgundy Sleek'},
@@ -1606,8 +1592,8 @@ const FINISHES=[
   {id:'blondeheart',name:'Blonde Heart Braids'},{id:'bridalupdo',name:'Bridal Updo'},
 ];
 const fimg=id=>`assets/finish/${id}.webp`;
-function findStyle(id){const f=FINISHES.find(x=>x.id===id);if(f)return{name:f.name,src:fimg(f.id)};const l=LOOKS.find(x=>x.id===id);return l?{name:l.name,src:img(l.id)}:null}
-const CAT_NAME={curls:'Curls',waves:'Waves',straight:'Sleek & Bobs',updo:'Ponytails & Updos',colour:'Colour',locs:'Locs'};
+function findStyle(id){const f=FINISHES.find(x=>x.id===id);if(f)return{name:f.name,src:fimg(f.id)};const l=galLook(id);return l?{name:l.name,src:l.src}:null}
+const CAT_NAME=Object.fromEntries(G.CATS.map(c=>[c.id,c.name]));
 const img=id=>`assets/looks/${id}.webp`;
 const lookById=id=>LOOKS.find(l=>l.id===id);
 const SERVICES = [
@@ -1663,7 +1649,7 @@ function playIntro(){
     document.body.prepend(intro); heroLockup.classList.add('hidden'); document.body.classList.remove('ready');
   }
   document.body.style.overflow='hidden';
-  spawnBubbles($('#introBubbles'),26,1.3);
+  spawnBubbles($('#introBubbles'),12,1.3);
   buildIntroLockup();
   $('#skipIntro').addEventListener('click',()=>finishIntro(true));
   clearTimeout(window._introT); window._introT=setTimeout(()=>finishIntro(false),4100);
@@ -1728,42 +1714,43 @@ addEventListener('hashchange',route);
 })();
 
 /* ===================== LOOKBOOK ===================== */
-(()=>{
-  const grid=$('#lookGrid'); let filter='all', expanded=false; const LIMIT=12;
-  grid.innerHTML=LOOKS.map((l,k)=>`<figure class="lk" data-cat="${l.cat}" data-reveal style="transition-delay:${(k%4)*.08}s">
-    <img src="${img(l.id)}" alt="${l.name} by Natural Blitz by Shen" loading="lazy">
-    <figcaption><span class="lk-cat">${CAT_NAME[l.cat]}</span><b>${l.name}</b>
-      <span class="lk-acts"><button class="icon-btn sky" data-try="${l.id}" aria-label="See ${l.name} in the 3D lookbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg></button>
-      <a class="icon-btn" href="#book" data-bookstyle="${l.id}" aria-label="Book ${l.name}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></span></figcaption></figure>`).join('');
-  function apply(){let n=0;$$('.lk',grid).forEach(c=>{const match=filter==='all'||c.dataset.cat===filter;const show=match&&(expanded||filter!=='all'||n<LIMIT);if(match)n++;c.classList.toggle('hide',!show);});
-    $('#lookMore').style.display=(filter==='all'&&!expanded&&LOOKS.length>LIMIT)?'':'none';}
-  $$('#lookFilters .chip').forEach(c=>c.onclick=()=>{$$('#lookFilters .chip').forEach(x=>x.classList.toggle('on',x===c));filter=c.dataset.f;apply();});
-  $('#lookMore').onclick=()=>{expanded=true;apply();$$('.lk:not(.hide)',grid).forEach(el=>el.classList.add('in'))};
-  apply();
-  grid.addEventListener('click',e=>{
-    const t=e.target.closest('[data-try]'); if(t){window.nbRing?.focus(t.dataset.try);go('studio');return}
-    const fig=e.target.closest('.lk'); if(fig&&!e.target.closest('a')){const id=fig.querySelector('[data-try]').dataset.try;window.nbRing?.focus(id);go('studio');}
-  });
-})();
+const LB={filter:'all',expanded:false,LIMIT:12};
+function renderLookbook(){
+  const grid=$('#lookGrid'), cats=G.CATS.filter(c=>GAL.photos.some(l=>l.cat===c.id));
+  if(LB.filter!=='all'&&!cats.some(c=>c.id===LB.filter))LB.filter='all';
+  $('#lookFilters').innerHTML=[{id:'all',name:'All'},...cats].map(c=>`<button class="chip${LB.filter===c.id?' on':''}" data-f="${c.id}">${esc(c.name)}</button>`).join('');
+  grid.innerHTML=GAL.photos.map((l,k)=>`<figure class="lk" data-cat="${l.cat}" data-reveal style="transition-delay:${(k%4)*.08}s">
+    <img src="${esc(l.src)}" alt="${esc(l.name)} by Natural Blitz by Shen" loading="lazy">
+    <figcaption><span class="lk-cat">${esc(CAT_NAME[l.cat]||'')}</span><b>${esc(l.name)}</b>
+      <span class="lk-acts"><button class="icon-btn sky" data-try="${l.id}" aria-label="See ${esc(l.name)} in the 3D lookbook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg></button>
+      <a class="icon-btn" href="#book" data-bookstyle="${l.id}" aria-label="Book ${esc(l.name)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></span></figcaption></figure>`).join('');
+  applyLookFilter();
+}
+function applyLookFilter(){
+  const grid=$('#lookGrid');let n=0;
+  $$('.lk',grid).forEach(c=>{const match=LB.filter==='all'||c.dataset.cat===LB.filter;const show=match&&(LB.expanded||LB.filter!=='all'||n<LB.LIMIT);if(match)n++;c.classList.toggle('hide',!show);});
+  $('#lookMore').style.display=(LB.filter==='all'&&!LB.expanded&&GAL.photos.length>LB.LIMIT)?'':'none';
+}
+$('#lookFilters').addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;$$('#lookFilters .chip').forEach(x=>x.classList.toggle('on',x===c));LB.filter=c.dataset.f;applyLookFilter();$$('#lookGrid .lk:not(.hide)').forEach(el=>el.classList.add('in'));});
+$('#lookMore').onclick=()=>{LB.expanded=true;applyLookFilter();$$('#lookGrid .lk:not(.hide)').forEach(el=>el.classList.add('in'))};
+$('#lookGrid').addEventListener('click',e=>{
+  const t=e.target.closest('[data-try]'); if(t){window.nbRing?.focus(t.dataset.try);go('studio');return}
+  const fig=e.target.closest('.lk'); if(fig&&!e.target.closest('a')){const id=fig.querySelector('[data-try]').dataset.try;window.nbRing?.focus(id);go('studio');}
+});
 
 /* ===================== STUDIO: VIDEO PREVIEW ===================== */
 (()=>{
-  const CLIPS=[
-    {src:'v1',name:'Braids & Curls',sub:'Side braids into wet-look curls',book:'r3c2'},
-    {src:'v2',name:'Burgundy Ponytail',sub:'Sleek burgundy pony with sculpted edges',book:'r2c3'},
-    {src:'v3',name:'Braided Curly Frontal',sub:'Cornrow side detail with bouncy curls',book:'r2c4'},
-    {src:'v4',name:'Sleek Frontal Waves',sub:'Slicked frontal, 3 weeks in and still laid',book:'r4c1'},
-  ];
+  let CLIPS=[];
   const v=$('#vpVideo'), range=$('#vpRange'), play=$('#vpPlay'), snd=$('#vpSound'), thumbs=$('#vpThumbs');
   let cur=-1, vis=false, wantPlay=!reduced, seeking=false;
-  thumbs.innerHTML=CLIPS.map((c,i)=>`<button class="vp-th" data-i="${i}" aria-label="Play ${c.name}"><img src="assets/video/${c.src}.jpg" alt="" loading="lazy"><span>${c.name}</span></button>`).join('');
   const ico={pause:'<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',play:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>',
     off:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>',on:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>'};
   function ui(){const p=!v.paused;play.innerHTML=p?ico.pause:ico.play;play.classList.toggle('on',p);play.setAttribute('aria-label',p?'Pause video':'Play video');
     snd.innerHTML=v.muted?ico.off:ico.on;snd.setAttribute('aria-label',v.muted?'Turn sound on':'Turn sound off');}
   function tryPlay(){if(!vis||!wantPlay)return;const pr=v.play();if(pr)pr.catch(()=>{wantPlay=false;ui()});}
-  function pick(i){if(i===cur)return;cur=i;const c=CLIPS[i];v.poster=`assets/video/${c.src}.jpg`;v.src=`assets/video/${c.src}.mp4`;
-    $('#vpName').textContent=c.name;$('#vpSub').textContent=c.sub;$('#vpBook').dataset.bookstyle=c.book;
+  function pick(i){if(i===cur||!CLIPS[i])return;cur=i;const c=CLIPS[i];v.poster=c.poster||'';v.src=c.src;
+    $('#vpName').textContent=c.name;$('#vpSub').textContent=c.sub||'Tap a clip to switch';
+    const bkl=$('#vpBook');if(c.book){bkl.dataset.bookstyle=c.book;bkl.removeAttribute('data-bookcat');}else{bkl.dataset.bookcat=G.bookCat(c.cat);bkl.removeAttribute('data-bookstyle');}
     $$('.vp-th',thumbs).forEach((t,k)=>t.classList.toggle('on',k===i));range.value=0;tryPlay();}
   thumbs.addEventListener('click',e=>{const t=e.target.closest('.vp-th');if(t){wantPlay=true;pick(+t.dataset.i);}});
   play.onclick=()=>{if(v.paused){wantPlay=true;v.play().catch(()=>{})}else{wantPlay=false;v.pause()}};
@@ -1774,21 +1761,30 @@ addEventListener('hashchange',route);
   range.addEventListener('input',()=>{seeking=true;if(v.duration)v.currentTime=range.value/1000*v.duration});
   range.addEventListener('change',()=>{seeking=false});
   new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis){if(cur<0)pick(0);else tryPlay();}else v.pause();},{threshold:.25}).observe($('#vpStage'));
+  window.nbVideo={build(){ // (re)load the clips Shen picked
+    CLIPS=GAL.videos.slice(); const card=$('#vpStage').closest('.spin-card'); card.hidden=!CLIPS.length;
+    $('#studio .studio-grid2').classList.toggle('one',!CLIPS.length);
+    thumbs.innerHTML=CLIPS.map((c,i)=>`<button class="vp-th" data-i="${i}" aria-label="Play ${esc(c.name)}"><img src="${esc(c.poster||'')}" alt="" loading="lazy"><span>${esc(c.name)}</span></button>`).join('');
+    cur=-1; if(!CLIPS.length){v.removeAttribute('src');v.load();return;} if(vis)pick(0);
+  }};
   window.addEventListener('nb-view',()=>{if(document.body.dataset.page!=='gallery')v.pause()});
   ui();
 })();
 
 /* ===================== STUDIO: 3D RING ===================== */
 (()=>{
-  const ring=$('#ring'), stage=$('#ringStage'); const list=LOOKS.slice(0,14); const n=list.length, step=360/n;
-  ring.innerHTML=list.map((l,i)=>`<button class="rc" data-i="${i}" style="--a:${i*step}deg" aria-label="${l.name}"><img src="${img(l.id)}" alt="" loading="lazy" draggable="false"><span>${l.name}</span></button>`).join('');
-  const cards=$$('.rc',ring);
+  const ring=$('#ring'), stage=$('#ringStage'); let list=[], n=0, step=360, cards=[];
   let rot=0, target=0, vel=0, dragging=false, sx=0, srot=0, moved=0, idle=0, sel=-1, R=0;
-  function layout(){const w=cards[0].offsetWidth||190;R=Math.round((w/2)/Math.tan(Math.PI/n))+30;ring.style.setProperty('--r',R+'px');}
-  new ResizeObserver(layout).observe(stage); layout();
-  function select(i){if(i===sel)return;sel=i;const l=list[i];$('#ringName').textContent=l.name;$('#ringCat').textContent=CAT_NAME[l.cat];$('#ringDesc').textContent=l.desc;$('#bookThis').dataset.bookstyle=l.id;
+  function layout(){if(!n)return;const w=cards[0].offsetWidth||190;R=Math.round((w/2)/Math.tan(Math.PI/Math.max(n,3)))+30;ring.style.setProperty('--r',R+'px');}
+  function build(){ // the first 14 gallery photos go round the ring
+    list=GAL.photos.slice(0,14); n=list.length; step=360/Math.max(n,1);
+    ring.innerHTML=list.map((l,i)=>`<button class="rc" data-i="${i}" style="--a:${i*step}deg" aria-label="${esc(l.name)}"><img src="${esc(l.src)}" alt="" loading="lazy" draggable="false"><span>${esc(l.name)}</span></button>`).join('');
+    cards=$$('.rc',ring); rot=target=0; sel=-1; stage.closest('.ring-card').hidden=!n; layout();
+  }
+  function select(i){if(i===sel||!list[i])return;sel=i;const l=list[i];$('#ringName').textContent=l.name;$('#ringCat').textContent=CAT_NAME[l.cat]||'';$('#ringDesc').textContent=l.desc||'';$('#bookThis').dataset.bookstyle=l.id;
     cards.forEach((c,k)=>c.classList.toggle('front',k===i));}
-  function goTo(i){const cur=-target/step; let d=((i-cur)%n+n)%n; if(d>n/2)d-=n; target-= d*step; idle=performance.now()+6000;}
+  function goTo(i){if(!n)return;const cur=-target/step; let d=((i-cur)%n+n)%n; if(d>n/2)d-=n; target-= d*step; idle=performance.now()+6000;}
+  new ResizeObserver(layout).observe(stage);
   stage.addEventListener('pointerdown',e=>{dragging=true;moved=0;sx=e.clientX;srot=target;stage.setPointerCapture(e.pointerId);stage.classList.add('grab')});
   stage.addEventListener('pointermove',e=>{if(!dragging)return;const dx=e.clientX-sx;moved=Math.max(moved,Math.abs(dx));target=srot+dx*.32;});
   const up=e=>{if(!dragging)return;dragging=false;stage.classList.remove('grab');idle=performance.now()+5000;
@@ -1801,13 +1797,28 @@ addEventListener('hashchange',route);
   stage.tabIndex=0;
   let vis=false;new IntersectionObserver(es=>vis=es[0].isIntersecting).observe(stage);
   let lastAuto=0;
-  function tick(t){requestAnimationFrame(tick);if(!vis)return;
+  function tick(t){requestAnimationFrame(tick);if(!vis||!n)return;
     if(!dragging&&!reduced&&t>idle&&t-lastAuto>3600){lastAuto=t;if(idle)goTo((Math.round(-target/step)+1)%n);else idle=t;}
     rot+=(target-rot)*.09; ring.style.transform=`translateZ(${-R}px) rotateY(${rot}deg)`;
     const front=((Math.round(-rot/step))%n+n)%n; select(front);
     cards.forEach((c,k)=>{const ang=(k*step+rot)*Math.PI/180;const z=Math.cos(ang);c.style.opacity=(.25+.75*Math.max(0,(z+1)/2)).toFixed(3);c.style.filter=z<.2?`blur(${((.2-z)*2).toFixed(1)}px) brightness(.6)`:'';});}
   requestAnimationFrame(tick);
-  window.nbRing={focus(id){const i=list.findIndex(l=>l.id===id);if(i>=0){goTo(i);idle=performance.now()+9000;}}};
+  window.nbRing={build,focus(id){const i=list.findIndex(l=>l.id===id);if(i>=0){goTo(i);idle=performance.now()+9000;}}};
+})();
+
+/* ---------- load Shen's gallery (falls back to the launch set if the server can't be reached) ---------- */
+function renderGallery(){
+  renderLookbook(); window.nbRing.build(); window.nbVideo.build();
+  $$('#studio [data-reveal],#lookbook [data-reveal]').forEach(el=>{if(!el.classList.contains('in'))io.observe(el)});
+  if(document.body.dataset.page==='gallery')requestAnimationFrame(()=>$$('#lookbook [data-reveal],#studio [data-reveal]').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0&&r.height)el.classList.add('in')}));
+}
+(async()=>{
+  await 0; // let the rest of the page script finish first
+  try{
+    const r=await fetch('/api/gallery',{cache:'no-store'});
+    if(r.ok&&(r.headers.get('content-type')||'').includes('json')){const j=await r.json();if(Array.isArray(j.photos)&&Array.isArray(j.videos))GAL={photos:j.photos,videos:j.videos};}
+  }catch(e){}
+  renderGallery();
 })();
 
 /* ===================== SERVICES ===================== */
@@ -1830,14 +1841,13 @@ $('#svcRow').innerHTML=SERVICES.map((s,i)=>`<div class="svc" data-reveal style="
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14,rootMargin:'0px 0px -40px 0px'});
 $$('[data-reveal]').forEach(el=>io.observe(el));
 
-spawnBubbles($('#heroBubbles'),16,1);
 
 /* ===================== BOOKING ===================== */
 /* Services, prices and rules live in catalog.js (shared with the server). */
 const jmd=NB.jmd;
 const tick='<i class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></i>';
 const bkDefault={step:1,cat:'wig',main:'sig',tier:NB.TIERS[0],qty:1,wigType:NB.WIG_TYPES[0],repairs:[],damage:[],damageNote:'',styled:'',styleType:'',wstyleFinish:NB.WSTYLE_FINISH[0],look:'',
-  svc:'',variant:'',addons:[],location:'studio',occasion:'No, just fresh',occOther:'',occSent:'',date:'',time:'',handoff:'Drop-off',area:'Kingston',addr:'',name:'',phone:'',email:'',ig:'',notes:'',pay:'transfer'};
+  svc:'',variant:'',addons:[],location:'studio',occasion:'No, just fresh',occOther:'',occSent:'',addrSent:'',damageNoteSent:'',notesSent:'',date:'',time:'',handoff:'Drop-off',area:'Kingston',addr:'',name:'',phone:'',email:'',ig:'',notes:'',pay:'transfer'};
 let bk=Object.assign({},bkDefault,store.get('bk2',{}));
 if(!NB.CATS.some(c=>c.id===bk.cat))bk.cat='wig';
 if(!NB.WIG_MAIN.some(m=>m.id===bk.main))bk.main='sig';
@@ -1860,12 +1870,12 @@ bk.phone=fmtPhone(bk.phone);
 const isWig=()=>bk.cat==='wig';
 const wigM=()=>NB.wigMain(bk.main);
 const curSvc=()=>isWig()?null:NB.svc(bk.cat,bk.svc);
-function lookObj(){if(!bk.look)return null;const f=FINISHES.find(x=>x.id===bk.look);if(f)return{name:f.name,src:fimg(f.id)};const l=LOOKS.find(x=>x.id===bk.look);return l?{name:l.name,src:img(l.id)}:null}
-const lookPool=()=>isWig()?FINISHES.map(f=>({id:f.id,name:f.name,src:fimg(f.id)})):LOOKS.filter(l=>bk.cat==='locs'?l.cat==='locs':l.cat!=='locs').map(l=>({id:l.id,name:l.name,src:img(l.id)}));
+function lookObj(){if(!bk.look)return null;const f=FINISHES.find(x=>x.id===bk.look);if(f)return{name:f.name,src:fimg(f.id)};const l=galLook(bk.look);return l?{name:l.name,src:l.src}:null}
+const lookPool=()=>isWig()?FINISHES.map(f=>({id:f.id,name:f.name,src:fimg(f.id)})):GAL.photos.filter(l=>bk.cat==='locs'?l.cat==='locs':!['locs','kids','wigs'].includes(l.cat)).map(l=>({id:l.id,name:l.name,src:l.src}));
 const wigStyledQ=()=>isWig()&&!wigM().bundle&&!wigM().styled;
 const showLook=()=>isWig()?(wigStyledQ()&&bk.styled==='yes'&&bk.styleType==='custom'):true;
-const bkView=()=>Object.assign({},bk,{photo:!!photo});
-const priceTag=s=>s.quote?'Quoted':s.vars?'from '+jmd(Math.min(...s.vars.map(v=>v.p))):s.to?`${jmd(s.p)} to ${jmd(s.to)}`:s.from?'from '+jmd(s.p):jmd(s.p);
+const bkView=()=>Object.assign({},bk,{photo:!!photo,addr:bk.addrSent||'',damageNote:bk.damageNoteSent||'',notes:bk.notesSent||''}); // only what the customer pressed Send on
+const priceTag=s=>s.quote?'Price to be confirmed':s.vars?'from '+jmd(Math.min(...s.vars.map(v=>v.p))):s.to?`${jmd(s.p)} to ${jmd(s.to)}`:s.from?'from '+jmd(s.p):jmd(s.p);
 
 /* ---- static pickers ---- */
 $('#catPick').innerHTML=NB.CATS.map(c=>`<button type="button" class="opt" data-cat="${c.id}"><span class="oi"><svg viewBox="0 0 24 24">${c.icon}</svg></span><span><b>${c.name}</b><span>${c.desc}</span></span>${tick}</button>`).join('');
@@ -1928,7 +1938,7 @@ function renderBooking(){
   $$('#handoff .opt').forEach(o=>o.classList.toggle('on',o.dataset.v===bk.handoff));
   $$('#locPick .opt').forEach(o=>o.classList.toggle('on',o.dataset.v===bk.location));
   $('#areaWrap').hidden=!(wig&&bk.handoff==='Pickup');
-  $('#areaFee').textContent=bk.area==='Other area'?'Other locations are quoted on request.':`Pick-up & delivery to ${bk.area}: ${jmd(NB.AREAS[bk.area])}`;
+  $('#areaFee').textContent=bk.area==='Other area'?'Fee for other locations: price to be confirmed.':`Pick-up & delivery to ${bk.area}: ${jmd(NB.AREAS[bk.area])}`;
   const needAddr=(wig&&bk.handoff==='Pickup')||(!wig&&bk.location==='mobile');
   $('#addrWrap').hidden=!needAddr; $('#addrLabel').textContent=wig?'Pick-up & delivery address':'Your address';
   const pick=bk.handoff==='Pickup';
@@ -1941,7 +1951,7 @@ function renderBooking(){
   if(bk.step===3)renderCal();
   ['addr','name','phone','email','ig','notes','occOther','damageNote'].forEach(k=>{const el=$('#'+k);if(el&&el.value!==bk[k])el.value=bk[k]});
   $$('#occasion button').forEach(b=>b.classList.toggle('on',b.textContent===bk.occasion));$('#occOtherWrap').style.display=bk.occasion==='Other'?'block':'none';
-  renderOccSend();
+  renderOccSend(); renderSends();
   $('#prevBtn').style.visibility=bk.step>1&&bk.step<6?'visible':'hidden';
   $('#bkNav').style.display=bk.step===6?'none':'flex';
   $('#nextBtn').style.display=bk.step===5?'none':'';
@@ -1949,6 +1959,7 @@ function renderBooking(){
   $('#nextBtn').innerHTML=(bk.step===4?'Continue to payment':'Continue')+' <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   $('#nextBtn').toggleAttribute('disabled',!valid(bk.step,false));
   renderSummary();
+  syncStepHistory();
 }
 function renderSummary(){
   const art=$('#sumArt'); const lk=photo?{src:photo.url,name:'Your inspo photo'}:(showLook()?lookObj():null);
@@ -1957,7 +1968,7 @@ function renderSummary(){
     `<div class="sum-empty"><span class="script">${{wig:'fresh wig',style:'your look',kids:'little queen',locs:'your locs'}[bk.cat]}</span><small>${isWig()?'Washed, restored & ready':'Add an inspo photo in step 2'}</small></div>`;}
   const rows=NB.describe(bkView(),{lookName:lookObj()?.name});
   const pr=NB.price(bk);
-  $('#sumTotal').innerHTML=pr.lines.length?`<div><span>${pr.quote?'Estimated total':'Total'}</span><b>${jmd(pr.total)}</b></div><div><span>${bk.pay==='cash'?'Cash':'50% deposit (bank transfer)'}</span><b>${jmd(bk.pay==='cash'?pr.total:pr.deposit)}</b></div>`:'';
+  $('#sumTotal').innerHTML=!pr.lines.length?'':!pr.total?'<div><span>Total</span><b>To be confirmed</b></div>':`<div><span>${pr.quote?'Estimated total':'Total'}</span><b>${jmd(pr.total)}</b></div><div><span>${bk.pay==='cash'?'Cash':'50% deposit (bank transfer)'}</span><b>${jmd(bk.pay==='cash'?pr.total:pr.deposit)}</b></div>`;
   $('#sumList').innerHTML=rows.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
@@ -2013,16 +2024,26 @@ $('#qMinus').onclick=()=>{bk.qty=Math.max(1,bk.qty-1);saveBk();renderBooking()};
 $('#qPlus').onclick=()=>{bk.qty=Math.min(wigM().bundle?12:10,bk.qty+1);saveBk();renderBooking()};
 $('#handoff').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;bk.handoff=o.dataset.v;saveBk();renderBooking();});
 $('#locPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;bk.location=o.dataset.v;saveBk();renderBooking();});
-['addr','name','phone','email','ig','notes','occOther','damageNote'].forEach(k=>$('#'+k).addEventListener('input',e=>{if(k==='phone')maskPhone(e.target);bk[k]=e.target.value;if(k==='occOther')renderOccSend();if(k==='notes'&&bk.occSent&&!bk.notes.includes(OCC_PREFIX+bk.occSent))bk.occSent='';saveBk();$('#nextBtn').toggleAttribute('disabled',!valid(bk.step,false));renderSummary();if($('#'+k).classList.contains('bad'))valid(bk.step,true)}));
+['addr','name','phone','email','ig','notes','occOther','damageNote'].forEach(k=>$('#'+k).addEventListener('input',e=>{if(k==='phone')maskPhone(e.target);bk[k]=e.target.value;if(k==='occOther')renderOccSend();if(k in SENDS)renderSends();if(k==='notes'&&bk.occSent&&!bk.notes.includes(OCC_PREFIX+bk.occSent))bk.occSent='';saveBk();$('#nextBtn').toggleAttribute('disabled',!valid(bk.step,false));renderSummary();if($('#'+k).classList.contains('bad'))valid(bk.step,true)}));
 $('#phone').addEventListener('blur',()=>{const bad=bk.phone&&!phoneOk(bk.phone);$('#phoneErr').textContent=bad?'Enter a 10-digit number, like 876-555-0123':'';$('#phone').classList.toggle('bad',!!bad);});
 $('#email').addEventListener('blur',()=>{const bad=!emailOk(bk.email.trim());$('#emailErr').textContent=bad?'Check your email address':'';$('#email').classList.toggle('bad',bad);});
 $('#occasion').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;bk.occasion=b.textContent;if(bk.occasion!=='Other')setOccNote('');saveBk();renderBooking();if(bk.occasion==='Other')setTimeout(()=>$('#occOther').focus(),50);});
 // "Other" occasion details are sent into the Notes field (step 4) instead of the summary card
 const OCC_PREFIX='Occasion: ';
 function setOccNote(text){
-  const rest=bk.notes.split('\n').filter(l=>!l.startsWith(OCC_PREFIX)).join('\n').replace(/^\n+/,'');
-  bk.notes=text?OCC_PREFIX+text+(rest?'\n'+rest:''):rest; bk.occSent=text;
+  const put=v=>{const rest=String(v||'').split('\n').filter(l=>!l.startsWith(OCC_PREFIX)).join('\n').replace(/^\n+/,'');return text?OCC_PREFIX+text+(rest?'\n'+rest:''):rest;};
+  bk.notes=put(bk.notes); bk.notesSent=put(bk.notesSent); bk.occSent=text;
 }
+/* Address, damage notes and notes: the customer presses Send (or Update) and it shows on the summary card */
+const SENDS={addr:'Added to your booking.',damageNote:'Added to your booking.',notes:'Added to your booking.'};
+const STEP_SENDS={1:['damageNote'],3:['addr'],4:['notes']};
+function renderSends(){for(const k in SENDS){const t=bk[k].trim(),s=bk[k+'Sent']||'',same=t===s,b=$('#'+k+'Send');if(!b)continue;
+  b.textContent=!s?'Send':same?'Sent':!t?'Remove':'Update'; b.disabled=same;
+  $('#'+k+'SentMsg').textContent=s&&same?`Got it! ${SENDS[k]} Edit it and press Update to change it.`:s&&!same?'You have changes. Press Update to save them.':'';}}
+function commitSend(k){bk[k+'Sent']=bk[k].trim();bk[k]=bk[k+'Sent'];saveBk();renderBooking();}
+const commitAll=ks=>ks.forEach(k=>{if(bk[k].trim()!==(bk[k+'Sent']||''))bk[k+'Sent']=bk[k].trim();});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-send]');if(b)commitSend(b.dataset.send);});
+$('#addr').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commitSend('addr');}});
 function renderOccSend(){
   const t=bk.occOther.trim(), sent=!!bk.occSent&&bk.occSent===t;
   $('#occSend').textContent=bk.occSent&&!sent?'Update':sent?'Sent':'Send';
@@ -2050,16 +2071,39 @@ $('#removePhoto').onclick=()=>{clearPhoto();saveBk();renderBooking();};
 // nav
 $('#nextBtn').onclick=()=>{if(!valid(bk.step,true))return;
   if(bk.step===2&&bk.occasion==='Other'&&bk.occOther.trim()&&bk.occOther.trim()!==bk.occSent)setOccNote(bk.occOther.trim());
-  bk.step++; saveBk(); if(bk.step===3){keepDate();loadAvail(true);if(!bk.date)setTimeout(()=>toggleCal(true),250);}
+  commitAll(STEP_SENDS[bk.step]||[]);
+  bk.step++; pushStep=true; bkFinished=false; saveBk(); if(bk.step===3){keepDate();loadAvail(true);if(!bk.date)setTimeout(()=>toggleCal(true),250);}
   renderBooking(); $('#bkForm').scrollIntoView({behavior:'smooth',block:'start'});};
-$('#prevBtn').onclick=()=>{bk.step=Math.max(1,bk.step-1);saveBk();renderBooking();};
+$('#prevBtn').onclick=()=>{
+  // same as the browser's Back button when the previous history entry is the previous step
+  if(history.state&&history.state.nbStep===bk.step&&history.state.prev===bk.step-1)history.back();
+  else{bk.step=Math.max(1,bk.step-1);saveBk();renderBooking();}
+};
+/* Each booking step is its own history entry, so the browser / mouse Back button goes to the previous step. */
+let pushStep=false, bkFinished=false;
+function syncStepHistory(){
+  if(curPage()!=='book'){pushStep=false;return;}
+  const cur=history.state&&history.state.nbStep;
+  if(cur!==bk.step){
+    if(pushStep&&cur)history.pushState({nbStep:bk.step,prev:cur},'','#book');
+    else history.replaceState({nbStep:bk.step},'','#book');
+  }
+  pushStep=false;
+}
+addEventListener('popstate',e=>{
+  const s=e.state&&e.state.nbStep; if(!s||curPage()!=='book')return;
+  if(bkFinished){ // booking already sent: going back starts a fresh booking instead of reopening the paid one
+    if(bk.step!==1){bk=Object.assign({},bkDefault,{name:bk.name,phone:bk.phone,email:bk.email,ig:bk.ig},{step:1});clearPhoto();cMonth=null;AV.loaded=false;saveBk();}
+  }else{bk.step=Math.min(Math.max(1,s),5);saveBk();}
+  renderBooking(); setTimeout(()=>$('#bkForm').scrollIntoView({block:'start'}),30);
+});
 $('#bkForm').addEventListener('submit',e=>e.preventDefault());
 // "Book" links elsewhere on the site
 document.addEventListener('click',e=>{
   const c=e.target.closest('[data-bookcat]');
   if(c){bk.cat=c.dataset.bookcat;bk.svc=c.dataset.booksvc||'';bk.variant='';bk.addons=[];bk.look='';bk.step=1;const S=curSvc();if(S&&S.vars)bk.variant=S.vars[0].n;keepDate();cMonth=null;saveBk();return;}
   const s=e.target.closest('[data-bookstyle]');
-  if(s){const id=s.dataset.bookstyle;bk.cat=LOOKS.find(l=>l.id===id)?.cat==='locs'?'locs':'style';bk.svc='';bk.variant='';bk.addons=[];bk.look=id;bk.step=1;keepDate();cMonth=null;saveBk();}
+  if(s){const id=s.dataset.bookstyle,l=galLook(id);bk.cat=l?G.bookCat(l.cat):'style';bk.svc='';bk.variant='';bk.addons=[];bk.look=l&&(bk.cat==='style'||bk.cat==='locs')?id:'';bk.step=1;keepDate();cMonth=null;saveBk();}
 });
 $$('a[href="#book"]').forEach(a=>a.addEventListener('click',()=>{if(bk.step===6){bk.step=1;saveBk();}}));
 
@@ -2111,10 +2155,10 @@ $('#slots').addEventListener('click',e=>{const b=e.target.closest('.slot');if(!b
 /* ---------- pay & confirm ---------- */
 function renderPay(){
   const pr=NB.price(bk);
-  $('#priceCard').innerHTML=pr.lines.map(l=>`<div class="pl"><span>${esc(l.n)}${l.sub?`<small>${esc(l.sub)}</small>`:''}</span><b>${l.amt?jmd(l.amt):'Quoted'}</b></div>`).join('')+
-    `<div class="pl total"><span>Total${pr.quote?' (estimate)':''}</span><b>${jmd(pr.total)}</b></div>`+(pr.deposit?`<div class="pl dep"><span>50% deposit</span><b>${jmd(pr.deposit)}</b></div>`:'');
+  $('#priceCard').innerHTML=pr.lines.map(l=>`<div class="pl"><span>${esc(l.n)}${l.sub?`<small>${esc(l.sub)}</small>`:''}</span><b>${l.amt?jmd(l.amt):'To be confirmed'}</b></div>`).join('')+
+    `<div class="pl total"><span>Total${pr.quote&&pr.total?' (estimate)':''}</span><b>${NB.money(pr.total)}</b></div>`+(pr.deposit?`<div class="pl dep"><span>50% deposit</span><b>${jmd(pr.deposit)}</b></div>`:'');
   $('#quoteNote').hidden=!pr.quote;
-  $('#payDepLine').textContent=pr.deposit?`${jmd(pr.deposit)} deposit within 24 hours · ${jmd(pr.total-pr.deposit)} later`:'Deposit confirmed by Shen';
+  $('#payDepLine').textContent=pr.deposit?`${jmd(pr.deposit)} deposit within 24 hours · ${jmd(pr.total-pr.deposit)} later`:'Deposit to be confirmed';
   $('#payCashLine').textContent=isWig()?'Pay in full when your wig is returned':'Pay in full on the day';
   $$('#payPick .opt').forEach(o=>o.classList.toggle('on',o.dataset.v===bk.pay));
   $('#payBtn').innerHTML=bk.pay==='cash'?'Confirm booking · pay cash':pr.deposit?`Confirm &amp; pay ${jmd(pr.deposit)} deposit`:'Confirm booking';
@@ -2123,9 +2167,9 @@ $('#payPick').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!
 let sending=false;
 $('#payBtn').onclick=async()=>{
   for(const s of [1,2,3,4])if(!valid(s,false)){bk.step=s;saveBk();renderBooking();valid(s,true);toast('Please check this step');return;}
-  if(sending)return; sending=true;
+  if(sending)return; sending=true; commitAll(Object.keys(SENDS)); saveBk(); renderSummary();
   const btn=$('#payBtn'), label=btn.innerHTML; btn.disabled=true; btn.textContent='Sending…';
-  const payload=Object.assign({},bk,{photo:!!photo,lookName:showLook()?(lookObj()?.name||''):''}); delete payload.step;
+  const payload=Object.assign(bkView(),{lookName:showLook()?(lookObj()?.name||''):''}); delete payload.step; Object.keys(SENDS).forEach(k=>delete payload[k+'Sent']);
   if(!showLook())payload.look='';
   let res=null;
   try{
@@ -2144,12 +2188,6 @@ $('#payBtn').onclick=async()=>{
   sending=false; btn.disabled=false; btn.innerHTML=label;
   if(res)showDone(res);
 };
-function bookingText(res){
-  const b=bkView(), pr=res.price;
-  return [`Hi Shen! Booking ${res.ref} 💗`,``,...NB.describe(b,{full:true,lookName:lookObj()?.name}).map(([k,v])=>`• ${k}: ${v}`),
-    `• Total${pr.quote?' (estimate)':''}: ${jmd(pr.total)}`,
-    bk.pay==='cash'?'• Payment: cash':pr.deposit?`• 50% deposit ${jmd(pr.deposit)} by Scotiabank transfer. Proof of payment attached.`:'• Deposit: to be confirmed'].join('\n');
-}
 function showDone(res){
   const pr=res.price, pending=res.status==='pending', b=bkView();
   $('#doneRef').textContent='Booking '+res.ref;
@@ -2158,18 +2196,27 @@ function showDone(res){
   $('#doneMsg').textContent=(pending?(pr.deposit?`Send your 50% deposit (${jmd(pr.deposit)}) within 24 hours to lock in your booking.`:'Shen will confirm your price and deposit on WhatsApp.'):`See you ${NB.fmtDate(bk.date,true)}!`)+wigLine+
     (res.live?(bk.email?' A confirmation is on its way to your phone and email.':' A confirmation is on its way to your phone.'):' (Preview mode: this booking is only saved in this browser.)');
   const rows=NB.describe(b,{lookName:lookObj()?.name}).filter(r=>r[0]!=='Name');
-  rows.push(['Total'+(pr.quote?' (estimate)':''),jmd(pr.total)]);
+  rows.push(['Total'+(pr.quote&&pr.total?' (estimate)':''),NB.money(pr.total)]);
   if(bk.pay==='cash')rows.push(['Payment','Cash']); else if(pr.deposit)rows.push(['Deposit due (24 hrs)',jmd(pr.deposit)]);
-  if(bk.notes.trim())rows.push(['Notes',bk.notes.trim()]);
-  $('#receipt').innerHTML=rows.map(([k,v])=>`<div${k==='Notes'?' class="rc-notes"':''}><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('');
+  $('#receipt').innerHTML=rows.map(([k,v])=>`<div${['Notes','Address','Damage notes'].includes(k)?' class="rc-notes"':''}><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('');
   $('#bankCard').hidden=bk.pay==='cash'||!pr.deposit; $('#bcAmt').textContent=jmd(pr.deposit); $('#bcRef').textContent=res.ref;
-  $('#waLink').href='https://wa.me/18764201683?text='+encodeURIComponent(bookingText(res));
-  $('#waLink').textContent=pending&&pr.deposit&&bk.pay!=='cash'?'Send proof of payment':'Message Shen';
+  const payNow=pending&&pr.deposit&&bk.pay!=='cash';
+  $('#waLink').textContent=payNow?'Confirm payment':'Message Shen';
+  $('#waLink').href='https://wa.me/18764201683?text='+encodeURIComponent(payNow?`Hi Shen! Here is my payment receipt for booking ${res.ref} (${jmd(pr.deposit)} deposit).`:`Hi Shen! I have a question about my booking ${res.ref}.`);
+  $('#waHelp').textContent=payNow?'Shen already has your booking details. After you transfer the deposit, tap Confirm payment and attach a screenshot of your receipt in WhatsApp.':'';
+  loadBank();
   $('#photoNote').textContent=photo?'Please also send your inspo photo to Shen on WhatsApp.':'Questions? Call or WhatsApp Shen on 876-420-1683.';
-  bk.step=6; renderBooking(); $('#bkForm').scrollIntoView({behavior:'smooth',block:'start'});
+  bk.step=6; pushStep=true; bkFinished=true; renderBooking(); $('#bkForm').scrollIntoView({behavior:'smooth',block:'start'});
   store.set('bk2',Object.assign({},bkDefault,{name:bk.name,phone:bk.phone,email:bk.email,ig:bk.ig}));
 }
-$('#againBtn').onclick=()=>{const keep={name:bk.name,phone:bk.phone,email:bk.email,ig:bk.ig};bk=Object.assign({},bkDefault,keep,{step:1});clearPhoto();cMonth=null;AV.loaded=false;saveBk();renderBooking();};
+async function loadBank(){
+  try{const r=await fetch('/api/config',{cache:'no-store'});if(!r.ok)return;const j=await r.json();const b=j.bank||{};
+    if(b.bank)$('#bcBank').textContent=b.bank;
+    const rows=[['Account name',b.accountName],['Account number',b.accountNumber],['Account type',b.accountType],['Branch',b.branch]].filter(r=>r[1]);
+    if(rows.length)$('#bcRows').innerHTML=rows.map(([k,v])=>`<div class="bc-row"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('');
+  }catch(e){}
+}
+$('#againBtn').onclick=()=>{bkFinished=false;const keep={name:bk.name,phone:bk.phone,email:bk.email,ig:bk.ig};bk=Object.assign({},bkDefault,keep,{step:1});clearPhoto();cMonth=null;AV.loaded=false;saveBk();renderBooking();};
 
 /* ---------- price list (About us · Pricing), built from catalog.js ---------- */
 (()=>{
@@ -2182,7 +2229,7 @@ $('#againBtn').onclick=()=>{const keep={name:bk.name,phone:bk.phone,email:bk.ema
     pin:'<path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>',
     loc:'<path d="M8 3c0 6 2 6 2 12s-2 6-2 6M12 3c0 6 2 6 2 12s-2 6-2 6M16 3c0 6 2 6 2 12s-2 6-2 6"/>'};
   const P=v=>Array.isArray(v)?`${jmd(v[0])} to ${jmd(v[1])}`:typeof v==='object'?'From '+jmd(v.from):typeof v==='string'?v:jmd(v);
-  const fromSvc=s=>s.quote?{n:s.name,p:'Quoted per client',d:s.d}:s.vars?{n:s.name,sub:s.vars.map(v=>[v.n,v.dur||'',v.p]),d:s.d}:{n:s.name,p:s.to?[s.p,s.to]:s.from?{from:s.p}:s.p,time:s.dur,d:s.d};
+  const fromSvc=s=>s.quote?{n:s.name,p:'Price to be confirmed',d:s.d}:s.vars?{n:s.name,sub:s.vars.map(v=>[v.n,v.dur||'',v.p]),d:s.d}:{n:s.name,p:s.to?[s.p,s.to]:s.from?{from:s.p}:s.p,time:s.dur,d:s.d};
   const W=NB.WIG_MAIN, grp=g=>NB.SVCS.style.filter(s=>s.grp===g).map(fromSvc);
   const LIST=[
     {t:'Wig care',ic:'wash',badge:'Book online',items:[
@@ -2191,7 +2238,7 @@ $('#againBtn').onclick=()=>{const keep={name:bk.name,phone:bk.phone,email:bk.ema
       {n:'Drop-off',p:`${NB.DROP_DAYS} days ahead`,d:'Every wig must be dropped off at least 2 days before pick-up or delivery'}]},
     {t:'Wig repairs & finishing',ic:'plus',items:[...NB.WIG_REPAIRS.map(r=>({n:r.name,p:r.p})),...NB.WIG_STYLING.map(s=>({n:s.name,p:s.from?{from:s.p}:s.p}))]},
     {t:'Bundle & weave laundry',ic:'wash',items:[{n:'Bundle wash (per bundle)',p:600},{n:'3 Bundle Wash Package',p:1500}]},
-    {t:'Pick-up & delivery',ic:'pin',items:Object.entries(NB.AREAS).map(([a,f])=>({n:a==='Other area'?'Other locations':a,p:f==null?'Quoted on request':f}))},
+    {t:'Pick-up & delivery',ic:'pin',items:Object.entries(NB.AREAS).map(([a,f])=>({n:a==='Other area'?'Other locations':a,p:f==null?'Price to be confirmed':f}))},
     {t:'Signature wig services',ic:'gem',items:grp('Signature wig services')},
     {t:'Add-ons',ic:'plus',items:NB.ADDONS.map(a=>({n:a.name,p:a.p}))},
     {t:'Natural hair luxury',ic:'leaf',items:grp('Natural hair luxury')},
@@ -2207,6 +2254,11 @@ $('#againBtn').onclick=()=>{const keep={name:bk.name,phone:bk.phone,email:bk.ema
   $('#priceGrid').innerHTML=LIST.map((c,i)=>`<article class="pcard" data-reveal style="transition-delay:${(i%2)*.08}s"><div class="pcard-h"><i><svg viewBox="0 0 24 24">${IC[c.ic]}</svg></i><h3>${c.t}</h3>${c.badge?`<em>${c.badge}</em>`:''}</div>${c.items.map(row).join('')}</article>`).join('');
   $$('#priceGrid [data-reveal]').forEach(el=>io.observe(el));
 })();
+
+/* ===================== BACK TO TOP ===================== */
+(()=>{const b=$('#toTop');const tick=()=>b.classList.toggle('show',scrollY>innerHeight*0.8);
+  addEventListener('scroll',tick,{passive:true});addEventListener('hashchange',()=>setTimeout(tick,50));
+  b.onclick=()=>window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});})();
 
 /* ===================== START ===================== */
 route();

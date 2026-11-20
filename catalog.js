@@ -59,7 +59,7 @@ globalThis.NB = (() => {
     kids: [
       { id: 'cornrows', name: 'Luxury Cornrows', vars: [{ n: 'Small', p: 2500 }, { n: 'Medium', p: 1800 }, { n: 'Large', p: 1500 }], d: 'Starts with a hair treatment' },
       { id: 'plaits', name: 'Signature Plaits', vars: [{ n: 'Small', p: 2500 }, { n: 'Medium', p: 1800 }], d: 'Starts with a hair treatment' },
-      { id: 'kidsother', name: 'Twists, braids & twist outs', quote: true, d: 'Twists, braids, mini braids or twist outs. Shen confirms the price.' },
+      { id: 'kidsother', name: 'Twists, braids & twist outs', quote: true, d: 'Twists, braids, mini braids or twist outs. Price to be confirmed.' },
     ],
     locs: [
       { id: 'retwist', name: 'Loc retwist', quote: true, d: 'Priced by loc length and density' },
@@ -174,13 +174,13 @@ globalThis.NB = (() => {
       }
       if (b.handoff === 'Pickup') {
         const fee = AREAS[b.area];
-        if (fee == null) { quote = true; line(`Pick-up & delivery · ${b.area || 'Other area'}`, 0, 'Quoted on request'); }
+        if (fee == null) { quote = true; line(`Pick-up & delivery · ${b.area || 'Other area'}`, 0, 'Price to be confirmed'); }
         else line(`Pick-up & delivery · ${b.area}`, fee);
       }
     } else {
       const s = svc(b.cat, b.svc);
       if (s) {
-        if (s.quote) { quote = true; line(s.name, 0, 'Price confirmed by Shen'); }
+        if (s.quote) { quote = true; line(s.name, 0, 'Price to be confirmed'); }
         else {
           const v = s.vars ? (s.vars.find(x => x.n === b.variant) || s.vars[0]) : null;
           if (s.from || s.to) quote = true;
@@ -188,7 +188,7 @@ globalThis.NB = (() => {
         }
         if (b.cat === 'style') (b.addons || []).forEach(id => { const a = ADDONS.find(x => x.id === id); if (a) line(a.name, a.p); });
       }
-      if (b.location === 'mobile') { quote = true; line('Shen comes to you', 0, 'Travel fee quoted by Shen'); }
+      if (b.location === 'mobile') { quote = true; line('Shen comes to you', 0, 'Travel fee to be confirmed'); }
     }
     const total = lines.reduce((t, l) => t + l.amt, 0);
     return { lines, total, deposit: Math.ceil(total / 2), quote };
@@ -202,13 +202,13 @@ globalThis.NB = (() => {
       const M = wigMain(b.main);
       add(M.bundle ? 'Bundles' : 'Wigs', M.bundle ? String(b.qty || 1) : `${b.qty || 1} · ${b.wigType || WIG_TYPES[0]}`);
       if (!M.bundle && (b.repairs || []).length) add('Repairs', b.repairs.map(id => (WIG_REPAIRS.find(x => x.id === id) || {}).name).filter(Boolean).join(', '));
-      if (!M.bundle) add('Damage', (b.damage || []).length ? b.damage.join(', ') : 'None noted');
-      if (opts.full && b.damageNote) add('Damage notes', b.damageNote);
+      if (!M.bundle) add('Damage', (b.damage || []).length ? b.damage.join(', ') : b.damageNote ? '' : 'None noted');
+      add('Damage notes', b.damageNote);
       add('Styling', styledLabel(b, opts.lookName));
       add(b.handoff === 'Pickup' ? 'Delivery' : 'Pick-up', b.date ? `${fmtDate(b.date)}${b.time ? ', ' + fmtTime(b.time) : ''}` : '');
       add(b.handoff === 'Pickup' ? 'Collected by' : 'Drop off by', b.date ? fmtDate(addDays(b.date, -DROP_DAYS)) : '');
       add('Method', b.handoff === 'Pickup' ? `Pick-up & delivery · ${b.area}` : 'Drop-off & collect');
-      if (opts.full && b.handoff === 'Pickup') add('Address', b.addr);
+      if (b.handoff === 'Pickup') add('Address', b.addr);
     } else {
       const s = svc(b.cat, b.svc);
       const dur = s && (s.vars ? (s.vars.find(x => x.n === b.variant) || s.vars[0]).dur : s.dur); add('Time needed', dur);
@@ -216,11 +216,12 @@ globalThis.NB = (() => {
       add('Look', b.photo ? 'Inspo photo (sending on WhatsApp)' : opts.lookName || '');
       add('When', b.date ? `${fmtDate(b.date)}${b.time ? ', ' + fmtTime(b.time) : ''}` : '');
       add('Where', b.location === 'mobile' ? 'Shen comes to you' : "At Shen's");
-      if (opts.full && b.location === 'mobile') add('Address', b.addr);
+      if (b.location === 'mobile') add('Address', b.addr);
     }
     if (b.occasion && b.occasion !== 'No, just fresh') add('Occasion', b.occasion);
+    add('Notes', b.notes);
     if (opts.full) {
-      add('Name', b.name); add('Phone', b.phone); add('Email', b.email); add('Instagram', b.ig); add('Notes', b.notes);
+      add('Name', b.name); add('Phone', b.phone); add('Email', b.email); add('Instagram', b.ig);
       add('Payment', b.pay === 'cash' ? 'Cash' : 'Bank transfer (50% deposit)');
     } else add('Name', b.name);
     return rows;
@@ -252,7 +253,9 @@ globalThis.NB = (() => {
     return '';
   }
 
-  return { jmd, CATS, TIERS, WIG_MAIN, WIG_TYPES, WIG_REPAIRS, DAMAGE, WIG_STYLING, WSTYLE_FINISH, AREAS, DROP_DAYS,
+  // a total of 0 means every price is still to be confirmed
+  const money = n => (n ? jmd(n) : 'To be confirmed');
+  return { jmd, money, CATS, TIERS, WIG_MAIN, WIG_TYPES, WIG_REPAIRS, DAMAGE, WIG_STYLING, WSTYLE_FINISH, AREAS, DROP_DAYS,
     SVCS, ADDONS, SCHEDULE_DEFAULT, BOOK_AHEAD_DAYS, wigMain, svc, addDays, fmtTime, fmtDate, jaToday, apptTime,
     dayRule, buildDays, minDate, svcLabel, styledLabel, price, describe, check };
 })();

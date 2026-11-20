@@ -3,6 +3,7 @@ import '../../catalog.js';
 import { listBookings, getSchedule, listMessages, backend } from '../../lib/store.js';
 import { json } from '../../lib/http.js';
 import { isAdmin } from '../../lib/auth.js';
+import { mediaBackend } from '../../lib/media.js';
 
 const NB = globalThis.NB;
 
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
     const [bookings, schedule, messages] = await Promise.all([listBookings(), getSchedule(NB.SCHEDULE_DEFAULT), listMessages(80)]);
     bookings.sort((a, b) => (a.date + a.time < b.date + b.time ? -1 : 1));
     json(res, 200, {
-      today: NB.jaToday(), bookings, schedule, messages, storage: backend,
+      today: NB.jaToday(), bookings, schedule, messages, storage: backend, media: mediaBackend,
       sending: { email: !!process.env.RESEND_API_KEY, texts: !!(process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN) },
     });
   } catch (e) {
