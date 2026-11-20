@@ -146,7 +146,35 @@ dialog.g-dlg::backdrop{background:rgba(0,0,0,.7)}
 .g-dlg select.tin{appearance:auto}
 .g-dlg .err{min-height:0}
 .g-prog{font-size:13px;color:var(--sky);margin-bottom:8px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 6px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.stat b{display:block;font-family:var(--serif);font-size:26px;line-height:1.1}
+.stat span{font-size:11.5px;color:var(--mut)}
+.top-pages{font-size:12.5px;color:var(--mut);margin:2px 0 10px}
+.top-pages b{color:#fff;font-weight:600}
+/* forms in dialogs */
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g-dlg .field select.tin,.card select.tin{appearance:auto}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 12px}
+.chips button{height:32px;padding:0 12px;border-radius:99px;border:1px solid var(--line);font-size:12px;font-weight:600}
+.chips button.on{border-color:var(--hot);background:rgba(236,61,143,.16)}
+.chk{display:flex;gap:10px;align-items:center;font-size:13.5px;margin:4px 0 12px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--pink)}
+.warn{font-size:12.5px;color:var(--gold);margin:-4px 0 10px}
+.pr-line{font-size:13.5px;margin:0 0 12px;color:var(--mut)}
+.pr-line b{color:var(--hot)}
+/* prices */
+.pg{margin-bottom:16px}
+.pg h3{font-family:var(--serif);font-size:19px;margin:10px 0 8px}
+.pr{display:grid;grid-template-columns:1fr 150px;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.pr label{font-size:13.5px}
+.pr small{display:block;font-size:11px;color:var(--gold)}
+.pr .money-in{display:flex;align-items:center;gap:6px}
+.pr .money-in span{color:var(--mut);font-size:13px}
+.save-bar{position:sticky;bottom:12px;display:flex;gap:8px;flex-wrap:wrap;padding:10px;border-radius:18px;background:rgba(21,18,23,.94);border:1px solid var(--line);backdrop-filter:blur(8px);margin-top:10px}
 @media (max-width:820px){.sch{grid-template-columns:1fr}}
+@media (max-width:640px){.stats{grid-template-columns:1fr 1fr}.f2{grid-template-columns:1fr}.pr{grid-template-columns:1fr 120px}}
 @media (max-width:560px){.wk{grid-template-columns:1fr 1fr;row-gap:6px;padding:10px;border-radius:12px;background:var(--card2)}.wk b{grid-column:1/-1}.row3{grid-template-columns:1fr 1fr}.row3 .field:last-child{grid-column:1/-1}}
 </style>
 </head>
@@ -171,11 +199,16 @@ dialog.g-dlg::backdrop{background:rgba(0,0,0,.7)}
     <button data-tab="bookings" class="on">Bookings <span class="n" id="nPending" hidden></span></button>
     <button data-tab="schedule">Schedule</button>
     <button data-tab="gallery">Gallery</button>
+    <button data-tab="prices">Prices</button>
     <button data-tab="messages">Messages</button>
+    <button data-tab="settings">Settings</button>
   </div>
   <div id="notices"></div>
 
   <section data-view="bookings">
+    <div class="stats" id="stats"></div>
+    <p class="top-pages" id="topPages"></p>
+    <div class="acts" style="margin:4px 0 10px"><button class="btn pink sm" id="addBk">+ Add a booking</button><span class="muted" style="align-self:center">For bookings you take by phone, WhatsApp or in person.</span></div>
     <div class="filters" id="filters">
       <button data-f="upcoming" class="on">Upcoming</button><button data-f="pending">Needs deposit</button><button data-f="past">Past</button><button data-f="cancelled">Cancelled</button>
     </div>
@@ -191,6 +224,11 @@ dialog.g-dlg::backdrop{background:rgba(0,0,0,.7)}
         <div class="legend"><span>Numbers show booked / max</span><span><i></i>Changed from usual hours</span></div>
       </div>
       <div class="card" id="dayPanel"><p class="muted">Tap a day to open, close or change it.</p></div>
+    </div>
+    <h2>Unpaid bookings</h2>
+    <div class="card">
+      <label class="switch"><input type="checkbox" id="relUnpaid"> <span>Release bookings with no deposit after 24 hours</span></label>
+      <p class="muted" style="margin-top:10px">When this is on, a bank-transfer booking that still has no deposit 24 hours after it was made is cancelled automatically, its time opens up again, and the customer gets a message. You get an email, and you can tap Restore to bring it back. When it's off, those bookings just get a red "Over 24 hrs" tag.</p>
     </div>
     <h2>Usual weekly hours</h2>
     <div class="card">
@@ -220,6 +258,31 @@ dialog.g-dlg::backdrop{background:rgba(0,0,0,.7)}
     <input type="file" id="gFile" hidden>
   </section>
 
+  <section data-view="prices" hidden>
+    <p class="muted" style="margin:10px 0 6px">Change any price and tap <b>Save prices</b>. The website, booking summary and emails use the new prices within a minute. Bookings already made keep the price they were booked at. Leave a service empty to show "Price to be confirmed".</p>
+    <div id="priceList"></div>
+    <div class="save-bar"><button class="btn pink" id="savePrices">Save prices</button><button class="btn ghost sm" id="resetPrices">Back to the original prices</button></div>
+  </section>
+
+  <section data-view="settings" hidden>
+    <h2>Change password</h2>
+    <div class="card" style="max-width:520px">
+      <form id="pwForm">
+        <label class="field" style="margin-bottom:10px">Current password<input class="tin" type="password" id="pwCur" autocomplete="current-password" required></label>
+        <label class="field" style="margin-bottom:10px">New password (at least 8 characters)<input class="tin" type="password" id="pwNew" autocomplete="new-password" minlength="8" required></label>
+        <label class="field" style="margin-bottom:10px">Type the new password again<input class="tin" type="password" id="pwNew2" autocomplete="new-password" minlength="8" required></label>
+        <p class="err" id="pwErr"></p>
+        <button class="btn pink" type="submit" id="pwSave">Change password</button>
+      </form>
+      <p class="muted" style="margin-top:12px" id="pwInfo">Changing it logs you out on every other phone or computer.</p>
+    </div>
+    <h2>Backup</h2>
+    <div class="card" style="max-width:520px">
+      <p class="muted" style="margin-bottom:12px">Saves a file with every booking, your schedule, prices and gallery to this phone or computer. A copy is also saved automatically every Sunday. You only need this if you want your own copy.</p>
+      <a class="btn ghost sm" href="/api/admin/backup" download>Download a backup</a>
+    </div>
+  </section>
+
   <section data-view="messages" hidden>
     <div class="acts" style="margin:4px 0 14px"><button class="btn ghost sm" id="runRem">Send due reminders now</button></div>
     <div class="list" id="msgList"></div>
@@ -239,10 +302,12 @@ dialog.g-dlg::backdrop{background:rgba(0,0,0,.7)}
     <div class="acts"><button class="btn pink" id="gSave" type="submit" value="save">Save</button><button class="btn ghost" type="button" id="gCancel">Cancel</button><button class="btn danger" type="button" id="gRemove">Remove from gallery</button></div>
   </form>
 </dialog>
+<dialog class="g-dlg" id="bDlg"><form method="dialog" id="bForm"></form></dialog>
 <div class="toast" id="toast"></div>
 
 <script src="catalog.js"></script>
 <script src="gallery.js"></script>
+<script src="/api/prices"></script>
 <script>
 const $=(s,e=document)=>e.querySelector(s), $$=(s,e=document)=>[...e.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -285,7 +350,8 @@ function render(){
   $('#notices').innerHTML=n.map(t=>`<p class="notice">${esc(t)}</p>`).join('');
   const pend=D.bookings.filter(b=>b.status==='pending').length;
   $('#nPending').hidden=!pend;$('#nPending').textContent=pend;
-  renderBookings();renderCal();renderDay();renderWeek();renderMsgs();
+  renderBookings();renderCal();renderDay();renderWeek();renderMsgs();renderStats();if(!pricesDirty)renderPrices();renderPwInfo();
+  $('#relUnpaid').checked=!!D.schedule.releaseUnpaid;
 }
 /* ---------- bookings ---------- */
 const STATUS={pending:'Deposit due',confirmed:'Confirmed',done:'Done',cancelled:'Cancelled'};
@@ -297,24 +363,30 @@ function renderBookings(){
 }
 function card(b){
   const p=b.price||NB.price(b), wig=b.cat==='wig', overdue=b.status==='pending'&&Date.now()-b.createdAt>24*3600e3;
+  const releaseAt=b.status==='pending'&&D.schedule.releaseUnpaid&&b.pay==='transfer'&&p.total>0?b.createdAt+24*3600e3:0;
   const skip=['Name','Phone','Email','Instagram'];
   const rows=NB.describe(b,{full:true,lookName:b.lookName}).filter(r=>!skip.includes(r[0]));
   const wa=`https://wa.me/1${b.phone.replace(/\D/g,'')}`;
   const acts=[];
   if(b.status==='pending')acts.push(`<button class="btn pink sm" data-a="deposit" data-r="${b.ref}">Deposit received</button>`);
   if(b.status==='confirmed')acts.push(`<button class="btn ghost sm" data-a="done" data-r="${b.ref}">Mark done</button>`);
+  if(b.status==='pending'||b.status==='confirmed')acts.push(`<button class="btn ghost sm" data-a="move" data-r="${b.ref}">Move</button>`);
   if(b.status!=='cancelled'&&b.status!=='done')acts.push(`<button class="btn danger sm" data-a="cancel" data-r="${b.ref}">Cancel</button>`);
   if(b.status==='cancelled')acts.push(`<button class="btn ghost sm" data-a="restore" data-r="${b.ref}">Restore</button>`);
   return `<article class="bk ${b.status}">
     <div class="bk-h"><div class="when">${esc(NB.fmtDate(b.date,true))}<small>${wig?(b.handoff==='Pickup'?'Delivery':'Pick-up'):'Appointment'} at ${esc(NB.fmtTime(b.time))} · ${esc(b.ref)}</small></div>
-      <div><span class="pill p-${b.status}">${STATUS[b.status]||b.status}</span>${overdue?'<span class="pill p-overdue">Over 24 hrs</span>':''}</div></div>
+      <div><span class="pill p-${b.status}">${STATUS[b.status]||b.status}</span>${overdue?'<span class="pill p-overdue">Over 24 hrs</span>':''}${b.cancelReason==='unpaid'?'<span class="pill p-overdue">No deposit</span>':''}</div></div>
+    ${b.source==='admin'?'<p class="muted" style="font-size:11.5px;margin-top:6px">Added by you</p>':''}${b.movedAt?`<p class="muted" style="font-size:11.5px;margin-top:6px">Moved from ${esc(NB.fmtDate(b.history?.at(-1)?.from?.date||''))} ${esc(NB.fmtTime(b.history?.at(-1)?.from?.time||''))}</p>`:''}
     <div class="who"><b>${esc(b.name)}</b><a href="tel:+1${b.phone.replace(/\D/g,'')}">${esc(b.phone)}</a><a href="${wa}" target="_blank" rel="noopener">WhatsApp</a>${b.email?`<a href="mailto:${esc(b.email)}">Email</a>`:''}${b.ig?`<span class="muted">${esc(b.ig)}</span>`:''}</div>
     <dl class="rows">${rows.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
     <div class="money"><span>Total${p.quote&&p.total?' (estimate)':''} <b>${NB.money(p.total)}</b></span>${b.pay==='cash'?'<span>Paying cash</span>':`<span>Deposit <b>${NB.money(p.deposit)}</b>${b.depositAt?' received':''}</span>`}<span class="muted">Booked ${esc(new Date(b.createdAt).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}</span></div>
+    ${releaseAt?`<p class="muted" style="margin-top:8px">Released automatically ${releaseAt>Date.now()?'on '+esc(new Date(releaseAt).toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})):'at the next check'} if no deposit comes in.</p>`:''}
+    ${b.cancelReason==='unpaid'?'<p class="muted" style="margin-top:8px">Released automatically: no deposit within 24 hours. Tap Restore to bring it back.</p>':''}
     <div class="acts">${acts.join('')}</div></article>`;
 }
 $('#bkList').onclick=async e=>{
   const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,ref=b.dataset.r;
+  if(a==='move')return openMove(D.bookings.find(x=>x.ref===ref));
   if(a==='cancel'&&!confirm('Cancel this booking? The customer will get a message that it is cancelled.'))return;
   b.disabled=true;
   try{await api('/api/admin/booking',{method:'POST',body:{ref,action:a}});toast({deposit:'Deposit marked as received. Customer notified.',done:'Marked as done',cancel:'Booking cancelled. Customer notified.',restore:'Booking restored'}[a]);await load();}
@@ -360,6 +432,124 @@ $('#saveWeek').onclick=async()=>{const week={};$$('#week .wk').forEach(r=>{const
 function renderMsgs(){
   $('#msgList').innerHTML=D.messages.length?D.messages.map(m=>`<div class="msg"><div class="msg-h"><span class="pill s-${m.status}">${esc(m.status)}</span><b>${esc({email:'Email',sms:'Text',whatsapp:'WhatsApp'}[m.channel]||m.channel)}</b><span class="muted">to ${esc(m.who||'')} ${esc(m.to)}</span><span class="muted">· ${esc(new Date(m.at).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}</span></div>${m.subject?`<b>${esc(m.subject)}</b>`:''}<pre>${esc(m.text||'')}</pre>${m.error?`<p class="err">${esc(m.error)}</p>`:''}</div>`).join(''):'<div class="empty">No messages yet.</div>';
 }
+/* ---------- visitor numbers ---------- */
+const PAGE_NAME={home:'Home',gallery:'Gallery',services:'Services',process:'How it works',pricing:'Pricing',contact:'Contact',book:'Booking page',booked:'Finished a booking'};
+function renderStats(){
+  const v=D.visits||[], t=D.today, wk=NB.addDays(t,-6);
+  const sum=(rows,k)=>rows.reduce((n,r)=>n+(+r[k]||0),0), last7=v.filter(r=>r.day>=wk);
+  const made7=D.bookings.filter(b=>b.source!=='admin'&&b.createdAt>=Date.now()-7*864e5).length;
+  $('#stats').innerHTML=[[sum(last7,'visits'),'Visitors, last 7 days'],[sum(last7,'views'),'Pages viewed, last 7 days'],[made7,'Online bookings, last 7 days'],[sum(v,'visits'),'Visitors, last 30 days']]
+    .map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+  const by={};v.forEach(r=>{if(r.page!=='booked')by[r.page]=(by[r.page]||0)+(+r.views||0)});
+  const top=Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,4);
+  $('#topPages').innerHTML=top.length?'Most viewed this month: '+top.map(([p,n])=>`<b>${esc(PAGE_NAME[p]||p)}</b> ${n}`).join(' · '):'Visitor numbers start counting once the website is live.';
+}
+/* ---------- add / move bookings ---------- */
+const fmtPhone=v=>{const d=String(v).replace(/\D/g,'').slice(0,10);return d.length>6?`${d.slice(0,3)}-${d.slice(3,6)}-${d.slice(6)}`:d.length>3?`${d.slice(0,3)}-${d.slice(3)}`:d;};
+function freeTimes(date,skipRef){const others=D.bookings.filter(b=>b.ref!==skipRef);const day=NB.buildDays(D.schedule,others,date,date)[date]||{};return day;}
+function timeChips(date,cur,skipRef){
+  const day=freeTimes(date,skipRef), r=NB.dayRule(D.schedule,date);
+  const warn=!r.open?'This day is closed. You can still book it.':day.state==='full'?'This day is already full. You can still book it.':day.state==='past'?'This date has passed.':!(day.times||[]).length?'No open times left that day. You can still pick any time.':'';
+  return `${warn?`<p class="warn">${warn}</p>`:''}${(day.times||[]).length?`<div class="chips" id="tChips">${day.times.map(t=>`<button type="button" data-t="${t}" class="${t===cur?'on':''}">${NB.fmtTime(t)}</button>`).join('')}</div>`:''}`;
+}
+function bindTimes(skipRef){
+  const upd=()=>{$('#tWrap').innerHTML=timeChips($('#bDate').value,$('#bTime').value,skipRef);};
+  $('#bDate').onchange=upd; $('#bTime').oninput=()=>$$('#tChips button').forEach(x=>x.classList.toggle('on',x.dataset.t===$('#bTime').value));
+  $('#tWrap').onclick=e=>{const c=e.target.closest('[data-t]');if(!c)return;$('#bTime').value=c.dataset.t;$$('#tChips button').forEach(x=>x.classList.toggle('on',x===c));};
+  upd();
+}
+function dlgButtons(label){return `<p class="err" id="bErr"></p><div class="acts"><button class="btn pink" type="submit" id="bSave">${label}</button><button class="btn ghost" type="button" id="bCancel">Cancel</button></div>`;}
+function openDlg(){ $('#bCancel').onclick=()=>$('#bDlg').close(); $('#bDlg').showModal(); }
+$('#bDlg').addEventListener('cancel',e=>{if($('#bSave')?.disabled)e.preventDefault();});
+function openMove(b){
+  if(!b)return;
+  $('#bForm').innerHTML=`<h3>Move ${esc(b.name)}'s booking</h3>
+    <p class="muted" style="margin:-6px 0 12px">${esc(NB.svcLabel(b))} · now ${esc(NB.fmtDate(b.date,true))} at ${esc(NB.fmtTime(b.time))}</p>
+    <div class="f2"><label class="field">New date<input class="tin" type="date" id="bDate" value="${b.date}" required></label><label class="field">New time<input class="tin" type="time" id="bTime" value="${b.time}" required></label></div>
+    <p class="muted" style="font-size:12px;margin:8px 0 6px">Open times that day:</p><div id="tWrap"></div>
+    ${b.cat==='wig'?`<p class="warn">Wig care: remember the wig is dropped off ${NB.DROP_DAYS} days before the new date.</p>`:''}
+    <label class="chk"><input type="checkbox" id="bNotify" checked> Tell the customer about the new time</label>
+    ${dlgButtons('Move booking')}`;
+  bindTimes(b.ref); openDlg();
+  $('#bForm').onsubmit=async e=>{e.preventDefault();$('#bErr').textContent='';$('#bSave').disabled=true;
+    try{await api('/api/admin/booking',{method:'POST',body:{ref:b.ref,action:'move',date:$('#bDate').value,time:$('#bTime').value,notify:$('#bNotify').checked}});
+      $('#bDlg').close();toast($('#bNotify').checked?'Booking moved. Customer notified.':'Booking moved');await load();}
+    catch(err){$('#bErr').textContent=err.message;$('#bSave').disabled=false;}};
+}
+function addForm(){
+  const cat=$('#aCat').value, box=$('#aSvcBox');
+  if(cat==='wig'){
+    box.innerHTML=`<label class="field">Wig care service<select class="tin" id="aMain">${NB.WIG_MAIN.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join('')}</select></label>
+      <div class="f2"><label class="field" id="aTierL">Wig length<select class="tin" id="aTier">${NB.TIERS.map(t=>`<option>${esc(t)}</option>`).join('')}</select></label>
+      <label class="field">How many<input class="tin" type="number" id="aQty" min="1" max="12" value="1"></label></div>
+      <label class="field">Drop-off or pick-up<select class="tin" id="aHand"><option value="Drop-off">Customer drops off and collects</option><option value="Pickup">Shen picks up and delivers</option></select></label>`;
+  }else{
+    const list=NB.SVCS[cat]||[];
+    box.innerHTML=`<label class="field">Service<select class="tin" id="aSvc">${list.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></label><label class="field" id="aVarL" hidden>Option<select class="tin" id="aVar"></select></label>`;
+  }
+  const sync=()=>{
+    if(cat==='wig'){const M=NB.wigMain($('#aMain').value);$('#aTierL').hidden=!M.tiers;}
+    else{const x=NB.svc(cat,$('#aSvc').value);$('#aVarL').hidden=!x?.vars;if(x?.vars)$('#aVar').innerHTML=x.vars.map(v=>`<option>${esc(v.n)}</option>`).join('');}
+    const pr=NB.price(addDraft());$('#aPrice').innerHTML=`Price: <b>${NB.money(pr.total)}</b>${pr.quote&&pr.total?' (estimate)':''}${pr.deposit&&$('#aPay').value==='due'?` · deposit due ${NB.jmd(pr.deposit)}`:''}`;
+  };
+  $$('select,input',box).forEach(el=>el.oninput=el.onchange=sync); $('#aPay').onchange=sync; sync();
+}
+function addDraft(){
+  const cat=$('#aCat').value, b={cat};
+  if(cat==='wig'){Object.assign(b,{main:$('#aMain').value,tier:$('#aTier').value,qty:+$('#aQty').value||1,handoff:$('#aHand').value,area:'Kingston',styled:'no'});}
+  else{b.svc=$('#aSvc').value;const x=NB.svc(cat,b.svc);if(x?.vars)b.variant=$('#aVar').value||x.vars[0].n;}
+  return b;
+}
+$('#addBk').onclick=()=>{
+  $('#bForm').innerHTML=`<h3>Add a booking</h3>
+    <label class="field">Type<select class="tin" id="aCat">${NB.CATS.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></label>
+    <div id="aSvcBox"></div>
+    <div class="f2"><label class="field">Date<input class="tin" type="date" id="bDate" value="${D.today}" required></label><label class="field">Time<input class="tin" type="time" id="bTime" required></label></div>
+    <p class="muted" style="font-size:12px;margin:8px 0 6px">Open times that day:</p><div id="tWrap"></div>
+    <label class="field">Customer name<input class="tin" id="aName" maxlength="80" required></label>
+    <div class="f2"><label class="field">Phone<input class="tin" id="aPhone" inputmode="tel" placeholder="876-555-0123" required></label><label class="field">Email (optional)<input class="tin" type="email" id="aEmail"></label></div>
+    <label class="field">Payment<select class="tin" id="aPay"><option value="cash">Cash</option><option value="paid">Bank transfer: deposit already paid</option><option value="due">Bank transfer: deposit still due</option></select></label>
+    <p class="pr-line" id="aPrice"></p>
+    <label class="field">Notes (optional)<textarea class="tin" id="aNotes" maxlength="1000" style="height:70px;padding:10px;font-family:inherit"></textarea></label>
+    <label class="chk"><input type="checkbox" id="bNotify" checked> Send the customer a confirmation and reminders</label>
+    ${dlgButtons('Add booking')}`;
+  $('#aCat').onchange=addForm; addForm(); bindTimes('');
+  $('#aPhone').oninput=e=>{e.target.value=fmtPhone(e.target.value)};
+  openDlg();
+  $('#bForm').onsubmit=async e=>{e.preventDefault();$('#bErr').textContent='';
+    const pay=$('#aPay').value, booking=Object.assign(addDraft(),{date:$('#bDate').value,time:$('#bTime').value,name:$('#aName').value.trim(),phone:$('#aPhone').value,email:$('#aEmail').value.trim(),notes:$('#aNotes').value.trim(),pay:pay==='cash'?'cash':'transfer',paid:pay==='paid'?'deposit':''});
+    if(!booking.time){$('#bErr').textContent='Pick a time';return;}
+    $('#bSave').disabled=true;
+    try{const j=await api('/api/admin/booking',{method:'POST',body:{action:'create',booking,notify:$('#bNotify').checked}});
+      $('#bDlg').close();toast(`Booking ${j.booking.ref} added`);await load();}
+    catch(err){$('#bErr').textContent=err.message;$('#bSave').disabled=false;}};
+};
+/* ---------- prices ---------- */
+let pricesDirty=false;
+function renderPrices(){
+  const groups={};(D.prices||[]).forEach(x=>(groups[x.group]=groups[x.group]||[]).push(x));
+  $('#priceList').innerHTML=Object.entries(groups).map(([g,list])=>`<div class="card pg"><h3>${esc(g)}</h3>${list.map(x=>`<div class="pr"><label for="p_${esc(x.key)}">${esc(x.name)}${x.value!==x.original?`<small>Was ${x.original==null?'to be confirmed':NB.jmd(x.original)}</small>`:''}</label>
+    <div class="money-in"><span>J$</span><input class="tin" type="number" min="0" step="50" inputmode="numeric" id="p_${esc(x.key)}" data-k="${esc(x.key)}" value="${x.value??''}" ${x.optional?'placeholder="To be confirmed"':'required'}></div></div>`).join('')}</div>`).join('');
+  pricesDirty=false;
+}
+$('#priceList').addEventListener('input',()=>{pricesDirty=true;});
+$('#savePrices').onclick=async()=>{
+  const prices={};$$('#priceList input[data-k]').forEach(i=>prices[i.dataset.k]=i.value===''?'':+i.value);
+  try{const j=await api('/api/admin/prices',{method:'POST',body:{prices}});D.prices=j.list;NB.applyPrices(j.changes);renderPrices();toast('Prices saved. The website updates within a minute.');}
+  catch(e){toast(e.message)}};
+$('#resetPrices').onclick=async()=>{
+  if(!confirm('Put every price back to the original price list?'))return;
+  try{const j=await api('/api/admin/prices',{method:'POST',body:{reset:true}});D.prices=j.list;NB.applyPrices({});renderPrices();toast('Original prices are back');}
+  catch(e){toast(e.message)}};
+/* ---------- settings ---------- */
+function renderPwInfo(){$('#pwInfo').textContent=(D.passwordChangedAt?`Last changed ${new Date(D.passwordChangedAt).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}. `:'')+'Changing it logs you out on every other phone or computer.';}
+$('#pwForm').onsubmit=async e=>{e.preventDefault();$('#pwErr').textContent='';
+  if($('#pwNew').value!==$('#pwNew2').value){$('#pwErr').textContent="The new passwords don't match";return;}
+  $('#pwSave').disabled=true;
+  try{await api('/api/admin/password',{method:'POST',body:{current:$('#pwCur').value,next:$('#pwNew').value}});
+    $('#pwForm').reset();toast('Password changed');await load();}
+  catch(err){$('#pwErr').textContent=err.message;}
+  $('#pwSave').disabled=false;};
 /* ---------- gallery ---------- */
 const GD=NB_GALLERY;
 let GL=null, gFilter='all', gEdit=null; // gEdit: {kind:'photo'|'video', item, file?, isNew}
@@ -502,7 +692,11 @@ $('#gReset').onclick=async()=>{
   if(!confirm(`Put back the original gallery (${GD.MAX.photos} photos and ${GD.MAX.videos} videos)? Photos and videos you added will be deleted.`))return;
   try{await saveGallery({reset:true},'Original gallery is back');}catch(e){toast(e.message)}
 };
-$('#runRem').onclick=async()=>{try{const j=await api('/api/cron/reminders');toast(`${j.sent} reminder(s) sent`);await load();}catch(e){toast(e.message)}};
+$('#runRem').onclick=async()=>{try{const j=await api('/api/cron/reminders');toast(`${j.sent} reminder(s) sent${j.released?`, ${j.released} unpaid booking(s) released`:''}`);await load();}catch(e){toast(e.message)}};
+$('#relUnpaid').onchange=async e=>{const on=e.target.checked;
+  if(on&&!confirm('Turn on automatic release? Bank-transfer bookings with no deposit after 24 hours will be cancelled and the customer told.')){e.target.checked=false;return;}
+  try{const j=await api('/api/admin/schedule',{method:'POST',body:{settings:{releaseUnpaid:on}}});D.schedule=j.schedule;renderBookings();toast(on?'Unpaid bookings will be released after 24 hours':'Automatic release is off');}
+  catch(err){e.target.checked=!on;toast(err.message)}};
 boot();
 </script>
 </body>

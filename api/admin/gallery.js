@@ -33,7 +33,7 @@ function cleanVideo(v, i) {
 const files = g => new Set([...(g.photos || []).map(p => p.src), ...(g.videos || []).flatMap(v => [v.src, v.poster])]);
 
 export default async function handler(req, res) {
-  if (!isAdmin(req)) return json(res, 401, { error: 'Please log in' });
+  if (!(await isAdmin(req))) return json(res, 401, { error: 'Please log in' });
   if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
   try {
     const p = body(req);

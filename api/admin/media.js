@@ -8,7 +8,7 @@ import { mediaBackend, saveLocal, validPath, LIMIT } from '../../lib/media.js';
 export const raw = true; // the local dev server leaves the request body unread for this one
 
 export default async function handler(req, res) {
-  if (!isAdmin(req)) return json(res, 401, { error: 'Please log in' });
+  if (!(await isAdmin(req))) return json(res, 401, { error: 'Please log in' });
   if (req.method !== 'PUT') return json(res, 405, { error: 'Method not allowed' });
   if (mediaBackend !== 'file' || process.env.VERCEL) return json(res, 400, { error: 'Uploads go to Supabase storage' });
   const p = String(req.query.path || '');

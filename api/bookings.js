@@ -4,8 +4,16 @@ import '../catalog.js';
 import { listBookings, getSchedule, saveBooking, withLock } from '../lib/store.js';
 import { json, body, clip } from '../lib/http.js';
 import { newBooking } from '../lib/notify.js';
+import { loadPrices } from '../lib/prices.js';
 
 const NB = globalThis.NB;
+const MAX_UPCOMING_PER_PHONE = 3;   // a customer can hold up to 3 upcoming bookings online
+const MAX_PER_DEVICE_PER_HOUR = 5;  // and one device/network can make up to 5 bookings an hour
+/* who sent the request, as a one-way hash (the address itself is never stored) */
+function deviceId(req) {
+  const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
+  return crypto.createHmac('sha256', process.env.ADMIN_SECRET || 'nb').update(ip).digest('base64url').slice(0, 16);
+}
 const pick = (v, list) => (list.includes(v) ? v : '');
 const ids = (v, list, max) => (Array.isArray(v) ? [...new Set(v.map(String))].filter(x => list.includes(x)).slice(0, max) : []);
 
@@ -40,7 +48,11 @@ function clean(r) {
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { error: 'Method not allowed' });
-  const b = clean(body(req));
+  await loadPrices(); // Shen's current prices
+  const raw = body(req);
+  if (raw.website) return json(res, 400, { error: 'Something went wrong. Please try again.' }); // spam trap was filled in
+  const b = clean(raw);
+  const device = deviceId(req);
   const err = NB.check(b);
   if (err) return json(res, 400, { error: err });
   try {
@@ -49,11 +61,15 @@ export default async function handler(req, res) {
       if (b.date < min) return { error: b.cat === 'wig' ? `Wigs need to be dropped off ${NB.DROP_DAYS} days ahead. Pick ${NB.fmtDate(min)} or later.` : 'Please pick a later date.' };
       if (b.date > NB.addDays(NB.jaToday(), NB.BOOK_AHEAD_DAYS)) return { error: 'That date is too far ahead.' };
       const [schedule, all] = await Promise.all([getSchedule(NB.SCHEDULE_DEFAULT), listBookings()]);
+      const today = NB.jaToday(), now = Date.now();
+      const upcoming = all.filter(x => x.phone === b.phone && x.date >= today && ['pending', 'confirmed'].includes(x.status)).length;
+      if (upcoming >= MAX_UPCOMING_PER_PHONE) return { error: `You already have ${upcoming} upcoming bookings. Please WhatsApp Shen at 876-420-1683 to book more.` };
+      if (all.filter(x => x.device === device && now - (x.createdAt || 0) < 3600e3).length >= MAX_PER_DEVICE_PER_HOUR) return { error: 'Too many bookings from this device. Please try again later or WhatsApp Shen at 876-420-1683.' };
       const day = NB.buildDays(schedule, all, b.date, b.date)[b.date];
       if (!day || !day.times.includes(b.time)) return { error: 'Sorry, that time was just taken. Please pick another.', taken: true };
       let ref;
       do ref = 'NB-' + crypto.randomBytes(4).toString('hex').toUpperCase().slice(0, 5); while (all.some(x => x.ref === ref));
-      const rec = { ...b, ref, createdAt: Date.now(), status: b.pay === 'cash' ? 'confirmed' : 'pending', price: NB.price(b), reminders: {} };
+      const rec = { ...b, ref, device, createdAt: Date.now(), status: b.pay === 'cash' ? 'confirmed' : 'pending', price: NB.price(b), reminders: {} };
       await saveBooking(rec);
       return { rec };
     });

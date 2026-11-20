@@ -722,6 +722,10 @@ body[data-page="process"] .about-tabs a:not(.on):hover{color:var(--electric)}
 @media (hover:hover){.to-top:hover{transform:translateY(-3px)}}
 body.menu-open .to-top{opacity:0;pointer-events:none}
 @media (max-width:620px){.to-top{right:16px;bottom:16px;width:46px;height:46px}}
+.cal-add{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:14px 0 4px;font-size:13px;color:rgba(255,255,255,.6)}
+.cal-add span{width:100%;text-align:center}
+/* spam trap: hidden from people, bots fill it in */
+.hp{position:absolute!important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 /* ---------- gallery managed from the dashboard ---------- */
 .studio-grid2.one{grid-template-columns:1fr}
 .spin-card[hidden],.ring-card[hidden]{display:none}
@@ -1475,6 +1479,7 @@ body:not(.ready) .hero-orbs i,body:not(.ready) .hero-lines,body:not(.ready) .her
           <p class="hint">So Shen can confirm your booking and send reminders.</p>
           <div class="row2">
             <div><span class="field-label" style="margin-top:0">Full name</span><input class="inp" id="name" autocomplete="name" maxlength="80" placeholder="Your name"><div class="err" id="nameErr"></div></div>
+            <div class="hp" aria-hidden="true"><label>Leave this empty<input id="bkHp" name="website" tabindex="-1" autocomplete="off"></label></div>
             <div><span class="field-label" style="margin-top:0">Phone / WhatsApp</span><input class="inp" id="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" placeholder="876-000-0000"><div class="err" id="phoneErr"></div></div>
           </div>
           <span class="field-label">Email (for your booking details &amp; reminders)</span>
@@ -1512,6 +1517,7 @@ body:not(.ready) .hero-orbs i,body:not(.ready) .hero-lines,body:not(.ready) .her
               <button type="button" class="btn btn-ghost" id="againBtn">Make another booking</button>
             </div>
             <p class="wa-help" id="waHelp"></p>
+            <div class="cal-add"><span>Add it to your calendar</span><a class="btn btn-ghost btn-sm" id="icsLink" href="#" download="natural-blitz-booking.ics">iPhone / Outlook</a><a class="btn btn-ghost btn-sm" id="gcalLink" href="#" target="_blank" rel="noopener">Google Calendar</a></div>
             <small id="photoNote"></small>
           </div>
         </div>
@@ -1579,6 +1585,7 @@ body:not(.ready) .hero-orbs i,body:not(.ready) .hero-lines,body:not(.ready) .her
 
 <script src="catalog.js"></script>
 <script src="gallery.js"></script>
+<script src="/api/prices"></script>
 <script>
 /* ===================== DATA ===================== */
 const G=NB_GALLERY;
@@ -1690,12 +1697,20 @@ function route(){
     // reveal anything already in view on the new page
     requestAnimationFrame(()=>$$('[data-reveal]').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0&&r.height)el.classList.add('in')}));
   }
+  if(page!==lastPage)countVisit(page);
   lastPage=page;
   if(page==='book')renderBooking();
   document.title=TITLES[page];
   window.dispatchEvent(new Event('nb-view'));
 }
 addEventListener('hashchange',route);
+function countVisit(page){
+  try{
+    if(/^(localhost|127\.|\[::1\])/.test(location.hostname)||navigator.webdriver)return;
+    let first=false; try{first=!sessionStorage.getItem('nb_v');sessionStorage.setItem('nb_v','1');}catch(e){}
+    fetch('/api/visit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({page,first}),keepalive:true}).catch(()=>{});
+  }catch(e){}
+}
 
 /* ===================== MARQUEE ===================== */
 (()=>{const items=['INSTALLS','<em>melted finish</em>','SILK PRESS','<em>glossy &amp; healthy</em>','KIDDIES BRAIDS','<em>little queens</em>','WIG CARE','<em>fresh &amp; silky</em>'];
@@ -1879,7 +1894,7 @@ const priceTag=s=>s.quote?'Price to be confirmed':s.vars?'from '+jmd(Math.min(..
 
 /* ---- static pickers ---- */
 $('#catPick').innerHTML=NB.CATS.map(c=>`<button type="button" class="opt" data-cat="${c.id}"><span class="oi"><svg viewBox="0 0 24 24">${c.icon}</svg></span><span><b>${c.name}</b><span>${c.desc}</span></span>${tick}</button>`).join('');
-$('#svcPick').innerHTML=NB.WIG_MAIN.map(m=>`<button type="button" class="opt" data-svc="${m.id}"><span class="oi"><svg viewBox="0 0 24 24">${m.icon}</svg></span><span><b>${m.name}</b><span>${m.desc}</span></span>${tick}<em class="opt-price">${m.tiers?'from '+jmd(Math.min(...Object.values(m.tiers))):m.bundle?'from J$600':jmd(m.flat)}</em></button>`).join('');
+$('#svcPick').innerHTML=NB.WIG_MAIN.map(m=>`<button type="button" class="opt" data-svc="${m.id}"><span class="oi"><svg viewBox="0 0 24 24">${m.icon}</svg></span><span><b>${m.name}</b><span>${m.desc}</span></span>${tick}<em class="opt-price">${m.tiers?'from '+jmd(Math.min(...Object.values(m.tiers))):m.bundle?'from '+jmd(NB.BUNDLE.one):jmd(m.flat)}</em></button>`).join('');
 $('#tierPick').innerHTML=NB.TIERS.map(t=>`<button type="button">${t}</button>`).join('');
 $('#typePick').innerHTML=NB.WIG_TYPES.map(t=>`<button type="button">${t}</button>`).join('');
 $('#wsFinishPick').innerHTML=NB.WSTYLE_FINISH.map(t=>`<button type="button">${t}</button>`).join('');
@@ -2171,6 +2186,7 @@ $('#payBtn').onclick=async()=>{
   const btn=$('#payBtn'), label=btn.innerHTML; btn.disabled=true; btn.textContent='Sending…';
   const payload=Object.assign(bkView(),{lookName:showLook()?(lookObj()?.name||''):''}); delete payload.step; Object.keys(SENDS).forEach(k=>delete payload[k+'Sent']);
   if(!showLook())payload.look='';
+  payload.website=$('#bkHp').value; // spam trap
   let res=null;
   try{
     const r=await fetch('/api/bookings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
@@ -2204,10 +2220,33 @@ function showDone(res){
   $('#waLink').textContent=payNow?'Confirm payment':'Message Shen';
   $('#waLink').href='https://wa.me/18764201683?text='+encodeURIComponent(payNow?`Hi Shen! Here is my payment receipt for booking ${res.ref} (${jmd(pr.deposit)} deposit).`:`Hi Shen! I have a question about my booking ${res.ref}.`);
   $('#waHelp').textContent=payNow?'Shen already has your booking details. After you transfer the deposit, tap Confirm payment and attach a screenshot of your receipt in WhatsApp.':'';
-  loadBank();
+  loadBank(); setCalendar(res.ref); countVisit('booked');
   $('#photoNote').textContent=photo?'Please also send your inspo photo to Shen on WhatsApp.':'Questions? Call or WhatsApp Shen on 876-420-1683.';
   bk.step=6; pushStep=true; bkFinished=true; renderBooking(); $('#bkForm').scrollIntoView({behavior:'smooth',block:'start'});
   store.set('bk2',Object.assign({},bkDefault,{name:bk.name,phone:bk.phone,email:bk.email,ig:bk.ig}));
+}
+/* "Add to calendar": a .ics file (iPhone, Outlook) and a Google Calendar link */
+function durMin(){
+  if(isWig())return 30;
+  const s=curSvc(), d=s&&(s.vars?((s.vars.find(v=>v.n===bk.variant)||s.vars[0]).dur):s.dur)||'';
+  const h=+(d.match(/(\d+)\s*h/)||[0,0])[1], m=+(d.match(/(\d+)\s*min/)||[0,0])[1];
+  return h*60+m||60;
+}
+function setCalendar(ref){
+  const start=new Date(NB.apptTime(bk.date,bk.time)), end=new Date(start.getTime()+durMin()*60e3);
+  const z=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+  const what=isWig()?(bk.handoff==='Pickup'?'Wig delivery':'Wig pick-up'):NB.svcLabel(bk);
+  const title=`${what} · Natural Blitz by Shen`;
+  const where=isWig()?(bk.handoff==='Pickup'?(bk.addrSent||bk.addr||bk.area||''):'Natural Blitz by Shen, Kingston'):(bk.location==='mobile'?(bk.addrSent||bk.addr||''):'Natural Blitz by Shen, Kingston');
+  let note=`Booking ${ref}. Questions? WhatsApp Shen on 876-420-1683.`;
+  if(isWig())note+=bk.handoff==='Pickup'?` Wig collected by ${NB.fmtDate(NB.addDays(bk.date,-NB.DROP_DAYS),true)}.`:` Drop off your wig by ${NB.fmtDate(NB.addDays(bk.date,-NB.DROP_DAYS),true)}.`;
+  const e=t=>String(t).replace(/([\\,;])/g,'\\$1').replace(/\n/g,'\\n');
+  const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Natural Blitz by Shen//Booking//EN','METHOD:PUBLISH','BEGIN:VEVENT',
+    `UID:${ref}@naturalblitzbyshen`,`DTSTAMP:${z(new Date())}`,`DTSTART:${z(start)}`,`DTEND:${z(end)}`,`SUMMARY:${e(title)}`,`LOCATION:${e(where)}`,`DESCRIPTION:${e(note)}`,
+    'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Reminder','TRIGGER:-PT2H','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+  $('#icsLink').href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+  $('#icsLink').download=`natural-blitz-${ref}.ics`;
+  $('#gcalLink').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+z(start)+'/'+z(end)+'&details='+encodeURIComponent(note)+'&location='+encodeURIComponent(where);
 }
 async function loadBank(){
   try{const r=await fetch('/api/config',{cache:'no-store'});if(!r.ok)return;const j=await r.json();const b=j.bank||{};

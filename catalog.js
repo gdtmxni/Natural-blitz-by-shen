@@ -26,9 +26,10 @@ globalThis.NB = (() => {
       icon: '<path d="M3 7h11a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3H8l-2 7H4l1-7H3z"/><path d="M19 8h2M19 12h2M18.5 4.5l1.5-1"/>' },
     { id: 'wstyle', name: 'Wash & Style', desc: 'Wash, condition, blow dry, then curl or straighten', flat: 2000, styled: true,
       icon: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>' },
-    { id: 'bundle', name: 'Bundle & weave laundry', desc: 'J$600 per bundle, or 3 bundles for J$1,500', bundle: true,
+    { id: 'bundle', name: 'Bundle & weave laundry', desc: '', bundle: true,
       icon: '<rect x="4" y="5" width="16" height="4" rx="1.5"/><rect x="4" y="10" width="16" height="4" rx="1.5"/><rect x="4" y="15" width="16" height="4" rx="1.5"/>' },
   ];
+  const BUNDLE = { one: 600, three: 1500 }; // one bundle, or the 3-bundle package
   const WIG_TYPES = ['Lace front / closure', 'Full lace', '360 lace', 'Headband', 'Glueless'];
   const WIG_REPAIRS = [{ id: 'stitch', name: 'Lace stitching', p: 1000 }, { id: 'clip', name: 'Clip up (trashy ends)', p: 500 }];
   const DAMAGE = ['Lace tears or holes', 'Shedding', 'Matting or tangles', 'Glue or product build-up', 'Thin or bald spots', 'Dry or burnt ends'];
@@ -161,8 +162,8 @@ globalThis.NB = (() => {
       const M = wigMain(b.main), q = Math.max(1, Math.min(M.bundle ? 12 : 10, +b.qty || 1));
       if (M.bundle) {
         const packs = Math.floor(q / 3), singles = q % 3;
-        if (packs) line('3 Bundle Wash Package', packs * 1500, packs > 1 ? `${packs} × J$1,500` : '');
-        if (singles) line('Bundle wash', singles * 600, `${singles} × J$600`);
+        if (packs) line('3 Bundle Wash Package', packs * BUNDLE.three, packs > 1 ? `${packs} × ${jmd(BUNDLE.three)}` : '');
+        if (singles) line('Bundle wash', singles * BUNDLE.one, `${singles} × ${jmd(BUNDLE.one)}`);
       } else {
         const unit = M.tiers ? M.tiers[b.tier] || M.tiers[TIERS[0]] : M.flat;
         line(wigLabel(b), unit * q, q > 1 ? `${q} × ${jmd(unit)}` : '');
@@ -193,6 +194,60 @@ globalThis.NB = (() => {
     const total = lines.reduce((t, l) => t + l.amt, 0);
     return { lines, total, deposit: Math.ceil(total / 2), quote };
   }
+
+  /* ---------- prices Shen can change from the dashboard ----------
+     Every editable price has a key. Shen's changes are saved as { key: amount } and applied over
+     the prices above with applyPrices() (on the server for every booking, and in the browser via /api/prices).
+     For services, an empty amount (null) means "Price to be confirmed". */
+  const PRICE = [];
+  const P = (key, group, name, get, set, opts = {}) => PRICE.push({ key, group, name, get, set, ...opts });
+  WIG_MAIN.forEach(m => {
+    if (m.tiers) TIERS.forEach(t => P(`wig.${m.id}.${t}`, 'Wig care', `${m.name} · ${t}`, () => m.tiers[t], v => { m.tiers[t] = v; }));
+    if (m.flat) P(`wig.${m.id}`, 'Wig care', m.name, () => m.flat, v => { m.flat = v; });
+  });
+  P('bundle.one', 'Wig care', 'Bundle wash · 1 bundle', () => BUNDLE.one, v => { BUNDLE.one = v; });
+  P('bundle.three', 'Wig care', '3 Bundle Wash Package', () => BUNDLE.three, v => { BUNDLE.three = v; });
+  WIG_REPAIRS.forEach(r => P(`repair.${r.id}`, 'Wig repairs & styling', r.name, () => r.p, v => { r.p = v; }));
+  WIG_STYLING.forEach(x => P(`wstyling.${x.id}`, 'Wig repairs & styling', x.name + (x.from ? ' (from)' : ''), () => x.p, v => { x.p = v; }));
+  Object.keys(AREAS).filter(a => AREAS[a] != null).forEach(a => P(`area.${a}`, 'Pick-up & delivery', a, () => AREAS[a], v => { AREAS[a] = v; }));
+  const GROUP = { style: 'Hairstyling', kids: 'Kiddies hair', locs: 'Locs' };
+  Object.entries(SVCS).forEach(([cat, list]) => list.forEach(x => {
+    if (x.vars) x.vars.forEach(v => P(`svc.${cat}.${x.id}.${v.n}`, GROUP[cat], `${x.name} · ${v.n}`, () => v.p, n => { v.p = n; }));
+    else {
+      P(`svc.${cat}.${x.id}`, GROUP[cat], x.name + (x.from ? ' (from)' : ''), () => (x.quote ? null : x.p),
+        n => { if (n == null) { x.quote = true; delete x.p; } else { x.quote = false; x.p = n; } }, { optional: true });
+      if (x.to) P(`svc.${cat}.${x.id}.to`, GROUP[cat], `${x.name} · up to`, () => x.to ?? null, n => { if (n == null) delete x.to; else x.to = n; }, { optional: true });
+    }
+  }));
+  ADDONS.forEach(a => P(`addon.${a.id}`, 'Hairstyling add-ons', a.name, () => a.p, v => { a.p = v; }));
+  const PRICE_DEFAULTS = Object.fromEntries(PRICE.map(x => [x.key, x.get()]));
+  const okAmount = v => Number.isFinite(v) && v >= 0 && v <= 1e6;
+  function syncText() { wigMain('bundle').desc = `${jmd(BUNDLE.one)} per bundle, or 3 bundles for ${jmd(BUNDLE.three)}`; }
+  /* Puts the launch prices back, then applies Shen's changes. */
+  function applyPrices(changes) {
+    const c = changes || {};
+    for (const x of PRICE) {
+      let v = Object.prototype.hasOwnProperty.call(c, x.key) ? c[x.key] : PRICE_DEFAULTS[x.key];
+      if (v !== null) v = Math.round(+v);
+      if (v === null ? !x.optional : !okAmount(v)) v = PRICE_DEFAULTS[x.key];
+      x.set(v);
+    }
+    syncText();
+  }
+  /* Cleans a { key: amount } object from the dashboard: unknown keys dropped, launch prices left out. */
+  function cleanPrices(changes) {
+    const out = {};
+    for (const x of PRICE) {
+      if (!changes || !Object.prototype.hasOwnProperty.call(changes, x.key)) continue;
+      let v = changes[x.key];
+      if (v === '' || v == null) { if (!x.optional) throw new Error(`${x.name} needs a price`); v = null; }
+      else { v = Math.round(+v); if (!okAmount(v)) throw new Error(`Check the price for ${x.name}`); }
+      if (v !== PRICE_DEFAULTS[x.key]) out[x.key] = v;
+    }
+    return out;
+  }
+  const priceList = () => PRICE.map(x => ({ key: x.key, group: x.group, name: x.name, value: x.get(), original: PRICE_DEFAULTS[x.key], optional: !!x.optional }));
+  syncText();
 
   /* Rows describing a booking. full=true adds contact details and notes (admin, emails). */
   function describe(b, opts = {}) {
@@ -255,7 +310,7 @@ globalThis.NB = (() => {
 
   // a total of 0 means every price is still to be confirmed
   const money = n => (n ? jmd(n) : 'To be confirmed');
-  return { jmd, money, CATS, TIERS, WIG_MAIN, WIG_TYPES, WIG_REPAIRS, DAMAGE, WIG_STYLING, WSTYLE_FINISH, AREAS, DROP_DAYS,
+  return { jmd, money, CATS, TIERS, BUNDLE, applyPrices, cleanPrices, priceList, WIG_MAIN, WIG_TYPES, WIG_REPAIRS, DAMAGE, WIG_STYLING, WSTYLE_FINISH, AREAS, DROP_DAYS,
     SVCS, ADDONS, SCHEDULE_DEFAULT, BOOK_AHEAD_DAYS, wigMain, svc, addDays, fmtTime, fmtDate, jaToday, apptTime,
     dayRule, buildDays, minDate, svcLabel, styledLabel, price, describe, check };
 })();
